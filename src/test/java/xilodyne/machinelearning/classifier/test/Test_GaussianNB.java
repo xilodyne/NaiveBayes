@@ -9,13 +9,24 @@ import java.util.List;
 
 
 
+
+
 import mikera.arrayz.NDArray;
 
 import org.junit.Test;
 
-import xilodyne.machinelearning.classifier.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.util.ArrayUtils;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
+
+/**
+ * JUnit tests for the Gaussian Naive Bayes.
+ * 
+ * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.2 -- Changes to reflect v.02 GNB update
+ * 
+ */
 
 
 public class Test_GaussianNB {
@@ -23,13 +34,13 @@ public class Test_GaussianNB {
 	
 	public Test_GaussianNB() {
 		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
+		G.setLoggerLevel(G.LOG_FINE);
 		// G.setLoggerLevel(G.LOG_INFO);
 		//G.setLoggerLevel(G.LOG_DEBUG);
 	}
 	
 	@Test
-	public void checkProbabilityOneLabel() {
+	public void checkProbability_OneFeature() {
 		log.logln_withClassName(G.lF,"");	
 			
 		//setup
@@ -38,35 +49,40 @@ public class Test_GaussianNB {
 		System.out.println("Testing:  P(Male|Height)");
 		System.out.println();
 		
-		List <String> labelList = new ArrayList<String>(Arrays.asList("Height"));
-		List<String> classes = new ArrayList<String>(Arrays.asList("Male","Female"));
-
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, classes, labelList);
-		gnb.setClassListDisplayName("Gender");
+		List<String> featureNames = new ArrayList<String>(Arrays.asList("Height"));
+		List<String> labelNames = new ArrayList<String>(Arrays.asList("Male","Female"));
+		// 0 = Male
+		// 1 = Female
 		
-		int labelIndex = labelList.indexOf("Height");
-		gnb.fit(labelIndex, 6f, "Male");
-		gnb.fit(labelIndex, 5.92f, "Male");
-		gnb.fit(labelIndex, 5.58f, "Male");
-		gnb.fit(labelIndex, 5.92f, "Male");
-		gnb.fit(labelIndex, 5f, "Female");
-		gnb.fit(labelIndex, 5.5f, "Female");
-		gnb.fit(labelIndex, 5.42f, "Female");
-		gnb.fit(labelIndex, 5.75f, "Female");
+		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
+		gnb.setLabelClassCategory("Gender");
+		
+		int labelIndex = featureNames.indexOf("Height");
+		int maleIndex = labelNames.indexOf("Male");
+		int indexFemale = labelNames.indexOf("Female");
+		
+		gnb.fit(labelIndex, 6f, maleIndex);
+		gnb.fit(labelIndex, 5.92f, maleIndex);
+		gnb.fit(labelIndex, 5.58f, maleIndex);
+		gnb.fit(labelIndex, 5.92f, maleIndex);
+		gnb.fit(labelIndex, 5f, indexFemale);
+		gnb.fit(labelIndex, 5.5f, indexFemale);
+		gnb.fit(labelIndex, 5.42f, indexFemale);
+		gnb.fit(labelIndex, 5.75f, indexFemale);
 
-		gnb.printAttributeValuesAndClasses();
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 		
-		float result = gnb.predictSingleLabelSingleClass(classes.indexOf("Male"), labelList.indexOf("Height"), 6.0f);
+		float result = gnb.getProbabilty_OneFeature(featureNames.indexOf("Height"), labelNames.indexOf("Male"), 6.0f);
 		assertEquals(0.7894416, result, 0.000001);
 		
-		result = gnb.predictSingleLabelSingleClass(classes.indexOf("Female"), labelList.indexOf("Height"), 6.0f);
+		result = gnb.getProbabilty_OneFeature(featureNames.indexOf("Height"), labelNames.indexOf("Female"),  6.0f);
 		assertEquals(0.11172937, result, 0.000001);
 		System.out.println("*** TEST COMPLETE ***");
 	}
 
 	@Test
-	public void checkProbabilityThreeSamples() {
+	public void checkProbability_ThreeFeatures() {
 		log.logln_withClassName(G.lF,"");
 
 		System.out.println();		
@@ -75,11 +91,14 @@ public class Test_GaussianNB {
 		System.out.println("Testing:  P(Male  |6ft, 130 lbs, 8\" shoe)");
 		System.out.println("Testing:  P(Female|6ft, 130 lbs, 8\" shoe)");
 
-		List<String> labelList = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)","Ft(in)"));
-		List<String> classes = new ArrayList<String>(Arrays.asList("Male","Female"));
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, classes, labelList);
+		List<String> featureNames = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)","Ft(in)"));
+		List<String> labelNames = new ArrayList<String>(Arrays.asList("Male","Female"));
+		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
 
-		gnb.setClassListDisplayName("Gender");
+		int indexMale = labelNames.indexOf("Male");
+		int indexFemale = labelNames.indexOf("Female");
+		
+		gnb.setLabelClassCategory("Gender");
 
 		/*
 		 Gender height (feet) weight (lbs) foot size(inches) 
@@ -92,19 +111,19 @@ public class Test_GaussianNB {
 		 female 5.42 (5'5") 130 7 
 		 female 5.75 (5'9") 150 9 
 		 */
-		gnb.fit(new ArrayList<Float>(Arrays.asList(6f,180f,12f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f,190f,11f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.58f,170f,12f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f,165f,10f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5f,100f,6f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.5f,150f,8f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.42f,130f,7f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.75f,150f,9f)), "Female");
+		gnb.fit(new ArrayList<Float>(Arrays.asList(6f,180f,12f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f,190f,11f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.58f,170f,12f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f,165f,10f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5f,100f,6f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.5f,150f,8f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.42f,130f,7f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.75f,150f,9f)), indexFemale);
 
-		gnb.printAttributeValuesAndClasses();
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 
-		float[] results = gnb.getScoresFromPrediction(new ArrayList<Float>(Arrays.asList(6f,130f,8f)));
+		double[] results = gnb.getProbabilityScores_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f,8f)));
 		
 		assertEquals(6.1970717E-9, results[0], 0.000001);
 		assertEquals(5.37791E-4, results[1], 0.00001);
@@ -113,12 +132,13 @@ public class Test_GaussianNB {
 	}
 	
 	@Test
-	public void checkNDArray() {
-		log.logln_withClassName(G.lF,"");
+	public void checkProp_NDArray_TwoFeatures() {
+		//log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(G.lD,"");
 
 		NDArray featuresTrain = NDArray.newArray(8,2);
 		NDArray featuresTest = NDArray.newArray(1,2);
-		double[] labeled;
+		double[] labels;
 		
 		System.out.println();		
 		System.out.println();
@@ -164,21 +184,21 @@ public class Test_GaussianNB {
 		featuresTrain.set(7,0,5.75);
 		featuresTrain.set(7,1,150.0);
 		
-		labeled = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+		labels = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
 	
 		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
 
 		try {
-		gnb.fit(featuresTrain, labeled);
+		gnb.fit(featuresTrain, labels);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		
-		gnb.printAttributeValuesAndClasses();
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 		
-		float[] results = gnb.getScoresFromPrediction(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		double[] results = gnb.getProbabilityScores_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
 		
 		assertEquals(4.726183760794811E-6, results[0], 0);
 		assertEquals(1.4375489263329655E-4, results[1], 0);
@@ -187,12 +207,12 @@ public class Test_GaussianNB {
 		featuresTest.set(0,0,6.0);
 		featuresTest.set(0,1,130.0);
 		
-		results = gnb.predictClassResults(featuresTest);
+		results = gnb.getProbabilityScores_TestingSet(featuresTest);
 		assertEquals(4.726183760794811E-6, results[0], 0);
 		assertEquals(1.4375489263329655E-4, results[1], 0);
 
-		String sResult = gnb.predict(new ArrayList<Float>(Arrays.asList(6f,130f)));
-		assertEquals("1.0", sResult);
+		double dResult = gnb.predict_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		assertEquals(1.0, dResult, 0.0);
 		double[] result = gnb.predict(featuresTest);
 		assertEquals(1.0, result[0],0.0);
 		double accuracy = gnb.getAccuracyOfPredictedResults(new double[]{1.0}, result);
@@ -201,13 +221,115 @@ public class Test_GaussianNB {
 		System.out.println("*** TEST COMPLETE ***");
 
 	}	
+	
 	@Test
-	public void checkNDArrayWithAssignedNamedValues() {
+	public void checkProb_NDArray_TwoFeatures_TwoBatches() {
+		//log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(G.lD,"");
+
+		NDArray featuresTrain1 = NDArray.newArray(4,2);
+		NDArray featuresTrain2 = NDArray.newArray(4,2);
+		NDArray featuresTest = NDArray.newArray(1,2);
+
+		double[] labelsTrain1;
+		double[] labelsTrain2;
+		
+		System.out.println();		
+		System.out.println();
+		System.out.println("*** TEST *** Check NDArray - Two fit batches");
+
+
+		/*
+		 * male = 0.0
+		 * female = 1.0
+		 Gender height (feet) weight (lbs) 
+		 male 6 180 
+		 male 5.92 (5'11") 190 
+		 male 5.58 (5'7") 170 
+		 male 5.92 (5'11") 165 
+		 female 5 100 
+		 female 5.5 (5'6") 150 
+		 female 5.42 (5'5") 130 
+		 female 5.75 (5'9") 150 
+		 */
+		featuresTrain1.set(0,0,6.0);
+		featuresTrain1.set(0,1,180.0);
+		
+		featuresTrain1.set(1,0,5.92);
+		featuresTrain1.set(1,1,190.0);
+		
+		featuresTrain1.set(2,0,5.58);
+		featuresTrain1.set(2,1,170.0);
+		
+		featuresTrain1.set(3,0,5.92);
+		featuresTrain1.set(3,1,165.0);
+		
+		featuresTrain2.set(0,0,5.5);
+		featuresTrain2.set(0,1,100.0);
+		
+		featuresTrain2.set(1,0,5.5);
+		featuresTrain2.set(1,1,150.0);
+		
+		featuresTrain2.set(2,0,5.42);
+		featuresTrain2.set(2,1,130.0);
+		
+		featuresTrain2.set(3,0,5.75);
+		featuresTrain2.set(3,1,150.0);
+		
+		labelsTrain1 = new double[] {0.0, 0.0, 0.0, 0.0};
+		labelsTrain2 = new double[] {1.0, 1.0, 1.0, 1.0};
+	
+		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+
+		try {
+		gnb.fit(featuresTrain1, labelsTrain1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		gnb.printFeaturesAndLabels();
+		gnb.printMeanVar();
+		
+		try {
+		gnb.fit(featuresTrain2, labelsTrain2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		gnb.printFeaturesAndLabels();
+		gnb.printMeanVar();
+		
+		double[] scores = gnb.getProbabilityScores_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		
+		assertEquals(4.726183760794811E-6, scores[0], 0);
+		assertEquals(1.4375489263329655E-4, scores[1], 0);
+		
+		scores = null;
+		featuresTest.set(0,0,6.0);
+		featuresTest.set(0,1,130.0);
+		
+		scores = gnb.getProbabilityScores_TestingSet(featuresTest);
+		assertEquals(4.726183760794811E-6, scores[0], 0);
+		assertEquals(1.4375489263329655E-4, scores[1], 0);
+
+		double dResult = gnb.predict_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		assertEquals(1.0, dResult, 0.0);
+		double[] result = gnb.predict(featuresTest);
+		assertEquals(1.0, result[0],0.0);
+		double accuracy = gnb.getAccuracyOfPredictedResults(new double[]{1.0}, result);
+		assertEquals (1.0, accuracy, 0.0);
+		
+		System.out.println("*** TEST COMPLETE ***");
+
+	}
+	@Test
+	public void checkProp_NDArray_TwoSamples_AssignedNames() {
 		log.logln_withClassName(G.lF,"");
 
 		NDArray featuresTrain = NDArray.newArray(8,2);
 		NDArray featuresTest = NDArray.newArray(1,2);
-		double[] labeled;
+		double[] labelsTrain;
 		
 		System.out.println();		
 		System.out.println();
@@ -253,43 +375,47 @@ public class Test_GaussianNB {
 		featuresTrain.set(7,0,5.75);
 		featuresTrain.set(7,1,150.0);
 		
-		labeled = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
-	
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+		labelsTrain = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
+		List<String> featureNames = new ArrayList<String>(Arrays.asList("Height"));
+		List<String> labelNames = new ArrayList<String>(Arrays.asList("Male","Female"));
+		// 0 = Male
+		// 1 = Female
+		
+		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
+		gnb.setLabelClassCategory("Gender");
+
+		//GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
 
 		//		gnb.fitSample(featuresTrain, classLabelsTrain, labelList);
 		try {
-		gnb.fit(featuresTrain, labeled);
+		gnb.fit(featuresTrain, labelsTrain);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		gnb.setClassListDisplayName("Gender");
-		gnb.setClassNames(new String[] {"Male", "Female"});
-		gnb.setLabelNames(new String[] {"Height", "Weight"});
 		
-		gnb.printAttributeValuesAndClasses();
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 		
 		log.logln("Use method:\tpredictUsingFeatureNames (uses ArrayList<Float>)");
-		float[] results = gnb.getScoresFromPrediction(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		double[] scores = gnb.getProbabilityScores_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
 		
-		assertEquals(4.726183760794811E-6, results[0], 0);
-		assertEquals(1.4375489263329655E-4, results[1], 0);
+		assertEquals(4.726183760794811E-6, scores[0], 0);
+		assertEquals(1.4375489263329655E-4, scores[1], 0);
 		
-		results = null;
+		scores = null;
 		featuresTest.set(0,0,6.0);
 		featuresTest.set(0,1,130.0);
 		
 		log.logln("\nUse method:\tpredictClassResults (uses NDArray)");
-		results = gnb.predictClassResults(featuresTest);
-		assertEquals(4.726183760794811E-6, results[0], 0);
-		assertEquals(1.4375489263329655E-4, results[1], 0);
+		scores = gnb.getProbabilityScores_TestingSet(featuresTest);
+		assertEquals(4.726183760794811E-6, scores[0], 0);
+		assertEquals(1.4375489263329655E-4, scores[1], 0);
 
 		log.logln("\nUse method:\tpredict (uses ArrayList<Float>)");
-		String sResult = gnb.predict(new ArrayList<Float>(Arrays.asList(6f,130f)));
-		assertEquals("Female", sResult);
-		System.out.println("Result: " + sResult);
+		double result = gnb.predict_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		assertEquals(1.0, result, 0.0);
+		System.out.println("Result: " + result);
 		System.out.println();
 		System.out.println("*** TEST COMPLETE ***");
 
@@ -313,13 +439,13 @@ public class Test_GaussianNB {
 		featuresTrain.set(4,0,9);
 		featuresTrain.set(5,0,13);
 		
-		double[] labeled = new double[] {1,1,1,1,1,1};
+		double[] labels = new double[] {1,1,1,1,1,1};
 
 		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW);
 
 		//		gnb.fitSample(featuresTrain, classLabelsTrain, labelList);
 		try {
-		gnb.fit(featuresTrain, labeled);
+		gnb.fit(featuresTrain, labels);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -339,7 +465,8 @@ public class Test_GaussianNB {
 
 		NDArray featuresTrain = NDArray.newArray(6,2);
 		NDArray featuresTest = NDArray.newArray(2,2);
-		double[] labeled;
+		NDArray sampleValues = NDArray.newArray(1,2);
+		double[] labels;
 
 		System.out.println();		
 		System.out.println();
@@ -374,7 +501,7 @@ GaussianNB()
 		featuresTrain.set(5,0,3);
 		featuresTrain.set(5,1,2);
 		
-		labeled = new double[] {1,1,1,2,2,2};
+		labels = new double[] {1,1,1,2,2,2};
 //		List<String> labelList = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)"));
 	
 		GaussianNB gnb =  new GaussianNB(
@@ -382,12 +509,12 @@ GaussianNB()
 
 		//		gnb.fitSample(featuresTrain, classLabelsTrain, labelList);
 		try {
-		gnb.fit(featuresTrain, labeled);
+		gnb.fit(featuresTrain, labels);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		gnb.printAttributeValuesAndClasses();
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 		featuresTest.set(0,0,-0.8);
 		featuresTest.set(0,1,-1);
@@ -395,18 +522,35 @@ GaussianNB()
 		featuresTest.set(1,1,2);
 
 		double[] result = gnb.predict(featuresTest);
-		assertEquals(1.0, result[0], 0.0);
-		assertEquals(2.0, result[1], 0.0);
 		
-		double accuracy = gnb.getAccuracyOfPredictedResults(new double[] {1.0}, result);
-		assertEquals(1.0, accuracy, 0.0);
+		double accuracy = gnb.getAccuracyOfPredictedResults(new double[] {1.0, 2.0}, result);
 		System.out.println("Samples: " + featuresTest);
 		System.out.println("Results: ");
 		for (double dVal : result) {
 			System.out.println (dVal);
 		}
 		System.out.println("Accuracy: " + accuracy);
+
+		System.out.println("Scores: " );
+		sampleValues.set(0,0,-0.8);
+		sampleValues.set(0,1,-1);
+		System.out.println("Values: " + sampleValues);
+		double[] scores = gnb.getProbabilityScores_TestingSet(sampleValues);
+		System.out.println(ArrayUtils.printArray(scores));
+		
+		sampleValues.set(0,0,1);
+		sampleValues.set(0,1,2);
+		System.out.println("Values: " + sampleValues);
+		
+		scores = gnb.getProbabilityScores_TestingSet(sampleValues);
+		System.out.println(ArrayUtils.printArray(scores));
+		
 		System.out.println();
+		
 		System.out.println("*** TEST COMPLETE ***");
+		assertEquals(1.0, result[0], 0.0);
+		assertEquals(2.0, result[1], 0.0);
+		assertEquals(1.0, accuracy, 0.0);
+
 	}
 }

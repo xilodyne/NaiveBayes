@@ -6,7 +6,7 @@ import java.util.Arrays;
 import mikera.arrayz.NDArray;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
-import xilodyne.machinelearning.classifier.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNB;
 
 
 /**
@@ -25,8 +25,10 @@ public class GNB_Example_GenderHeight {
 		G.setLoggerLevel(G.LOG_DEBUG);
 		log.logln_withClassName(G.lF,"");
 
-		NDArray featuresTrain = NDArray.newArray(8, 2);
-		double[] labeledDataTrain;
+		NDArray trainingData = NDArray.newArray(8, 2);
+		NDArray testingData = NDArray.newArray(1,2);
+
+		double[] trainingLabels;
 		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW);
 
 		/**
@@ -48,46 +50,70 @@ public class GNB_Example_GenderHeight {
 
 		/** Create NDArray of [height, weight] */
 		
-		featuresTrain.set(0, 0, 6.0);
-		featuresTrain.set(0, 1, 180.0);
+		trainingData.set(0, 0, 6.0);
+		trainingData.set(0, 1, 180.0);
 
-		featuresTrain.set(1, 0, 5.92);
-		featuresTrain.set(1, 1, 190.0);
+		trainingData.set(1, 0, 5.92);
+		trainingData.set(1, 1, 190.0);
 
-		featuresTrain.set(2, 0, 5.58);
-		featuresTrain.set(2, 1, 170.0);
+		trainingData.set(2, 0, 5.58);
+		trainingData.set(2, 1, 170.0);
 
-		featuresTrain.set(3, 0, 5.92);
-		featuresTrain.set(3, 1, 165.0);
+		trainingData.set(3, 0, 5.92);
+		trainingData.set(3, 1, 165.0);
 
-		featuresTrain.set(4, 0, 5.5);
-		featuresTrain.set(4, 1, 100.0);
+		trainingData.set(4, 0, 5.5);
+		trainingData.set(4, 1, 100.0);
 
-		featuresTrain.set(5, 0, 5.5);
-		featuresTrain.set(5, 1, 150.0);
+		trainingData.set(5, 0, 5.5);
+		trainingData.set(5, 1, 150.0);
 
-		featuresTrain.set(6, 0, 5.42);
-		featuresTrain.set(6, 1, 130.0);
+		trainingData.set(6, 0, 5.42);
+		trainingData.set(6, 1, 130.0);
 
-		featuresTrain.set(7, 0, 5.75);
-		featuresTrain.set(7, 1, 150.0);
+		trainingData.set(7, 0, 5.75);
+		trainingData.set(7, 1, 150.0);
 
-		/** label each correspending entry with male or female */
-		labeledDataTrain = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0 };
+		/** label each corresponding entry with male or female */
+		trainingLabels = new double[] { 0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0 };
 
 
 		try {
-			gnb.fit(featuresTrain, labeledDataTrain);
+			gnb.fit(trainingData, trainingLabels);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		gnb.printAttributeValuesAndClasses();
-
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
-		System.out.println("Sample: 0, 0, 6.0, predict: " + gnb.predictSingleLabelSingleClass(0, 0, 6.0f));
-		String predictedResult = gnb.predict(new ArrayList<Float>(Arrays.asList(6f, 130f)));
-		System.out.println("CLASS Prediction: " + predictedResult);
+		
+		double results = gnb.predict_TestingSet(new ArrayList<Float>(Arrays.asList(6f, 130f)));
+		System.out.println("\n\n **** Using Float List.");
+		System.out.println("Label Predicted: " + results);
+		
+		double[] scores = gnb.getProbabilityScores_TestingSet(new ArrayList<Float>(Arrays.asList(6f,130f)));
+		System.out.println("\n\nScore label 0: " + scores[0]);
+		System.out.println("Score label 1: " + scores[1]);
+		
+		
+		//use ndarray with one entry
+		results = -1;
+		scores = null;
+		
+		testingData.set(0,0,6.0);
+		testingData.set(0,1,130.0);
+		
+		results = gnb.predict_TestingSet(testingData);
+		System.out.println("\n\n **** Using NDArray, single entry.");
+		System.out.println("Label Predicted: " + results);
+		
+		scores = gnb.getProbabilityScores_TestingSet(testingData);
+		System.out.println("\n\nScore label 0: " + scores[0]);
+		System.out.println("Score label 1: " + scores[1]);
+
+		
+		
+
 	}
 
 }

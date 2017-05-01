@@ -6,12 +6,12 @@ import java.util.List;
 
 import xilodyne.util.G;
 import xilodyne.util.Logger;
-import xilodyne.machinelearning.classifier.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNB;
 
 /**
- * Gaussian NB using gender (text) and float attributes
+ * Gaussian NB using gender features
  * @author Austin Davis Holiday, aholiday@xilodyne.com
- * @version 0.1
+ * @version 0.2  
  */
 public class GNB_Example_GenderHeight_TextBased {
 
@@ -36,27 +36,30 @@ public class GNB_Example_GenderHeight_TextBased {
 		G.setLoggerLevel(G.LOG_DEBUG);
 		log.logln_withClassName(G.lF,"");
 
-		List<String> labelList = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)", "Ft(in)"));
-		List<String> classification = new ArrayList<String>(Arrays.asList("Male", "Female"));
+		List<String> featureNames = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)", "Ft(in)"));
+		List<String> labelNames = new ArrayList<String>(Arrays.asList("Male", "Female"));
 
-		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, classification, labelList);
+		int indexMale = featureNames.indexOf("Male");
+		int indexFemale = labelNames.indexOf("Female");
 
-		gnb.setClassListDisplayName("Gender");
+		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, labelNames, featureNames);
 
-		gnb.fit(new ArrayList<Float>(Arrays.asList(6f, 180f, 12f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f, 190f, 11f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.58f, 170f, 12f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f, 165f, 10f)), "Male");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5f, 100f, 6f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.5f, 150f, 8f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.42f, 130f, 7f)), "Female");
-		gnb.fit(new ArrayList<Float>(Arrays.asList(5.75f, 150f, 9f)), "Female");
+		gnb.setLabelClassCategory("Gender");
 
-		gnb.printAttributeValuesAndClasses();
+		gnb.fit(new ArrayList<Double>(Arrays.asList(6.0, 180.0, 12.0)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f, 190f, 11f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.58f, 170f, 12f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.92f, 165f, 10f)), indexMale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5f, 100f, 6f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.5f, 150f, 8f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.42f, 130f, 7f)), indexFemale);
+		gnb.fit(new ArrayList<Float>(Arrays.asList(5.75f, 150f, 9f)), indexFemale);
+
+		gnb.printFeaturesAndLabels();
 		gnb.printMeanVar();
 
-		gnb.predictSingleLabelSingleClass(classification.indexOf("Male"), 0, 6.0f);
-		String predictedResult = gnb.predict(new ArrayList<Float>(Arrays.asList(6f, 130f, 8f)));
-		System.out.println("CLASS Prediction: " + predictedResult);
+		gnb.getProbabilty_OneFeature(0, labelNames.indexOf("Male"),  6.0f);
+		double predictedResult = gnb.predict_TestingSet(new ArrayList<Float>(Arrays.asList(6f, 130f, 8f)));
+		System.out.println("CLASS Prediction: " + labelNames.get((int)predictedResult));
 	}
 }
