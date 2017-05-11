@@ -6,7 +6,7 @@ import java.util.List;
 
 import xilodyne.util.G;
 import xilodyne.util.Logger;
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 
 /**
  * Gaussian NB using gender features
@@ -42,7 +42,7 @@ public class GNB_Example_GenderHeight_TextBased {
 		int indexMale = featureNames.indexOf("Male");
 		int indexFemale = labelNames.indexOf("Female");
 
-		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, labelNames, featureNames);
+		GaussianNaiveBayesClassifier gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW, labelNames, featureNames);
 
 		gnb.setLabelClassCategory("Gender");
 

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import mikera.arrayz.NDArray;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 
 
 /**
@@ -29,7 +29,7 @@ public class GNB_Example_GenderHeight {
 		NDArray testingData = NDArray.newArray(1,2);
 
 		double[] trainingLabels;
-		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW);
+		GaussianNaiveBayesClassifier gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW);
 
 		/**
 		 * CLASS

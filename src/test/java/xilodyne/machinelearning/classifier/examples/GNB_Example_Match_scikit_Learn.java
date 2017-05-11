@@ -12,7 +12,7 @@ import mikera.arrayz.NDArray;
  * 
  */
 
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.util.ArrayUtils;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
@@ -65,7 +65,7 @@ public class GNB_Example_Match_scikit_Learn {
 
 		trainingLabels = new double[] { 1, 1, 1, 2, 2, 2 };
 
-		GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW);
+		GaussianNaiveBayesClassifier gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW);
 		try {
 			gnb.fit(trainingData, trainingLabels);
 		} catch (Exception e) {

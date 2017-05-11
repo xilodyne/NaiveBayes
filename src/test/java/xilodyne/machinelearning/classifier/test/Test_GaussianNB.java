@@ -15,7 +15,7 @@ import mikera.arrayz.NDArray;
 
 import org.junit.Test;
 
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.util.ArrayUtils;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
@@ -54,7 +54,7 @@ public class Test_GaussianNB {
 		// 0 = Male
 		// 1 = Female
 		
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
 		gnb.setLabelClassCategory("Gender");
 		
 		int labelIndex = featureNames.indexOf("Height");
@@ -93,7 +93,7 @@ public class Test_GaussianNB {
 
 		List<String> featureNames = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)","Ft(in)"));
 		List<String> labelNames = new ArrayList<String>(Arrays.asList("Male","Female"));
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
 
 		int indexMale = labelNames.indexOf("Male");
 		int indexFemale = labelNames.indexOf("Female");
@@ -186,7 +186,7 @@ public class Test_GaussianNB {
 		
 		labels = new double[] {0.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.0, 1.0};
 	
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_IGNORE);
 
 		try {
 		gnb.fit(featuresTrain, labels);
@@ -279,7 +279,7 @@ public class Test_GaussianNB {
 		labelsTrain1 = new double[] {0.0, 0.0, 0.0, 0.0};
 		labelsTrain2 = new double[] {1.0, 1.0, 1.0, 1.0};
 	
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_IGNORE);
 
 		try {
 		gnb.fit(featuresTrain1, labelsTrain1);
@@ -381,7 +381,7 @@ public class Test_GaussianNB {
 		// 0 = Male
 		// 1 = Female
 		
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW, featureNames, labelNames);
 		gnb.setLabelClassCategory("Gender");
 
 		//GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
@@ -441,7 +441,7 @@ public class Test_GaussianNB {
 		
 		double[] labels = new double[] {1,1,1,1,1,1};
 
-		GaussianNB gnb =  new GaussianNB(GaussianNB.EMPTY_SAMPLES_ALLOW);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW);
 
 		//		gnb.fitSample(featuresTrain, classLabelsTrain, labelList);
 		try {
@@ -504,8 +504,8 @@ GaussianNB()
 		labels = new double[] {1,1,1,2,2,2};
 //		List<String> labelList = new ArrayList<String>(Arrays.asList("Ht(ft)", "Wt(lbs)"));
 	
-		GaussianNB gnb =  new GaussianNB(
-				GaussianNB.EMPTY_SAMPLES_ALLOW);
+		GaussianNaiveBayesClassifier gnb =  new GaussianNaiveBayesClassifier(
+				GaussianNaiveBayesClassifier.EMPTY_SAMPLES_ALLOW);
 
 		//		gnb.fitSample(featuresTrain, classLabelsTrain, labelList);
 		try {

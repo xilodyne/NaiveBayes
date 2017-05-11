@@ -1,520 +1,520 @@
-package xilodyne.machinelearning.classifier;
+package xilodyne.machinelearning.classifier.bayes;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import xilodyne.util.ArrayUtils;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
+import mikera.arrayz.INDArray;
+import mikera.arrayz.NDArray;
 
 /**
+ * All text values must be converted to float/double.
+ * 
  * Naive Bayes for classification implementation as described
  * by Prof Eamonn Keogh, UCR.
  * @see <a href="http://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf">http://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf</a> 
  * <p>
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
- * @version 0.1
+ * @version 0.2 -- 5/9/2017
+ * 	changed labels/classes to features/labels;
+ *  internal float storage / public double values
+ * @version 0.1 -- 9/18/2016, initial implementation
  * 
  */
+
 public class NaiveBayesClassifier {
 
 	private Logger log = new Logger();
+	private int totalFitEntries = 0;
 
-	/*
-	 * Label list: list of different types of classes: name, gender, height, etc
-	 * features: for each label, attributes associated to label: for label
-	 * gender: male, female classificationList: which label set it be classified
-	 * determine class (ie male or female) given feature sets (name, height,
-	 * etc.) features, classes <names, int[] (male, female), <male, female>
-	 */
 
-	// features = Name, count of name for each class (male, female)
-	// classes = id, class name
-	/** The class list. */
-	// private SortedMap<String, int[]> features = null; //hold features for
-	// each label
-	private List<String> classList = null; // eg male, female; what we want to
-											// identify
+	public static final boolean EMPTY_SAMPLES_ALLOW = true;
+	public static final boolean EMPTY_SAMPLES_IGNORE = false;
 
-	/** The label list. */
-	private List<String> labelList = null; // different sets of features: name,
-											// height,...
+	// which type of variance to calculate, only a sample
+	// size of population data or entire population data
+	// to be implemented
+	// private static final boolean VARIANCE_SAMPLE_CALCULATION = true;
+	// private static final boolean VARIANCE_POPULATION_CALCULATION = false;
 
-	/** The label features. */
-	private ArrayList<SortedMap<String, int[]>> labelFeatures = null; 
-	// for each label, a sorted list of each features,
-	// int[] = # of classes for counting
-
-	/**
-	 * Instantiates a new naive Bayes classifier.
-	 *
-	 * @param newClassList
-	 *            the new class list
-	 * @param newLabelList
-	 *            the new label list
-	 */
-	public NaiveBayesClassifier(List<String> newClassList, List<String> newLabelList) {
-		this.classList = new ArrayList<String>();
-		this.labelList = new ArrayList<String>();
-		this.labelFeatures = new ArrayList<SortedMap<String, int[]>>();
-
-		log.logln_withClassName(G.lF, "UPDATING CLASS LIST with List<String>");
-
-		for (int loop = 0; loop < newClassList.size(); loop++)
-			this.updateClasses(newClassList.get(loop));
-
-		log.logln("UPDATING LABEL LIST");
-
-		for (int loop = 0; loop < newLabelList.size(); loop++) {
-			this.updateLabels(newLabelList.get(loop));
-			this.labelFeatures.add((SortedMap<String, int[]>) new TreeMap<String, int[]>());
-		}
-	}
-
-	// if a new label, add to list
-	/**
-	 * Update labels.
-	 *
-	 * @param labelName
-	 *            the label name
-	 */
-	private void updateLabels(String labelName) {
-		if (!labelList.contains(labelName)) {
-			labelList.add(labelName);
-			log.logln(G.lD, "LabelList[" + labelList.indexOf(labelName) + "] " + labelName);
-		}
-	}
-
-	/**
-	 * Update classes.
-	 *
-	 * @param className
-	 *            the class name
-	 */
-	// if a new class, add to list
-	private void updateClasses(String className) {
-		if (!classList.contains(className)) {
-			classList.add(className);
-			log.logln(G.lD, "ClassList[" + classList.indexOf(className) + "] " + className);
-		}
-	}
-
-	/**
-	 * Fit.
-	 *
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param featureName
-	 *            the feature name
-	 * @param className
-	 *            the class name
-	 */
-	// add the training data
-	public void fit(int featureLabelIndex, String featureName, String className) {
-		this.updateFeatures(featureLabelIndex, featureName, this.getIndexOfClassName(className));
-	}
-
-	// assuming that newFeatures size = featureLabel size AND newFeature matches
-	/**
-	 * Fit.
-	 *
-	 * @param newFeatures
-	 *            the new features
-	 * @param className
-	 *            the class name
-	 */
-	// featureLabel order
-	public void fit(List<String> newFeatures, String className) {
-		for (int loop = 0; loop < newFeatures.size(); loop++) {
-			this.updateFeatures(loop, newFeatures.get(loop), this.getIndexOfClassName(className));
-		}
-	}
-
-	/**
-	 * Fit.
-	 *
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param observedFeatures
-	 *            the observed features
-	 * @param className
-	 *            the class name
-	 */
-	// load in string array of words, associated to one class
-	public void fit(int featureLabelIndex, String[] observedFeatures, String className) {
-		int iIndex = this.getIndexOfClassName(className);
-		for (String s : observedFeatures) {
-			this.updateFeatures(featureLabelIndex, s, iIndex);
-		}
-
-	}
-
-	/**
-	 * Update features.
-	 *
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param featureName
-	 *            the feature name
-	 * @param classNameIndex
-	 *            the class name index
-	 */
-	// add feature to the correct label, if exists, increment the classNameIndex
-	private void updateFeatures(int featureLabelIndex, String featureName, int classNameIndex) {
-		if (this.labelFeatures.get(featureLabelIndex).containsKey(featureName)) {
-			int[] featureValues = this.labelFeatures.get(featureLabelIndex).get(featureName);
-
-			featureValues[classNameIndex] = featureValues[classNameIndex] + 1;
-			this.labelFeatures.get(featureLabelIndex).replace(featureName, featureValues);
-				for (int loop = 0; loop < featureValues.length; loop++) {
-					log.logln(G.lD, featureName + "[" + loop + "]:\t" + featureValues[loop]);
-				}
-
-		} else {
-			int[] classCountEmpty = new int[classList.size()];
-			for (int loop = 0; loop < classList.size(); loop++)
-				classCountEmpty[loop] = 0;
-
-			classCountEmpty[classNameIndex] = 1;
-			this.labelFeatures.get(featureLabelIndex).put(featureName, classCountEmpty);
-				for (int loop = 0; loop < classCountEmpty.length; loop++) {
-					log.logln(G.lD,featureName + "[" + loop + "]:\t" + classCountEmpty[loop]);
-				}
-		}
-	}
-
-	/**
-	 * Prints the features and classes.
-	 */
-	public void printFeaturesAndClasses() {
-		System.out.println();
-		System.out.println("Feature Frequency By Class");
-		for (int labelIndex = 0; labelIndex < this.labelList.size(); labelIndex++) {
-			// first line
-			System.out.print(this.labelList.get(labelIndex) + "\t");
-
-			for (int classIndex = 0; classIndex < this.classList.size(); classIndex++) {
-				System.out.print(this.classList.get(classIndex) + "\t");
-			}
-			System.out.print("\t");
-		}
-		System.out.println();
-
-		for (int featuresIndex = 0; featuresIndex < this.getLargestListFeatureSize(); featuresIndex++) {
-			for (int labelFeatureIndex = 0; labelFeatureIndex < this.labelFeatures.size(); labelFeatureIndex++) {
-				// for each label, show the featureName
-				String featName = this.getFeatureKeyAtIndex(this.labelFeatures.get(labelFeatureIndex), featuresIndex);
-				System.out.print(featName + "\t");
-
-				int[] values = this.getFeatureValueAtIndex(this.labelFeatures.get(labelFeatureIndex), featuresIndex);
-				for (int classCount = 0; classCount < values.length; classCount++) {
-					System.out.print(values[classCount] + "\t");
-				}
-				System.out.print("\t");
-			}
-			System.out.println();
-		}
-	}
-
-	/**
-	 * Determine probabilities.
-	 */
-	public void determineProbabilities() {
-		log.logln_noTimestamp(G.lI,"");
-		log.logln("Probabilty for each feature");
-
-			for (int labelIndex = 0; labelIndex < this.labelList.size(); labelIndex++) {
-				// first line
-				log.log_noTimestamp(this.labelList.get(labelIndex) + "\t");
-
-				for (int classIndex = 0; classIndex < this.classList.size(); classIndex++) {
-					log.log_noTimestamp(this.classList.get(classIndex) + "\t");
-				}
-				log.log_noTimestamp("\t");
-			}
-			log.logln_noTimestamp("");
-		
-
-		for (int featuresIndex = 0; featuresIndex < this.getLargestListFeatureSize(); featuresIndex++) {
-			for (int labelFeatureIndex = 0; labelFeatureIndex < this.labelFeatures.size(); labelFeatureIndex++) {
-				// for each label, show the featureName
-				String featureName = this
-						.getFeatureKeyAtIndex(this.labelFeatures.get(labelFeatureIndex), featuresIndex);
-				log.log_noTimestamp(featureName + "\t");
-
-				SortedMap<String, int[]> tempMap = this.labelFeatures.get(labelFeatureIndex);
-				for (int classNameIndex = 0; classNameIndex < this.classList.size(); classNameIndex++) {
-					float Pc_given_d = 0, Pd_given_c = 0, Pc = 0;
-					// System.out.println(loopFeatures+":"+tempMap.size());
-					if (tempMap.isEmpty() || ((tempMap.size() - 1) < featuresIndex)) {
-						log.log_noTimestamp("\t");
-					} else {
-						Pd_given_c = this.getPd_given_c(classList.get(classNameIndex), featureName, tempMap);
-						Pc = this.getPcPerLabel(classList.get(classNameIndex), tempMap);
-						Pc_given_d = Pd_given_c * Pc;
-
-						log.log_noTimestamp(String.format("%.3f", Pc_given_d) + "\t");
-					}
-				}
-				// this.getProbabilities(featureLabelIndex, featureName)
-				log.log_noTimestamp("\t");
-			}
-			log.logln_noTimestamp("");
-		}
-	}
-
-	public String predict(List<String> sampleValues) {
-		// return most likely class
-		float[] results = this.predictUsingFeatureNames(sampleValues);
-		int classIndex = this.getPredictedClass(results);
-		log.logln_withClassName(G.lI, "Most likely: " + this.classList.get(classIndex));
-		return this.classList.get(classIndex);
-	}
+	private boolean allowEmptySampleValues = true;
 	
-	private int getPredictedClass(float[] results) {
-		//find the greatest value
-		float getMax = 0;
-		int classMax = 0;
-		for (int index = 0; index < this.classList.size(); index++) {
-			if (results[index] > getMax) {
-				getMax = results[index];
-				classMax = index;
-			}
-		}
-		return classMax;
+
+	/** TRUE if number of features have been loaded in the fit method for NDArray */
+	private boolean featureSetFixed = false; // for multiple samples, only init once
+	
+	/* TRUE if training data entered. 
+	 * If new data then mean / var calculation must be done prior to predict
+	 */
+	private boolean moreTrainingData = true; 
+
+	private float[] labels = null;
+	//boolean labelsLoad = false;
+	private List<String> labelNames = null;  //optional, show names in output
+	
+
+	//Hashtable:  featureID, (TreeMap (featureValue(s), label list count, must match index of labels[]))
+	private Hashtable<Integer, TreeMap<Float, int[]>> features = new Hashtable<Integer, TreeMap<Float, int[]>>();
+	private List<String> featureNames = null;  //optional, show names in output
+	private int numberOfFeatures = 0;
+
+
+	//classification of label, i.e. if labels are "male / female", classification would be "gender"
+	private String labelClassCategory = "LABEL";
+
+	/**
+	 * Instantiates a new Gaussian Naive Bayes.
+	 *
+	 * @param allowEmptyValues TRUE allows empty values (i.e. zero) to be added into data set
+	 */
+	public NaiveBayesClassifier(boolean allowEmptyValues) {
+		log.logln_withClassName(G.lF,"");
+		this.allowEmptySampleValues = allowEmptyValues;
 	}
+
+	/**
+	 * Instantiates a new Gaussian Naive Bayes.
+	 * Optional, assign names to values, useful for printing out data
+	 *
+	 * @param allowEmptyValues TRUE allows empty values (i.e. zero) to be added into data set
+	 * @param featureNames LIST of strings, order must match FEATURES table
+	 * @param labelNames LIST of strings, order must match LABELS array
+	 */
+	public NaiveBayesClassifier(boolean allowEmptyValues, List<String> featureNames, List<String> labelNames) {
+		this.allowEmptySampleValues = allowEmptyValues;
+		this.createLabelNames(labelNames);
+		this.createFeatureNames(featureNames);
+	}
+
 	
 	/**
-	 * Predict using feature name.
+	 * Optional. Creates a List label names.
 	 *
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param wordArray
-	 *            the word array
-	 * @return the float[]
+	 * @param labelList the label display name list
 	 */
-	public float[] predictUsingFeatureName(int featureLabelIndex, String[] wordArray) {
-		float[] classScores = new float[this.classList.size()];
-		float[] tempScores = new float[this.classList.size()];
-		for (String s : wordArray) {
-			tempScores = this.predictUsingFeatureName(featureLabelIndex, s);
-			for (int loop = 0; loop < tempScores.length; loop++)
-				classScores[loop] = classScores[loop] + tempScores[loop];
-
-		}
-		return classScores;
-	}
-
-	/**
-	 * Predict using feature name.
-	 *
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param featureName
-	 *            the feature name
-	 * @return the float[]
-	 */
-	// find featureName value[], for each value[loop] get probability
-	public float[] predictUsingFeatureName(int featureLabelIndex, String featureName) {
-		float Pc_given_d, Pd_given_c, Pc = 0;
-		float[] classScores = new float[this.classList.size()];
-		// SortedMap<String, int[]> tempMap =
-		// this.getFeatureSortedMap(featureLabelIndex);
-		SortedMap<String, int[]> tempMap = this.labelFeatures.get(featureLabelIndex);
-		String className = "";
-
-
-		for (int loop = 0; loop < classScores.length; loop++)
-			classScores[loop] = 0;
-
-		if (!tempMap.containsKey(featureName)) {
-			System.out.println(featureName + " not in observed list.");
-		} else {
-			log.logln_noTimestamp(G.lI, "");
-			log.logln("Predict using Feature Name:" + featureName);
-			for (int loop = 0; loop < classList.size(); loop++) {
-				className = classList.get(loop);
-				Pd_given_c = this.getPd_given_c(classList.get(loop), featureName, tempMap);
-				Pc = this.getPcPerLabel(classList.get(loop), tempMap);
-				Pc_given_d = Pd_given_c * Pc;
-				classScores[loop] = Pc_given_d;
-				log.log_noTimestamp("P(" + featureName + "|" + classList.get(loop) + ")\tis "
-							+ getFeatureFreqByClass(className, featureName, tempMap) + "/"
-							+ getClassFrequencyFromFeatures(className, tempMap) + "(="
-							+ String.format("%.3f", Pd_given_c) + ")\t* ");
-				log.log_noTimestamp("P(c)->P(" + className + ")\tis "
-							+ getClassFrequencyFromFeatures(className, tempMap) + "/"
-							+ this.getClassCountLabelFeature(className, tempMap) + "(=" + String.format("%.3f", Pc)
-							+ ")\t=  ");
-
-				log.logln_noTimestamp(String.valueOf(Pc_given_d));
-			}
-		}
-		return classScores;
-	}
-
-	/**
-	 * Predict using feature name single class.
-	 *
-	 * @param classNameIndex
-	 *            the class name index
-	 * @param featureLabelIndex
-	 *            the feature label index
-	 * @param featureName
-	 *            the feature name
-	 * @return the float
-	 */
-	// find featureName value[], for specific class
-	public float predictUsingFeatureNameSingleClass(int classNameIndex, int featureLabelIndex, String featureName) {
-		float Pc_given_d = 0, Pd_given_c, Pc = 0;
-		SortedMap<String, int[]> tempMap = this.labelFeatures.get(featureLabelIndex);
-
-		Pd_given_c = this.getPd_given_c(classList.get(classNameIndex), featureName, tempMap);
-		Pc = this.getPcPerLabel(classList.get(classNameIndex), tempMap);
-		Pc_given_d = Pd_given_c * Pc;
+	private void createLabelNames(List<String> labelList) {
+		log.logln_withClassName(G.lF, "UPDATING label LIST with List<String>");
 		
-		log.logln_noTimestamp(G.lI, "");
+		this.labelNames = new ArrayList<String>();
+		for (int index = 0; index < labelList.size(); index++)
+			this.labelNames.add(labelList.get(index));
+	}
 
-		log.logln("Predict Class using Feature Name Single Class");
-			log.log_noTimestamp("P(" + classList.get(classNameIndex) + "|" + featureName + ")\t");
-			log.log_noTimestamp(" = " + String.format("%.3f", Pd_given_c) + " * ");
-			log.logln_noTimestamp(String.format("%.3f", Pc) + " = " + String.format("%.3f", Pc_given_d));
+
+	/**
+	 * Optional. Creates a List feature names.
+	 *
+	 * @param featureList the feature display name list
+	 */
+	private void createFeatureNames(List<String> featureList) {
+		log.logln_withClassName(G.lF, "UPDATING feature LIST with List<String>");
+
+		this.featureNames = new ArrayList<String>();
+		for (int index = 0; index < featureList.size(); index++)
+			this.featureNames.add(featureList.get(index));
+	}
+
+
+
+
+
+
+	/**
+	 * Sets the label class category.
+	 *
+	 * @param newName the new label class category (i.e. if labels are "male / female"
+	 * then class category would be "gender")
+	 */
+	public void setLabelClassCategory(String newName) {
+		this.labelClassCategory = newName;
+	}
+
+
+	/**
+	 * Returns the class list display name.
+	 *
+	 * @return the class list display name
+	 */
+	public String getClassListDisplayName() {
+		return this.labelClassCategory;
+	}
+
+
+	/**
+	 * Add training data one feature at a time.
+	 *
+	 * @param featureIndex the feature index, where to place the data in the features list
+	 * @param trainingData_OneValue the feature value
+	 * @param trainingLabel the label data
+	 */
+	public void fit(int featureIndex, double trainingData_OneValue, double trainingLabel) {
+		this.setMoreTrainingData(true);	
+		this.addNewLabelToList(trainingLabel);
 		
-		return Pc_given_d;
+		log.logln(G.lI, featureIndex + ", " + trainingData_OneValue + ", " + trainingLabel);
+		this.updateFeatures(featureIndex, (float) trainingData_OneValue, (float)trainingLabel);
+
+		this.totalFitEntries++;
+		log.logln(G.lD, "total entries: " + this.totalFitEntries);
 	}
 
+
 	/**
-	 * Return class score index.
-	 *
-	 * @param classScores
-	 *            the class scores
-	 * @return the int
+	 * Add training data for feature set for one label
+	 * 
+	 * @param trainingData_SetOfValues List of float training data for one sample
+	 * (List must be in same order as other feature values)
+	 * @param label  associated to this class
 	 */
-	// give the class scores, find larges value and return index
-	public int returnClassScoreIndex(float[] classScores) {
-		int foundIndex = 0;
-		float tempFloat = 0;
-		for (int classIndex = 0; classIndex < classScores.length; classIndex++) {
-			if (classScores[classIndex] > tempFloat) {
-				foundIndex = classIndex;
-				tempFloat = classScores[classIndex];
-			}
+	public void fit(List<Float> trainingData_SetOfValues, float trainingLabel) {
+		this.setMoreTrainingData(true);
+		this.addNewLabelToList(trainingLabel);
+		
+		log.logln(G.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
+
+		for (int index = 0; index < trainingData_SetOfValues.size(); index++) {
+			log.logln(index + ":" + trainingData_SetOfValues.get(index));
+			this.updateFeatures(index, trainingData_SetOfValues.get(index), trainingLabel);
+			log.logln(G.lD, "total entries: " + this.totalFitEntries);
 		}
-		return foundIndex;
+		this.totalFitEntries++;
 	}
 
-	// for each class entry, determine probability of given features
-	// assuming that newFeatures size = featureLabel size AND newFeature matches
+
 	/**
-	 * Predict using feature names.
+	 * Add training data for feature set for one label
 	 *
-	 * @param checkFeatures
-	 *            the check features
-	 * @return the float[]
+	 * @param trainingData_SetOfValues List of double training data for one sample
+	 * (List must be in same order as other feature values)
+	 * @param trainingLabel the label data
 	 */
-	// featureLabel order
-	public float[] predictUsingFeatureNames(List<String> checkFeatures) {
+	public void fit(List<Double> trainingData_SetOfValues, double trainingLabel) {
+		log.logln(G.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
+		
+		this.setMoreTrainingData(true);
+		this.addNewLabelToList(trainingLabel);
+
+		for (int index = 0; index < trainingData_SetOfValues.size(); index++) {
+			log.logln(index + ":" + trainingData_SetOfValues.get(index));
+			double val = trainingData_SetOfValues.get(index);
+			this.updateFeatures(index, (float)val, (float)trainingLabel);
+		}
+
+		this.totalFitEntries++;
+		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+	}
+
+	/**
+	 * Load in data for my samples with one or more attributes per sample
+	 * 
+	 * @param trainingData NDArray data structred [[val1, val2, ...], [val1, val2, ...], ... ]
+	 * @param trainingLabels double[] of labeled data associated to each
+	 * in NDArray
+	 * @throws Exception thrown when data attributes size do not match
+	 */
+	public void fit(NDArray trainingData, double[] trainingLabels) throws Exception {
+		this.setMoreTrainingData(true);
+		this.updateLabels(trainingLabels);
+		log.logln(G.lF, "Labels: " + ArrayUtils.printArray(this.labels));
+
+		// update feature size only once, ignore additional features added later
+		if (!this.featureSetFixed) {
+			this.numberOfFeatures = trainingData.getShape(1);
+			this.featureSetFixed = true;
+		}
+
+		// if loading multiple samples, make sure array sizes are the same
+		if (numberOfFeatures != trainingData.getShape(1)) {
+			throw new Exception("Sample data array size is not consistent: " + numberOfFeatures + " vs "
+					+ trainingData.getShape(1));
+		}
+
+		Iterator<INDArray> values = trainingData.iterator();
+		int count = 0;
+
+		log.logln(G.lF, "Fitting data...");
+		log.logln(G.lI, "# of labels: " + trainingLabels.length + ", # of features: " + numberOfFeatures);
+		log.log(G.lD, "INDEX\t");
+
+		for (int index = 0; index < numberOfFeatures; index++) {
+			log.log_noTimestamp("Feature: " + (index) + "\t");
+		}
+		log.logln_noTimestamp(this.getClassListDisplayName());
+
+		while (values.hasNext()) {
+			INDArray value = values.next();
+			log.log(count + "\t\t");
+
+			// load each feature
+			for (int index = 0; index < numberOfFeatures; index++) {
+				this.updateFeatures(index, (float) value.get(index), (float) trainingLabels[count]);
+
+				log.log_noTimestamp(value.get(index) + "\t\t");
+			}
+			log.logln_noTimestamp(String.valueOf(trainingLabels[count]));
+
+			this.totalFitEntries++;
+			count++;
+		}
+		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+
+	}	
+
+
+
+	/**
+	 * Predict given list of sample set (each entry must 
+	 * correspond to one index from the FEATURES hashtable)
+	 *
+	 * @param testingData the sample values
+	 * @return the label
+	 */
+	public double predict_TestingSet(List<Float> testingData) {
+		float[] data = ArrayUtils.convertListToFloatArray(testingData);
+		float[] results = this.getResultsFromFeatureSetForOneLabel(data);
+		return (double) this.getPredictedLabel(results);
+	}
+	
+
+	/**
+	 * Predict given list of sample set (each entry must 
+	 * correspond to one index from the FEATURES hashtable)
+	 *
+	 * @param testingData the testing data
+	 * @return the label
+	 */
+	public double predict_TestingSet(NDArray testingData) {
+		// get first element
+		Iterator<INDArray> getElement = testingData.iterator();
+		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+		float[] results = this.getResultsFromFeatureSetForOneLabel(data);
+		return (double) this.getPredictedLabel(results);
+	}
+	
+	
+
+
+	/**
+	 * Predict given a list of feature sets [[val1, val2, ...], [val1, val2, ...], ...]
+	 *
+	 * @param testingData the testing data
+	 * @return the array of all predicted labels
+	 */
+	// return list of classes for each element
+	public double[] predict(NDArray testingData) {
+		int predListCount = 0;
+	//	int[] predictedLabels = new int[testingData.getShape(0)];
+		log.logln_withClassName(G.LOG_FINE, "Prediction started...");
+		log.logln(G.lF, "Data set size: " + testingData.getShape(0));
+		log.logln(G.lD, "\nData set: " + testingData);
+
+		// get first element
+		Iterator<INDArray> getElement = testingData.iterator();
+//		double[] predictedListByLabelValue = new double[predictedLabels.length];
+		double[] predictedListByLabelValue = new double[testingData.getShape(0)];
+
+		while (getElement.hasNext()) {
+			float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+			float[] results = this.getResultsFromFeatureSetForOneLabel(data);
+	//		predictedLabels[predListCount] = this.getPredictedLabelIndex(results);
+			predictedListByLabelValue[predListCount] = (double)this.getPredictedLabel(results);
+
+			predListCount++;
+		}
+
+//		for (int index = 0; index < predictedLabels.length; index++) {
+//			predictedListByLabelValue[index] = (double)this.labels[predictedLabels[index]];
+//		}
+		log.logln(G.lF, "Prediction finished.");
+		return predictedListByLabelValue;
+	}
+
+
+
+
+	
+	/**
+	 * Predict given Label, Feature and testing data.
+	 *  
+	 * @param labelIndex index of label to be checked
+	 * @param featureIndex  index of feature to be checked
+	 * @param testingData  value of feature
+	 * @return return gaussian probability of sample value being of this label
+	 */
+	public float getProbabilty_OneFeature(int featureIndex, int labelIndex, float testingData) {
+		TreeMap<Float, int[]> tempMap = this.features.get(featureIndex);
+
+		float Pc = this.getPcPerLabel(labelIndex, tempMap);
+		float Pd_given_c = this.getPd_given_c(featureIndex, testingData, labelIndex, tempMap);
+		log.logln_withClassName(G.lI, this.labels[labelIndex] + "\tPc: " + Pc + "\t* Pd_given_c: "
+				+ Pd_given_c + "\t= " + Pd_given_c * Pc);
+
+		return Pd_given_c * Pc;
+	}
+
+	/**
+	 * Gets the probability scores testing set.
+	 *
+	 * @param testingData the testing data
+	 * @return the probability scores testing set
+	 */
+	//return the calculations for each label
+	public double[] getProbabilityScores_TestingSet(List<Float> testingData) {
+		float[] data = ArrayUtils.convertListToFloatArray(testingData);
+		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromFeatureSetForOneLabel(data));
+		return results;
+	}
+	
+	/**
+	 * Gets the probability scores testing set.
+	 *
+	 * @param testingData the testing data
+	 * @return the probability scores testing set
+	 */
+	public double[] getProbabilityScores_TestingSet(NDArray testingData) {
+		// get first element
+		Iterator<INDArray> getElement = testingData.iterator();
+		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromFeatureSetForOneLabel(data));
+		return results;
+	}
+	
+	/**
+	 * Given single feature, determine probabilty
+	 * scores for each label
+	 *
+	 * @param testingData the test data
+	 * @return probabilty scores of feature checked
+	 */
+	private float[] getResultsFromFeatureSetForOneLabel(float[] testingData) {
 		float Pc_given_d = 1, Pc = 0;
-		float[] classScores = new float[this.classList.size()];
+		float[] labelScores = new float[this.labels.length];
 
-		log.logln_noTimestamp(G.lI, "");
-		log.logln("Predict Classes using Feature Names:");
-		for (int classListIndex = 0; classListIndex < this.classList.size(); classListIndex++) {
+		log.log_noTimestamp(G.lD, "");
+		
+		log.log("Predict label using values:\t");
+		int index = 0;
+		for (float f : testingData) {
+			log.log_noTimestamp(String.valueOf(index));
+			log.log_noTimestamp(":");
+			log.log_noTimestamp(f + "\t");
+			index++;
+		}
+		log.logln_noTimestamp("");
+		
+		for (int labelIndex = 0; labelIndex < this.labels.length; labelIndex++) {
 			// each entry equal to 1 to avoid zeroing out
 			float Pd_given_c = 1;
-			Pc = this.getPcPerAllFeatures(this.classList.get(classListIndex), checkFeatures);
-			log.log_noTimestamp(this.classList.get(classListIndex) + "\t(");
+			Pc = this.getPcForAllValuesByLabel(labelIndex);
+			log.log(this.labels[labelIndex] + "\t(");
 
-			for (int checkFeatIndex = 0; checkFeatIndex < checkFeatures.size(); checkFeatIndex++) {
-				log.log_noTimestamp(checkFeatures.get(checkFeatIndex) + ":");
+			for (int testingIndex = 0; testingIndex < testingData.length; testingIndex++) {
+				log.log_noTimestamp(testingData[testingIndex] + ":");
+
 				float local_Pd_given_c = 0;
-				SortedMap<String, int[]> tempMap = this.labelFeatures.get(checkFeatIndex);
-				local_Pd_given_c = this.getPd_given_c(this.classList.get(classListIndex),
-						checkFeatures.get(checkFeatIndex), tempMap);
-				log.log_noTimestamp(String.format("%.3f", local_Pd_given_c) + ")*(");
+				TreeMap<Float, int[]> tempMap = this.features.get(testingIndex);
+				local_Pd_given_c = this.getPd_given_c(testingIndex, testingData[testingIndex], 
+						labelIndex, tempMap);
+
+				log.log_noTimestamp(String.format("%.8f", local_Pd_given_c) + ")*(");
+
 				Pd_given_c = Pd_given_c * local_Pd_given_c;
 			}
 
 			Pc_given_d = Pd_given_c * Pc;
-			log.logln_noTimestamp(String.format("%.3f", Pc) + "))\t=" + String.format("%.3f", Pc_given_d));
-			classScores[classListIndex] = Pc_given_d;
+			log.logln_noTimestamp(String.format("%.3f", Pc) + "))\t=" + Pc_given_d);
+
+			labelScores[labelIndex] = Pc_given_d;
 		}
-		return classScores;
+		return labelScores;
 	}
 
-	// private SortedMap<String, int[]> getFeatureSortedMap(int
-	// listFeatureIndex){
-	// SortedMap<String, int[]> tempMap =
-	// this.labelFeatures.get(listFeatureIndex);
-	// System.out.println(this.labelFeatures.size()+":"+listFeatureIndex
-	// +":"+tempMap.firstKey());
-	// return this.labelFeatures.get(listFeatureIndex);
-	// }
 
 	/**
-	 * Gets the feature key at index.
+	 * Gets the accuracy of predicted results.
 	 *
-	 * @param featureMap
-	 *            the feature map
-	 * @param index
-	 *            the index
-	 * @return the feature key at index
+	 * @param testingLabels the test data
+	 * @param predictedLabels the results data
+	 * @return the accuracy of predicted results
 	 */
-	private String getFeatureKeyAtIndex(SortedMap<String, int[]> featureMap, int index) {
-		String key = "---";
-
-		int loopCount = 0;
-		for (Map.Entry<String, int[]> entry : featureMap.entrySet()) {
-			if (loopCount == index) {
-				key = entry.getKey();
-			}
-			loopCount++;
+	public double getAccuracyOfPredictedResults(double[] testingLabels, double[] predictedLabels) {
+		int count = 0;
+		for (int index = 0; index < testingLabels.length; index++) {
+			if (testingLabels[index] == predictedLabels[index])
+				count++;
 		}
-		return key;
+
+		return (double) count / testingLabels.length;
 	}
 
 	/**
-	 * Gets the feature value at index.
+	 * Given list of label counts for a feature value,
+	 * find label with greatest count.
 	 *
-	 * @param featureMap
-	 *            the feature map
-	 * @param index
-	 *            the index
-	 * @return the feature value at index
+	 * @param results the results
+	 * @return the predicted label
 	 */
-	private int[] getFeatureValueAtIndex(SortedMap<String, int[]> featureMap, int index) {
-		int[] value = new int[this.classList.size()];
-		for (int loop = 0; loop < this.classList.size(); loop++)
-			value[loop] = 0;
-
-		int loopCount = 0;
-		for (Map.Entry<String, int[]> entry : featureMap.entrySet()) {
-			if (loopCount == index) {
-				value = entry.getValue();
+	private float getPredictedLabel(float[] results) {
+		// find the greatest value
+		float getMax = 0;
+		int labelMax = 0;
+		for (int index = 0; index < this.labels.length; index++) {
+			if (results[index] > getMax) {
+				getMax = results[index];
+				labelMax = index;
 			}
-			loopCount++;
 		}
-		return value;
+		return this.labels[labelMax];
 	}
+	
 
 	/**
-	 * Gets the largest list feature size.
+	 * Given label index, determine probability for all features.
 	 *
-	 * @return the largest list feature size
+	 * @param labelIndex the label index
+	 * @return the pc for all values by label
 	 */
-	private int getLargestListFeatureSize() {
-		int largeIndex = 0;
-		for (int loop = 0; loop < this.labelFeatures.size(); loop++) {
-			if (largeIndex < this.labelFeatures.get(loop).size()) {
-				largeIndex = this.labelFeatures.get(loop).size();
+	private float getPcForAllValuesByLabel(int labelIndex) {
+		float Pc = 0;
+		int uniqueLabelCount = 0;
+		int totalLabelsCount = 0;
+
+		for (int featureKey = 0; featureKey < this.features.size(); featureKey++) {
+				TreeMap<Float, int[]> tempMap = this.features.get(featureKey);
+				uniqueLabelCount = uniqueLabelCount
+						+ this.getLabelCountFromFeature(labelIndex, tempMap);
+				totalLabelsCount = totalLabelsCount + this.getCountAllLabelsbyFeature(tempMap);
 			}
-		}
-		return largeIndex;
+		Pc = (float) uniqueLabelCount / totalLabelsCount;
+		return Pc;
+
+	}
+
+	// P(c)
+	/**
+	 * Given label index, determine probabilty for one feature.
+	 *
+	 * @param labelIndex the label index
+	 * @param tempMap the temp map
+	 * @return the pc per label
+	 */
+	// className divided by all classes
+	private float getPcPerLabel(int labelIndex, TreeMap<Float, int[]> tempMap) {
+		float Pc;
+		Pc = (float) getLabelCountFromFeature(labelIndex, tempMap) / this.getCountAllLabelsbyFeature(tempMap);
+		return Pc;
 	}
 
 	/*
@@ -526,29 +526,32 @@ public class NaiveBayesClassifier {
 	 *
 	 * @param className
 	 *            the class name
-	 * @param featureName
+	 * @param featureValue
 	 *            the feature name
 	 * @param tempMap
 	 *            the temp map
 	 * @return the pd given c
 	 */
-	public float getPd_given_c(String className, String featureName, SortedMap<String, int[]> tempMap) {
+	private float getPd_given_c(int featureIndex, float testingData, int labelIndex,
+			TreeMap<Float, int[]> tempMap) {
 		float Pd_given_c = 0;
 		// p(d | cj )
 		// given class, determine number of times featureName has className /
 		// total # className
-		if (tempMap.containsKey(featureName)) {
-			Pd_given_c = (float) getFeatureFreqByClass(className, featureName, tempMap)
-					/ getClassFrequencyFromFeatures(className, tempMap);
-
+		if (tempMap.containsKey(testingData)) {
+			Pd_given_c = (float) this.getLabelCountFromFeatureValues(labelIndex, testingData, tempMap)
+					/ this.getLabelCountFromFeature(labelIndex, tempMap);
 		} else {
-			System.out.println("No instances of " + featureName + ".");
-			try {
-				throw new Exception("No instances of " + featureName + ".");
+			System.out.println("No instances of " + testingData + ".");
+		//	throw new Exception("Not in dictionary: " + featureName);
+		/*	try {
+			//	throw new Exception("No instances of " + featureName + ".");
+				throw new Exception();
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			*/
 		}
 
 		// System.out.println("(" + className + "|" + featureName + ") is " +
@@ -556,179 +559,372 @@ public class NaiveBayesClassifier {
 
 		return Pd_given_c;
 	}
-
-	/**
-	 * Gets the pc per all features.
-	 *
-	 * @param className
-	 *            the class name
-	 * @param checkFeatures
-	 *            the check features
-	 * @return the pc per all features
-	 */
-	private float getPcPerAllFeatures(String className, List<String> checkFeatures) {
-		float Pc = 0;
-		int classPerFeatureCount = 0;
-		int classCountAll = 0;
-
-		for (int lfIndex = 0; lfIndex < this.labelFeatures.size(); lfIndex++) {
-			for (int cfIndex = 0; cfIndex < checkFeatures.size(); cfIndex++) {
-				SortedMap<String, int[]> tempMap = this.labelFeatures.get(cfIndex);
-				classPerFeatureCount = classPerFeatureCount + this.getClassFrequencyFromFeatures(className, tempMap);
-				classCountAll = classCountAll + this.getClassCountLabelFeature(className, tempMap);
-			}
-		}
-		Pc = (float) classPerFeatureCount / classCountAll;
-		return Pc;
-
-	}
-
-	// P(c)
-	/**
-	 * Gets the pc per label.
-	 *
-	 * @param className
-	 *            the class name
-	 * @param tempMap
-	 *            the temp map
-	 * @return the pc per label
-	 */
-	// className divided by all classes
-	private float getPcPerLabel(String className, SortedMap<String, int[]> tempMap) {
-		float Pc;
-		Pc = (float) getClassFrequencyFromFeatures(className, tempMap)
-				/ this.getClassCountLabelFeature(className, tempMap);
-		return Pc;
-	}
-
-	/**
-	 * Gets the feature freq by class.
-	 *
-	 * @param className
-	 *            the class name
-	 * @param featureName
-	 *            the feature name
-	 * @param tempMap
-	 *            the temp map
-	 * @return the feature freq by class
-	 */
-	// find how many times a feature is associated to a class
-	private int getFeatureFreqByClass(String className, String featureName, SortedMap<String, int[]> tempMap) {
+	
+	// find how many times a feature is associated to a label
+	private int getLabelCountFromFeatureValues(int labelIndex, float featureName, SortedMap<Float, int[]> tempMap) {
 		int[] classCounts = tempMap.get(featureName);
-		return classCounts[getIndexOfClassName(className)];
+		return classCounts[labelIndex];
 	}
 
 	/**
-	 * Gets the class count label feature.
+	 * Update label list with new labels.
 	 *
-	 * @param className
-	 *            the class name
-	 * @param tempMap
-	 *            the temp map
-	 * @return the class count label feature
+	 * @param labelData the label data
 	 */
-	private int getClassCountLabelFeature(String className, SortedMap<String, int[]> tempMap) {
-		int totalClasses = 0;
+	//and update all feature with new label counts
+	private void updateLabels(double[] labelData) {
+		for (double d : labelData) {
+			this.addNewLabelToList(d);
+		}
+	}
 
-		// loop through all features, count number of times class has been
-		// incremented
-		Collection<int[]> cLoop = tempMap.values();
-		Iterator<int[]> iLoop = cLoop.iterator();
-		while (iLoop.hasNext()) {
-			int[] iValues = iLoop.next();
-			for (int loop = 0; loop < iValues.length; loop++) {
-				totalClasses = totalClasses + iValues[loop];
+
+
+	/**
+	 * Update labels.
+	 * Add only unique labels.  If adding new label,
+	 * keep the same ordering in the array.
+	 *
+	 * @param dLabelData the d label data
+	 */
+	private void addNewLabelToList(double dLabelData) {
+		float labelData = (float) dLabelData;
+		
+		if (this.labels == null) {
+			log.logln_withClassName(G.lF, "UPDATING Label list with: " + dLabelData);
+
+			this.labels = new float[1];
+			this.labels[0] = labelData;
+		} else {
+			//only add new labels
+			if (this.getLabelIndex(labelData) == -1) {
+				//add to list
+				log.logln_withClassName(G.lF, "UPDATING Label list with: " + dLabelData);
+				this.createNewLabelList(labelData);
+				log.logln_withClassName(G.lF, "UPDATING all Features with new label.");
+				this.addNewLabelToAllFeatures();
+			}
+		}
+	}
+	
+	/**
+	 * Increment label list.
+	 *
+	 * @param labelData the label data
+	 */
+	//add new entry to label list but keep same order
+	private void createNewLabelList(float labelData) {
+		float[] tempList = this.labels.clone();
+		this.labels = new float[tempList.length + 1];
+
+		System.arraycopy(tempList, 0, this.labels, 0, tempList.length);
+		//add value to last entry in list, index starts at 0
+		this.labels[tempList.length] = labelData;
+	}
+	
+	/**
+	 * For each feature index, for each feature value, update
+	 * the label counts to reflect the number of labels.
+	 */
+	//if label added to list, the feature count needs to be updated
+	private void addNewLabelToAllFeatures(){
+		Set<Integer> featureKeys = this.features.keySet();
+		Iterator<Integer> keyIterator = featureKeys.iterator();
+		
+		while (keyIterator.hasNext()) {
+
+			int featNameIndex = keyIterator.next();
+			TreeMap<Float, int[]> tempMap = this.features.get(featNameIndex);
+				
+			Set<Float> mapKeys = tempMap.keySet();
+			Iterator<Float> mapIterator = mapKeys.iterator();
+			while (mapIterator.hasNext()) {
+				float mapKey = mapIterator.next();
+				int[] oldCounts = this.features.get(featNameIndex).get(mapKey);
+				int[] newCounts = this.emptyLabelCountsForFeatures();
+				System.arraycopy(oldCounts, 0, newCounts, 0, oldCounts.length);
+				this.features.get(featNameIndex).replace(mapKey, newCounts);
+			}
+		}
+	}
+	
+
+	/**
+	 * Given label value, find index.
+	 *
+	 * @param valueToFind the value to find
+	 * @return the label index
+	 */
+	private int getLabelIndex(float valueToFind) {
+		int labelIndex = -1;
+
+		for (int index = 0; index < this.labels.length; index++) {
+			if (valueToFind == this.labels[index]) {
+				labelIndex = index;
+				break;
+			}
+		}
+		return labelIndex;
+	}
+
+	/**
+	 * Update features by incrementing the appropriate label count
+	 * associated to the feature value of the feature index.
+	 *
+	 * @param featureIndex the feature index
+	 * @param featureValue the feature value
+	 * @param labelToIncrement the label to increment
+	 */
+	// increment the appropriate label[index] for the feature
+	private void updateFeatures(int featureIndex, float featureValue, float labelToIncrement) {
+		if ((featureValue == 0) && !this.allowEmptySampleValues) {
+			log.logln_withClassName(G.lF, "Value: " + featureValue + " not accepted.");
+		} else {
+			boolean featureIndexExists = this.features.containsKey(featureIndex);
+			int labelIndexFound = this.getLabelIndex(labelToIncrement);
+			// get the label index to update
+			// get the feature index to update the list of feature values &
+			// counts in TreeMap
+			// this.updateLabels(newLabel);
+
+			// if first time, no entry in features, create map and add
+			// if featureindex found, and map found, update, replace
+			// if featureindex found, and no map found and put
+			// else and newfeature to amp
+			if (featureIndexExists) {
+				if (this.features.get(featureIndex).containsKey(featureValue)) {
+					// update label count
+					int[] labelCounts = this.features.get(featureIndex).get(featureValue);
+					labelCounts[labelIndexFound]++;
+					this.features.get(featureIndex).replace(featureValue, labelCounts);
+				} else {
+					// add new feature value
+					int[] labelCounts = this.emptyLabelCountsForFeatures();
+					labelCounts[labelIndexFound] = 1;
+					this.features.get(featureIndex).put(featureValue, labelCounts);
+				}
+			} else {
+				// no entries, create the feature and add the first map
+				int[] labelCounts = this.emptyLabelCountsForFeatures();
+				labelCounts[labelIndexFound] = 1;
+				TreeMap<Float, int[]> tempMap = new TreeMap<Float, int[]>();
+				tempMap.put(featureValue, labelCounts);
+				this.features.put(featureIndex, tempMap);
+			}
+		}
+	}
+
+	/**
+	 * Create an int array full of zeros.
+	 *
+	 * @return the int[]
+	 */
+	private int[] emptyLabelCountsForFeatures(){
+		int[] labelCounts = new int[this.labels.length];
+		for (int loop = 0; loop < labelCounts.length; loop++)
+			labelCounts[loop] = 0;
+		
+		return labelCounts;
+	}
+	
+
+	/**
+	 * Prints the features and labels.
+	 */
+	public void printFeaturesAndLabels() {
+		//if featureNames and labelsNames not loaded, this print float values
+		System.out.println();
+		System.out.println("Label counts by feature.\n");
+
+		Set<Integer> featureKeys = this.features.keySet();
+		
+		//print the heading row
+		Iterator<Integer> keyIterator = featureKeys.iterator();
+		while (keyIterator.hasNext()) {
+			keyIterator.next();
+			System.out.print("Feature\t\t");
+			for (int labelIndex = 0; labelIndex < this.labels.length; labelIndex++) {
+				System.out.print("Label\t");
+			}
+			System.out.print("\t");
+		}
+		System.out.println();
+		
+		keyIterator = featureKeys.iterator();
+		while (keyIterator.hasNext()) {
+
+			int featNameIndex = keyIterator.next();
+			//use name if available
+			if ((this.featureNames == null) || (!(this.featureNames.size() == this.features.size()))) {
+				System.out.print(featNameIndex + "\t\t");
+			} else {
+				System.out.print(this.featureNames.get(featNameIndex) + "\t\t");
+			}
+			for (int labelIndex = 0; labelIndex < this.labels.length; labelIndex++) {
+				//use names if available
+				if ((this.labelNames == null) || (!(this.labelNames.size() == this.labels.length))) {
+					System.out.print(this.labels[labelIndex] + "\t");
+				} else {
+					System.out.print(this.labelNames.get(labelIndex) + "\t");
+				}
+			}
+			System.out.print("\t");
+		}
+		System.out.println();
+		
+		keyIterator = featureKeys.iterator();
+		while (keyIterator.hasNext()) {
+			keyIterator.next();
+			System.out.print("----------\t");
+			for (int labelIndex = 0; labelIndex < this.labels.length; labelIndex++) {
+				System.out.print("-----\t");
+			}
+			System.out.print("\t");
+		}
+		System.out.println();
+
+		int maxFeatureValueCount = this.getMaxCountFeatureValues();
+		TreeMap<Float, int[]> tempMap = null;
+		int[] tempLabelCount = null;
+		for (int index = 0; index < maxFeatureValueCount; index++) {
+			for (int featNames = 0; featNames < this.features.size(); featNames++) {
+
+				tempMap = this.features.get(featNames);
+				if (tempMap.size() > index) {
+					Entry<Float, int[]> map = this.getMapAtIndex(index, tempMap);
+					System.out.print(map.getKey() + "\t\t");
+					tempLabelCount = map.getValue();
+					for (int countIndex = 0; countIndex < tempLabelCount.length; countIndex++) {
+						System.out.print(tempLabelCount[countIndex] + "\t");					
+					}
+					System.out.print("\t");
+				} else {
+					System.out.print("-\t\t");
+					for (int countIndex = 0; countIndex < this.labels.length; countIndex++) {
+						System.out.print("-\t");
+					}
+					System.out.print("\t");
+				}
+				
+			}
+			System.out.println();
+		}
+	}
+	
+	/**
+	 * Determine which feature map has the most values
+	 *
+	 * @return the max count feature values
+	 */
+	//determine the which feature has the most values associated to it
+	private int getMaxCountFeatureValues(){
+		int max = 0;
+		Enumeration<TreeMap<Float, int[]>> eLoop = this.features.elements();
+		while (eLoop.hasMoreElements()) {
+			TreeMap<Float, int[]> tempMap = eLoop.nextElement();
+			if (max < tempMap.size()) {
+				max = tempMap.size();
+			}
+		}	
+		return max;
+	}
+	
+	/**
+	 * Given feature map, return an Entry at index.
+	 *
+	 * @param featureIndex the feature index
+	 * @param tempMap the temp map
+	 * @return the map at index
+	 */
+	//get an Entry of the data we need at index
+	private Entry<Float, int[]> getMapAtIndex(int featureIndex, TreeMap<Float, int[]> tempMap){
+		Set<Float> keys = tempMap.keySet();
+		Iterator<Float> loop = keys.iterator();
+		int count = 0;
+		Entry<Float, int[]> map = null;
+		
+		while (loop.hasNext() && (count <= featureIndex)) {
+			map = tempMap.ceilingEntry(loop.next());
+			count++;
+		}
+		return map;
+	}
+
+
+	/**
+	 * Gets total number of times label has been incremented for a feature
+	 *
+	 * @param labelIndex the label index
+	 * @param trainData the train data
+	 * @return the label frequency 
+	 */
+	private int getLabelCountFromFeature(int labelIndex, SortedMap<Float, int[]> trainData) {
+		int labelFrequency = 0;
+		Collection<int[]> cIndex = trainData.values();
+		Iterator<int[]> iIndex = cIndex.iterator();
+		while (iIndex.hasNext()) {
+			int[] iValues = iIndex.next();
+			labelFrequency = labelFrequency + iValues[labelIndex];
+		}
+		return labelFrequency;
+	}
+
+	/**
+	 * Sum total label counts for a feature.
+	 *
+	 * @param tempMap all the feature values for one feature
+	 * @return the total count
+	 */
+	private int getCountAllLabelsbyFeature(SortedMap<Float, int[]> tempMap) {
+		int totalLabels = 0;
+
+		// count number of times all label has been incremented
+		Collection<int[]> cindex = tempMap.values();
+		Iterator<int[]> iindex = cindex.iterator();
+		while (iindex.hasNext()) {
+			int[] iValues = iindex.next();
+			for (int index = 0; index < iValues.length; index++) {
+				totalLabels = totalLabels + iValues[index];
 			}
 		}
 
-		return totalClasses;
+		return totalLabels;
 	}
 
 	/**
-	 * Gets the class frequency from features.
+	 * Gets the given featureIndex and treemap, return the corresponding
+	 * feature value
 	 *
-	 * @param className
-	 *            the class name
-	 * @param tempMap
-	 *            the temp map
-	 * @return the class frequency from features
+	 * @param featureMap the feature map
+	 * @param index the index
+	 * @return the feature key at index
 	 */
-	// get total number of times className has been incremented
-	private int getClassFrequencyFromFeatures(String className, SortedMap<String, int[]> tempMap) {
-		int classFrequency = 0;
-		Collection<int[]> cLoop = tempMap.values();
-		Iterator<int[]> iLoop = cLoop.iterator();
-		while (iLoop.hasNext()) {
-			int[] iValues = iLoop.next();
-			classFrequency = classFrequency + iValues[getIndexOfClassName(className)];
-		}
-		return classFrequency;
-	}
-
-	// Pd
-	/**
-	 * Gets the pd.
-	 *
-	 * @param featureName
-	 *            the feature name
-	 * @param tempMap
-	 *            the temp map
-	 * @return the pd
-	 */
-	// featureName divided by total number of features
 	@SuppressWarnings("unused")
-	private float getPd(String featureName, SortedMap<String, int[]> tempMap) {
-		float Pd;
-		int totalFeaturesName = 0;
-		int totalFeatures = 0;
+	private float getFeatureValueAtIndex(TreeMap<Float, int[]> featureMap, int index) {
+		float key = 0;
 
-		// loop through all features, count total number of int[] values for all
-		// features
-
-		totalFeaturesName = sumFeatureValues(tempMap.get(featureName));
-
-		// get total of all features
-		Collection<int[]> cLoop = tempMap.values();
-		Iterator<int[]> iLoop = cLoop.iterator();
-
-		while (iLoop.hasNext()) {
-			totalFeatures = totalFeatures + sumFeatureValues(iLoop.next());
-
+		int indexCount = 0;
+		for (Map.Entry<Float, int[]> entry : featureMap.entrySet()) {
+			if (indexCount == index) {
+				key = entry.getKey();
+			}
+			indexCount++;
 		}
-		Pd = (float) totalFeaturesName / totalFeatures;
-		System.out.println("Pd --> " + featureName + ": " + totalFeaturesName + ", total # of features: "
-				+ totalFeatures + ": " + Pd);
-
-		return Pd;
+		return key;
 	}
 
-	/**
-	 * Gets the index of class name.
-	 *
-	 * @param className
-	 *            the class name
-	 * @return the index of class name
-	 */
-	private int getIndexOfClassName(String className) {
-		if (!classList.contains(className))
-			System.out.println("*** ERROR: " + className + " not in list. ***");
-		return classList.indexOf(className);
 
+
+	
+	public int getFitCount() {
+		return this.totalFitEntries;
 	}
 
-	/**
-	 * Sum feature values.
-	 *
-	 * @param fValues
-	 *            the f values
-	 * @return the int
-	 */
-	private int sumFeatureValues(int[] fValues) {
-		int fSum = 0;
-		for (int loop = 0; loop < fValues.length; loop++) {
-			fSum = fSum + fValues[loop];
-		}
-		return fSum;
+	public boolean isMoreTrainingData() {
+		return moreTrainingData;
 	}
 
+	public void setMoreTrainingData(boolean moreTrainingData) {
+		this.moreTrainingData = moreTrainingData;
+	}
 }

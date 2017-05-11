@@ -36,7 +36,7 @@ import mikera.arrayz.NDArray;
  * 
  */
 
-public class GaussianNB {
+public class GaussianNaiveBayesClassifier {
 
 	private Logger log = new Logger();
 	private int totalFitEntries = 0;
@@ -88,7 +88,7 @@ public class GaussianNB {
 	 *
 	 * @param allowEmptyValues TRUE allows empty values (i.e. zero) to be added into data set
 	 */
-	public GaussianNB(boolean allowEmptyValues) {
+	public GaussianNaiveBayesClassifier(boolean allowEmptyValues) {
 		log.logln_withClassName(G.lF,"");
 		this.allowEmptySampleValues = allowEmptyValues;
 	}
@@ -101,7 +101,7 @@ public class GaussianNB {
 	 * @param featureNames LIST of strings, order must match FEATURES table
 	 * @param labelNames LIST of strings, order must match LABELS array
 	 */
-	public GaussianNB(boolean allowEmptyValues, List<String> featureNames, List<String> labelNames) {
+	public GaussianNaiveBayesClassifier(boolean allowEmptyValues, List<String> featureNames, List<String> labelNames) {
 		this.allowEmptySampleValues = allowEmptyValues;
 		this.createLabelNames(labelNames);
 		this.createFeatureNames(featureNames);
@@ -502,7 +502,7 @@ public class GaussianNB {
 	public double predict_TestingSet(List<Float> testingData) {
 		this.calMeanVar();
 		float[] data = ArrayUtils.convertListToFloatArray(testingData);
-		float[] results = this.getResultsFromSingleFeature(data);
+		float[] results = this.getResultsFromFeatureSetForOneLabel(data);
 		return (double) this.getPredictedLabel(results);
 	}
 	
@@ -519,7 +519,7 @@ public class GaussianNB {
 		this.calMeanVar();
 		Iterator<INDArray> getElement = testingData.iterator();
 		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
-		float[] results = this.getResultsFromSingleFeature(data);
+		float[] results = this.getResultsFromFeatureSetForOneLabel(data);
 		return (double) this.getPredictedLabel(results);
 	}
 	
@@ -549,7 +549,7 @@ public class GaussianNB {
 
 		while (getElement.hasNext()) {
 			float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
-			float[] results = this.getResultsFromSingleFeature(data);
+			float[] results = this.getResultsFromFeatureSetForOneLabel(data);
 	//		predictedLabels[predListCount] = this.getPredictedLabelIndex(results);
 			predictedListByLabelValue[predListCount] = (double)this.getPredictedLabel(results);
 
@@ -597,7 +597,7 @@ public class GaussianNB {
 	public double[] getProbabilityScores_TestingSet(List<Float> testingData) {
 		this.calMeanVar();
 		float[] data = ArrayUtils.convertListToFloatArray(testingData);
-		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromSingleFeature(data));
+		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromFeatureSetForOneLabel(data));
 		return results;
 	}
 	
@@ -611,7 +611,7 @@ public class GaussianNB {
 		// get first element
 		Iterator<INDArray> getElement = testingData.iterator();
 		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
-		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromSingleFeature(data));
+		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromFeatureSetForOneLabel(data));
 		return results;
 	}
 	
@@ -622,7 +622,7 @@ public class GaussianNB {
 	 * @param testingData the test data
 	 * @return probabilty scores of feature checked
 	 */
-	private float[] getResultsFromSingleFeature(float[] testingData) {
+	private float[] getResultsFromFeatureSetForOneLabel(float[] testingData) {
 		float Pc_given_d = 1, Pc = 0;
 		float[] labelScores = new float[this.labels.length];
 
@@ -658,7 +658,7 @@ public class GaussianNB {
 			}
 
 			Pc_given_d = Pd_given_c * Pc;
-			log.logln(String.format("%.3f", Pc) + "))\t=" + Pc_given_d);
+			log.logln_noTimestamp(String.format("%.3f", Pc) + "))\t=" + Pc_given_d);
 
 			labelScores[labelIndex] = Pc_given_d;
 		}
@@ -995,12 +995,8 @@ public class GaussianNB {
 
 				tempMap = this.features.get(featNames);
 				if (tempMap.size() > index) {
-					float mapFloat = 0;
 					Entry<Float, int[]> map = this.getMapAtIndex(index, tempMap);
-					// this.getMapAtIndex(index, tempMap, tempLabelCount,
-					// mapFloat );
 					System.out.print(map.getKey() + "\t\t");
-				//	System.out.print(mapFloat + "\t");
 					tempLabelCount = map.getValue();
 					for (int countIndex = 0; countIndex < tempLabelCount.length; countIndex++) {
 						System.out.print(tempLabelCount[countIndex] + "\t");					
@@ -1107,6 +1103,7 @@ public class GaussianNB {
 	 * @param index the index
 	 * @return the feature key at index
 	 */
+	@SuppressWarnings("unused")
 	private float getFeatureValueAtIndex(TreeMap<Float, int[]> featureMap, int index) {
 		float key = 0;
 

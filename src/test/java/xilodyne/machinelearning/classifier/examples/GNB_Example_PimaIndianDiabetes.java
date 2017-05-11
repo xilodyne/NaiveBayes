@@ -8,7 +8,7 @@ import mikera.arrayz.NDArray;
 import xilodyne.util.io.FileSplitter;
 import xilodyne.util.G;
 import xilodyne.util.Logger;
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 
 /**
  * Gaussian NB using Pima Indian Diabetes Data Set.
@@ -43,7 +43,7 @@ public class GNB_Example_PimaIndianDiabetes {
 		String filePath = "./test-data";
 		String fileName = "pima-indians-diabetes.csv";
 		try {
-			GaussianNB gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+			GaussianNaiveBayesClassifier gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_IGNORE);
 
 			FileSplitter.createSubFiles(5, filePath, fileName, FileSplitter.fileExtCSV);		
 			load2D_NDArray(filePath, fileName, 5, 9);

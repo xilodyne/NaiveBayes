@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import mikera.arrayz.NDArray;
-import xilodyne.machinelearning.classifier.bayes.GaussianNB;
+import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.util.ArrayUtils;
 import xilodyne.util.io.FileSplitter;
 import xilodyne.util.metrics.OutputResults;
@@ -44,7 +44,7 @@ public class Example_IRIS_GNB_FromARFF {
 	
 	private static double[] predictResults, labels;
 
-	private static GaussianNB gnb = null;
+	private static GaussianNaiveBayesClassifier gnb = null;
 	// get metadata,
 	// open file,
 	// get number of columns
@@ -108,7 +108,7 @@ public class Example_IRIS_GNB_FromARFF {
 			//endData = Instant.now();
 			resultsData.setEndData();
 			
-			gnb = new GaussianNB(GaussianNB.EMPTY_SAMPLES_IGNORE);
+			gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_IGNORE);
 
 			//startFit = Instant.now();
 			resultsData.setStartFit();
