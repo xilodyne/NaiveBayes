@@ -13,8 +13,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.data.NDArrayUtils;
+import xilodyne.util.logger.Logger;
 import mikera.arrayz.INDArray;
 import mikera.arrayz.NDArray;
 
@@ -27,6 +27,7 @@ import mikera.arrayz.NDArray;
  * <p>
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/29/2018 - reflect xilodyne util changes
  * @version 0.2 -- 5/9/2017
  * 	changed labels/classes to features/labels;
  *  internal float storage / public double values
@@ -36,7 +37,7 @@ import mikera.arrayz.NDArray;
 
 public class NaiveBayesClassifier {
 
-	private Logger log = new Logger();
+	private Logger log = new Logger("nb");
 	private int totalFitEntries = 0;
 
 
@@ -66,7 +67,7 @@ public class NaiveBayesClassifier {
 	
 
 	//Hashtable:  featureID, (TreeMap (featureValue(s), label list count, must match index of labels[]))
-	private Hashtable<Integer, TreeMap<Float, int[]>> features = new Hashtable<Integer, TreeMap<Float, int[]>>();
+	private Hashtable<Integer, TreeMap<Float, int[]>> featuresList = new Hashtable<Integer, TreeMap<Float, int[]>>();
 	private List<String> featureNames = null;  //optional, show names in output
 	private int numberOfFeatures = 0;
 
@@ -80,7 +81,7 @@ public class NaiveBayesClassifier {
 	 * @param allowEmptyValues TRUE allows empty values (i.e. zero) to be added into data set
 	 */
 	public NaiveBayesClassifier(boolean allowEmptyValues) {
-		log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(Logger.lF,"");
 		this.allowEmptySampleValues = allowEmptyValues;
 	}
 
@@ -105,7 +106,7 @@ public class NaiveBayesClassifier {
 	 * @param labelList the label display name list
 	 */
 	private void createLabelNames(List<String> labelList) {
-		log.logln_withClassName(G.lF, "UPDATING label LIST with List<String>");
+		log.logln_withClassName(Logger.lF, "UPDATING label LIST with List<String>");
 		
 		this.labelNames = new ArrayList<String>();
 		for (int index = 0; index < labelList.size(); index++)
@@ -119,7 +120,7 @@ public class NaiveBayesClassifier {
 	 * @param featureList the feature display name list
 	 */
 	private void createFeatureNames(List<String> featureList) {
-		log.logln_withClassName(G.lF, "UPDATING feature LIST with List<String>");
+		log.logln_withClassName(Logger.lF, "UPDATING feature LIST with List<String>");
 
 		this.featureNames = new ArrayList<String>();
 		for (int index = 0; index < featureList.size(); index++)
@@ -163,11 +164,11 @@ public class NaiveBayesClassifier {
 		this.setMoreTrainingData(true);	
 		this.addNewLabelToList(trainingLabel);
 		
-		log.logln(G.lI, featureIndex + ", " + trainingData_OneValue + ", " + trainingLabel);
+		log.logln(Logger.lI, featureIndex + ", " + trainingData_OneValue + ", " + trainingLabel);
 		this.updateFeatures(featureIndex, (float) trainingData_OneValue, (float)trainingLabel);
 
 		this.totalFitEntries++;
-		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+		log.logln(Logger.lD, "total entries: " + this.totalFitEntries);
 	}
 
 
@@ -182,12 +183,12 @@ public class NaiveBayesClassifier {
 		this.setMoreTrainingData(true);
 		this.addNewLabelToList(trainingLabel);
 		
-		log.logln(G.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
+		log.logln(Logger.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
 
 		for (int index = 0; index < trainingData_SetOfValues.size(); index++) {
 			log.logln(index + ":" + trainingData_SetOfValues.get(index));
 			this.updateFeatures(index, trainingData_SetOfValues.get(index), trainingLabel);
-			log.logln(G.lD, "total entries: " + this.totalFitEntries);
+			log.logln(Logger.lD, "total entries: " + this.totalFitEntries);
 		}
 		this.totalFitEntries++;
 	}
@@ -201,7 +202,7 @@ public class NaiveBayesClassifier {
 	 * @param trainingLabel the label data
 	 */
 	public void fit(List<Double> trainingData_SetOfValues, double trainingLabel) {
-		log.logln(G.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
+		log.logln(Logger.lI, "List size: " + trainingData_SetOfValues.size() + ", " + trainingLabel);
 		
 		this.setMoreTrainingData(true);
 		this.addNewLabelToList(trainingLabel);
@@ -213,7 +214,7 @@ public class NaiveBayesClassifier {
 		}
 
 		this.totalFitEntries++;
-		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+		log.logln(Logger.lD, "total entries: " + this.totalFitEntries);
 	}
 
 	/**
@@ -227,7 +228,7 @@ public class NaiveBayesClassifier {
 	public void fit(NDArray trainingData, double[] trainingLabels) throws Exception {
 		this.setMoreTrainingData(true);
 		this.updateLabels(trainingLabels);
-		log.logln(G.lF, "Labels: " + ArrayUtils.printArray(this.labels));
+		log.logln(Logger.lF, "Labels: " + ArrayUtils.printArray(this.labels));
 
 		// update feature size only once, ignore additional features added later
 		if (!this.featureSetFixed) {
@@ -244,9 +245,9 @@ public class NaiveBayesClassifier {
 		Iterator<INDArray> values = trainingData.iterator();
 		int count = 0;
 
-		log.logln(G.lF, "Fitting data...");
-		log.logln(G.lI, "# of labels: " + trainingLabels.length + ", # of features: " + numberOfFeatures);
-		log.log(G.lD, "INDEX\t");
+		log.logln(Logger.lF, "Fitting data...");
+		log.logln(Logger.lI, "# of labels: " + trainingLabels.length + ", # of features: " + numberOfFeatures);
+		log.log(Logger.lD, "INDEX\t");
 
 		for (int index = 0; index < numberOfFeatures; index++) {
 			log.log_noTimestamp("Feature: " + (index) + "\t");
@@ -268,7 +269,7 @@ public class NaiveBayesClassifier {
 			this.totalFitEntries++;
 			count++;
 		}
-		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+		log.logln(Logger.lD, "total entries: " + this.totalFitEntries);
 
 	}	
 
@@ -298,7 +299,7 @@ public class NaiveBayesClassifier {
 	public double predict_TestingSet(NDArray testingData) {
 		// get first element
 		Iterator<INDArray> getElement = testingData.iterator();
-		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+		float[] data = NDArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
 		float[] results = this.getResultsFromFeatureSetForOneLabel(data);
 		return (double) this.getPredictedLabel(results);
 	}
@@ -316,9 +317,9 @@ public class NaiveBayesClassifier {
 	public double[] predict(NDArray testingData) {
 		int predListCount = 0;
 	//	int[] predictedLabels = new int[testingData.getShape(0)];
-		log.logln_withClassName(G.LOG_FINE, "Prediction started...");
-		log.logln(G.lF, "Data set size: " + testingData.getShape(0));
-		log.logln(G.lD, "\nData set: " + testingData);
+		log.logln_withClassName(Logger.LOG_FINE, "Prediction started...");
+		log.logln(Logger.lF, "Data set size: " + testingData.getShape(0));
+		log.logln(Logger.lD, "\nData set: " + testingData);
 
 		// get first element
 		Iterator<INDArray> getElement = testingData.iterator();
@@ -326,7 +327,7 @@ public class NaiveBayesClassifier {
 		double[] predictedListByLabelValue = new double[testingData.getShape(0)];
 
 		while (getElement.hasNext()) {
-			float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+			float[] data = NDArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
 			float[] results = this.getResultsFromFeatureSetForOneLabel(data);
 	//		predictedLabels[predListCount] = this.getPredictedLabelIndex(results);
 			predictedListByLabelValue[predListCount] = (double)this.getPredictedLabel(results);
@@ -337,7 +338,7 @@ public class NaiveBayesClassifier {
 //		for (int index = 0; index < predictedLabels.length; index++) {
 //			predictedListByLabelValue[index] = (double)this.labels[predictedLabels[index]];
 //		}
-		log.logln(G.lF, "Prediction finished.");
+		log.logln(Logger.lF, "Prediction finished.");
 		return predictedListByLabelValue;
 	}
 
@@ -349,16 +350,16 @@ public class NaiveBayesClassifier {
 	 * Predict given Label, Feature and testing data.
 	 *  
 	 * @param labelIndex index of label to be checked
-	 * @param featureIndex  index of feature to be checked
+	 * @param featuresIndex  index of feature to be checked
 	 * @param testingData  value of feature
 	 * @return return gaussian probability of sample value being of this label
 	 */
-	public float getProbabilty_OneFeature(int featureIndex, int labelIndex, float testingData) {
-		TreeMap<Float, int[]> tempMap = this.features.get(featureIndex);
+	public float getProbabilty_OneFeature(int featuresIndex, int labelIndex, float testingData) {
+		TreeMap<Float, int[]> featureValues = this.featuresList.get(featuresIndex);
 
-		float Pc = this.getPcPerLabel(labelIndex, tempMap);
-		float Pd_given_c = this.getPd_given_c(featureIndex, testingData, labelIndex, tempMap);
-		log.logln_withClassName(G.lI, this.labels[labelIndex] + "\tPc: " + Pc + "\t* Pd_given_c: "
+		float Pc = this.getPcPerLabel(labelIndex, featureValues);
+		float Pd_given_c = this.getPd_given_c(featuresIndex, testingData, labelIndex, featureValues);
+		log.logln_withClassName(Logger.lI, this.labels[labelIndex] + "\tPc: " + Pc + "\t* Pd_given_c: "
 				+ Pd_given_c + "\t= " + Pd_given_c * Pc);
 
 		return Pd_given_c * Pc;
@@ -386,7 +387,7 @@ public class NaiveBayesClassifier {
 	public double[] getProbabilityScores_TestingSet(NDArray testingData) {
 		// get first element
 		Iterator<INDArray> getElement = testingData.iterator();
-		float[] data = ArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
+		float[] data = NDArrayUtils.convertNDArrayEntryToFloatArray(getElement.next());
 		double[] results = ArrayUtils.convertFloatToDoubleArray(this.getResultsFromFeatureSetForOneLabel(data));
 		return results;
 	}
@@ -402,7 +403,7 @@ public class NaiveBayesClassifier {
 		float Pc_given_d = 1, Pc = 0;
 		float[] labelScores = new float[this.labels.length];
 
-		log.log_noTimestamp(G.lD, "");
+		log.log_noTimestamp(Logger.lD, "");
 		
 		log.log("Predict label using values:\t");
 		int index = 0;
@@ -424,9 +425,9 @@ public class NaiveBayesClassifier {
 				log.log_noTimestamp(testingData[testingIndex] + ":");
 
 				float local_Pd_given_c = 0;
-				TreeMap<Float, int[]> tempMap = this.features.get(testingIndex);
+				TreeMap<Float, int[]> featureValues = this.featuresList.get(testingIndex);
 				local_Pd_given_c = this.getPd_given_c(testingIndex, testingData[testingIndex], 
-						labelIndex, tempMap);
+						labelIndex, featureValues);
 
 				log.log_noTimestamp(String.format("%.8f", local_Pd_given_c) + ")*(");
 
@@ -491,11 +492,11 @@ public class NaiveBayesClassifier {
 		int uniqueLabelCount = 0;
 		int totalLabelsCount = 0;
 
-		for (int featureKey = 0; featureKey < this.features.size(); featureKey++) {
-				TreeMap<Float, int[]> tempMap = this.features.get(featureKey);
+		for (int featuresIndex = 0; featuresIndex < this.featuresList.size(); featuresIndex++) {
+				TreeMap<Float, int[]> featureValues = this.featuresList.get(featuresIndex);
 				uniqueLabelCount = uniqueLabelCount
-						+ this.getLabelCountFromFeature(labelIndex, tempMap);
-				totalLabelsCount = totalLabelsCount + this.getCountAllLabelsbyFeature(tempMap);
+						+ this.getLabelCountFromFeature(labelIndex, featureValues);
+				totalLabelsCount = totalLabelsCount + this.getCountAllLabelsbyFeature(featureValues);
 			}
 		Pc = (float) uniqueLabelCount / totalLabelsCount;
 		return Pc;
@@ -507,13 +508,13 @@ public class NaiveBayesClassifier {
 	 * Given label index, determine probabilty for one feature.
 	 *
 	 * @param labelIndex the label index
-	 * @param tempMap the temp map
+	 * @param featureValues the temp map
 	 * @return the pc per label
 	 */
 	// className divided by all classes
-	private float getPcPerLabel(int labelIndex, TreeMap<Float, int[]> tempMap) {
+	private float getPcPerLabel(int labelIndex, TreeMap<Float, int[]> featureValues) {
 		float Pc;
-		Pc = (float) getLabelCountFromFeature(labelIndex, tempMap) / this.getCountAllLabelsbyFeature(tempMap);
+		Pc = (float) getLabelCountFromFeature(labelIndex, featureValues) / this.getCountAllLabelsbyFeature(featureValues);
 		return Pc;
 	}
 
@@ -528,19 +529,19 @@ public class NaiveBayesClassifier {
 	 *            the class name
 	 * @param featureValue
 	 *            the feature name
-	 * @param tempMap
+	 * @param featureValues
 	 *            the temp map
 	 * @return the pd given c
 	 */
 	private float getPd_given_c(int featureIndex, float testingData, int labelIndex,
-			TreeMap<Float, int[]> tempMap) {
+			TreeMap<Float, int[]> featureValues) {
 		float Pd_given_c = 0;
 		// p(d | cj )
 		// given class, determine number of times featureName has className /
 		// total # className
-		if (tempMap.containsKey(testingData)) {
-			Pd_given_c = (float) this.getLabelCountFromFeatureValues(labelIndex, testingData, tempMap)
-					/ this.getLabelCountFromFeature(labelIndex, tempMap);
+		if (featureValues.containsKey(testingData)) {
+			Pd_given_c = (float) this.getLabelCountFromFeatureValues(labelIndex, testingData, featureValues)
+					/ this.getLabelCountFromFeature(labelIndex, featureValues);
 		} else {
 			System.out.println("No instances of " + testingData + ".");
 		//	throw new Exception("Not in dictionary: " + featureName);
@@ -561,8 +562,8 @@ public class NaiveBayesClassifier {
 	}
 	
 	// find how many times a feature is associated to a label
-	private int getLabelCountFromFeatureValues(int labelIndex, float featureName, SortedMap<Float, int[]> tempMap) {
-		int[] classCounts = tempMap.get(featureName);
+	private int getLabelCountFromFeatureValues(int labelIndex, float featureName, SortedMap<Float, int[]> featureValues) {
+		int[] classCounts = featureValues.get(featureName);
 		return classCounts[labelIndex];
 	}
 
@@ -591,7 +592,7 @@ public class NaiveBayesClassifier {
 		float labelData = (float) dLabelData;
 		
 		if (this.labels == null) {
-			log.logln_withClassName(G.lF, "UPDATING Label list with: " + dLabelData);
+			log.logln_withClassName(Logger.lF, "UPDATING Label list with: " + dLabelData);
 
 			this.labels = new float[1];
 			this.labels[0] = labelData;
@@ -599,9 +600,9 @@ public class NaiveBayesClassifier {
 			//only add new labels
 			if (this.getLabelIndex(labelData) == -1) {
 				//add to list
-				log.logln_withClassName(G.lF, "UPDATING Label list with: " + dLabelData);
+				log.logln_withClassName(Logger.lF, "UPDATING Label list with: " + dLabelData);
 				this.createNewLabelList(labelData);
-				log.logln_withClassName(G.lF, "UPDATING all Features with new label.");
+				log.logln_withClassName(Logger.lF, "UPDATING all Features with new label.");
 				this.addNewLabelToAllFeatures();
 			}
 		}
@@ -628,22 +629,22 @@ public class NaiveBayesClassifier {
 	 */
 	//if label added to list, the feature count needs to be updated
 	private void addNewLabelToAllFeatures(){
-		Set<Integer> featureKeys = this.features.keySet();
-		Iterator<Integer> keyIterator = featureKeys.iterator();
+		Set<Integer> featuresKeys = this.featuresList.keySet();
+		Iterator<Integer> keyIterator = featuresKeys.iterator();
 		
 		while (keyIterator.hasNext()) {
 
 			int featNameIndex = keyIterator.next();
-			TreeMap<Float, int[]> tempMap = this.features.get(featNameIndex);
+			TreeMap<Float, int[]> featureValues = this.featuresList.get(featNameIndex);
 				
-			Set<Float> mapKeys = tempMap.keySet();
+			Set<Float> mapKeys = featureValues.keySet();
 			Iterator<Float> mapIterator = mapKeys.iterator();
 			while (mapIterator.hasNext()) {
 				float mapKey = mapIterator.next();
-				int[] oldCounts = this.features.get(featNameIndex).get(mapKey);
+				int[] oldCounts = this.featuresList.get(featNameIndex).get(mapKey);
 				int[] newCounts = this.emptyLabelCountsForFeatures();
 				System.arraycopy(oldCounts, 0, newCounts, 0, oldCounts.length);
-				this.features.get(featNameIndex).replace(mapKey, newCounts);
+				this.featuresList.get(featNameIndex).replace(mapKey, newCounts);
 			}
 		}
 	}
@@ -678,9 +679,9 @@ public class NaiveBayesClassifier {
 	// increment the appropriate label[index] for the feature
 	private void updateFeatures(int featureIndex, float featureValue, float labelToIncrement) {
 		if ((featureValue == 0) && !this.allowEmptySampleValues) {
-			log.logln_withClassName(G.lF, "Value: " + featureValue + " not accepted.");
+			log.logln_withClassName(Logger.lF, "Value: " + featureValue + " not accepted.");
 		} else {
-			boolean featureIndexExists = this.features.containsKey(featureIndex);
+			boolean featureIndexExists = this.featuresList.containsKey(featureIndex);
 			int labelIndexFound = this.getLabelIndex(labelToIncrement);
 			// get the label index to update
 			// get the feature index to update the list of feature values &
@@ -692,24 +693,24 @@ public class NaiveBayesClassifier {
 			// if featureindex found, and no map found and put
 			// else and newfeature to amp
 			if (featureIndexExists) {
-				if (this.features.get(featureIndex).containsKey(featureValue)) {
+				if (this.featuresList.get(featureIndex).containsKey(featureValue)) {
 					// update label count
-					int[] labelCounts = this.features.get(featureIndex).get(featureValue);
+					int[] labelCounts = this.featuresList.get(featureIndex).get(featureValue);
 					labelCounts[labelIndexFound]++;
-					this.features.get(featureIndex).replace(featureValue, labelCounts);
+					this.featuresList.get(featureIndex).replace(featureValue, labelCounts);
 				} else {
 					// add new feature value
 					int[] labelCounts = this.emptyLabelCountsForFeatures();
 					labelCounts[labelIndexFound] = 1;
-					this.features.get(featureIndex).put(featureValue, labelCounts);
+					this.featuresList.get(featureIndex).put(featureValue, labelCounts);
 				}
 			} else {
 				// no entries, create the feature and add the first map
 				int[] labelCounts = this.emptyLabelCountsForFeatures();
 				labelCounts[labelIndexFound] = 1;
-				TreeMap<Float, int[]> tempMap = new TreeMap<Float, int[]>();
-				tempMap.put(featureValue, labelCounts);
-				this.features.put(featureIndex, tempMap);
+				TreeMap<Float, int[]> featureValues = new TreeMap<Float, int[]>();
+				featureValues.put(featureValue, labelCounts);
+				this.featuresList.put(featureIndex, featureValues);
 			}
 		}
 	}
@@ -736,10 +737,10 @@ public class NaiveBayesClassifier {
 		System.out.println();
 		System.out.println("Label counts by feature.\n");
 
-		Set<Integer> featureKeys = this.features.keySet();
+		Set<Integer> featuresKeys = this.featuresList.keySet();
 		
 		//print the heading row
-		Iterator<Integer> keyIterator = featureKeys.iterator();
+		Iterator<Integer> keyIterator = featuresKeys.iterator();
 		while (keyIterator.hasNext()) {
 			keyIterator.next();
 			System.out.print("Feature\t\t");
@@ -750,12 +751,12 @@ public class NaiveBayesClassifier {
 		}
 		System.out.println();
 		
-		keyIterator = featureKeys.iterator();
+		keyIterator = featuresKeys.iterator();
 		while (keyIterator.hasNext()) {
 
 			int featNameIndex = keyIterator.next();
 			//use name if available
-			if ((this.featureNames == null) || (!(this.featureNames.size() == this.features.size()))) {
+			if ((this.featureNames == null) || (!(this.featureNames.size() == this.featuresList.size()))) {
 				System.out.print(featNameIndex + "\t\t");
 			} else {
 				System.out.print(this.featureNames.get(featNameIndex) + "\t\t");
@@ -772,7 +773,7 @@ public class NaiveBayesClassifier {
 		}
 		System.out.println();
 		
-		keyIterator = featureKeys.iterator();
+		keyIterator = featuresKeys.iterator();
 		while (keyIterator.hasNext()) {
 			keyIterator.next();
 			System.out.print("----------\t");
@@ -784,14 +785,14 @@ public class NaiveBayesClassifier {
 		System.out.println();
 
 		int maxFeatureValueCount = this.getMaxCountFeatureValues();
-		TreeMap<Float, int[]> tempMap = null;
+		TreeMap<Float, int[]> featureValues = null;
 		int[] tempLabelCount = null;
 		for (int index = 0; index < maxFeatureValueCount; index++) {
-			for (int featNames = 0; featNames < this.features.size(); featNames++) {
+			for (int featNames = 0; featNames < this.featuresList.size(); featNames++) {
 
-				tempMap = this.features.get(featNames);
-				if (tempMap.size() > index) {
-					Entry<Float, int[]> map = this.getMapAtIndex(index, tempMap);
+				featureValues = this.featuresList.get(featNames);
+				if (featureValues.size() > index) {
+					Entry<Float, int[]> map = this.getMapAtIndex(index, featureValues);
 					System.out.print(map.getKey() + "\t\t");
 					tempLabelCount = map.getValue();
 					for (int countIndex = 0; countIndex < tempLabelCount.length; countIndex++) {
@@ -819,11 +820,11 @@ public class NaiveBayesClassifier {
 	//determine the which feature has the most values associated to it
 	private int getMaxCountFeatureValues(){
 		int max = 0;
-		Enumeration<TreeMap<Float, int[]>> eLoop = this.features.elements();
+		Enumeration<TreeMap<Float, int[]>> eLoop = this.featuresList.elements();
 		while (eLoop.hasMoreElements()) {
-			TreeMap<Float, int[]> tempMap = eLoop.nextElement();
-			if (max < tempMap.size()) {
-				max = tempMap.size();
+			TreeMap<Float, int[]> featureValues = eLoop.nextElement();
+			if (max < featureValues.size()) {
+				max = featureValues.size();
 			}
 		}	
 		return max;
@@ -833,18 +834,18 @@ public class NaiveBayesClassifier {
 	 * Given feature map, return an Entry at index.
 	 *
 	 * @param featureIndex the feature index
-	 * @param tempMap the temp map
+	 * @param featureValues the temp map
 	 * @return the map at index
 	 */
 	//get an Entry of the data we need at index
-	private Entry<Float, int[]> getMapAtIndex(int featureIndex, TreeMap<Float, int[]> tempMap){
-		Set<Float> keys = tempMap.keySet();
+	private Entry<Float, int[]> getMapAtIndex(int featureIndex, TreeMap<Float, int[]> featureValues){
+		Set<Float> keys = featureValues.keySet();
 		Iterator<Float> loop = keys.iterator();
 		int count = 0;
 		Entry<Float, int[]> map = null;
 		
 		while (loop.hasNext() && (count <= featureIndex)) {
-			map = tempMap.ceilingEntry(loop.next());
+			map = featureValues.ceilingEntry(loop.next());
 			count++;
 		}
 		return map;
@@ -872,14 +873,14 @@ public class NaiveBayesClassifier {
 	/**
 	 * Sum total label counts for a feature.
 	 *
-	 * @param tempMap all the feature values for one feature
+	 * @param featureValues all the feature values for one feature
 	 * @return the total count
 	 */
-	private int getCountAllLabelsbyFeature(SortedMap<Float, int[]> tempMap) {
+	private int getCountAllLabelsbyFeature(SortedMap<Float, int[]> featureValues) {
 		int totalLabels = 0;
 
 		// count number of times all label has been incremented
-		Collection<int[]> cindex = tempMap.values();
+		Collection<int[]> cindex = featureValues.values();
 		Iterator<int[]> iindex = cindex.iterator();
 		while (iindex.hasNext()) {
 			int[] iValues = iindex.next();

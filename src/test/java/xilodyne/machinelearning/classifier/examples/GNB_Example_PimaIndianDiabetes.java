@@ -5,9 +5,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import mikera.arrayz.NDArray;
-import xilodyne.util.io.FileSplitter;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.file.io.FileSplitter;
+import xilodyne.util.logger.Logger;
 import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 
 /**
@@ -17,12 +16,13 @@ import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
  * Uses NDArray by vectorz https://github.com/mikera/vectorz
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
  * @version 0.2
  * 
  */
 public class GNB_Example_PimaIndianDiabetes {
 
-	private static Logger log = new Logger();
+	private static Logger log = new Logger("pima");
 
 
 	// get metadata,
@@ -34,22 +34,22 @@ public class GNB_Example_PimaIndianDiabetes {
 	static double[] trainingLabels = null;
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		 G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
-		log.logln_withClassName(G.lF,"");
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		 Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
+		log.logln_withClassName(Logger.lF,"");
 
 		String filePath = "./test-data";
 		String fileName = "pima-indians-diabetes.csv";
 		try {
 			GaussianNaiveBayesClassifier gnb = new GaussianNaiveBayesClassifier(GaussianNaiveBayesClassifier.EMPTY_SAMPLES_IGNORE);
 
-			FileSplitter.createSubFiles(5, filePath, fileName, FileSplitter.fileExtCSV);		
+			FileSplitter.createSubFiles(5, filePath, fileName, FileSplitter.fileExtCSV, FileSplitter.HEADER_NONE);		
 			load2D_NDArray(filePath, fileName, 5, 9);
 			gnb.fit(trainingData, trainingLabels);
 
-			log.logln_withClassName(G.lD, "Output of ND Array...");
+			log.logln_withClassName(Logger.lD, "Output of ND Array...");
 			log.logln("\ndata: "+ trainingData);
 			log.logln("ND array dim: " + trainingData.getShape(1));
 			
@@ -59,7 +59,7 @@ public class GNB_Example_PimaIndianDiabetes {
 			load2D_NDArray(filePath, fileName, 4, 9);
 			gnb.fit(trainingData, trainingLabels);
 
-			log.logln(G.lD, "Output of ND Array...");
+			log.logln(Logger.lD, "Output of ND Array...");
 			log.logln(trainingData.toString());
 			log.logln("ND array size: " + trainingData.getShape(1));
 			

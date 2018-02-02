@@ -7,19 +7,23 @@ import org.junit.Test;
 import xilodyne.machinelearning.classifier.neural.Perceptron;
 import xilodyne.machinelearning.classifier.neural.Perceptron_Int;
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.G;
-//import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 
+/**
+ * @author Austin Davis Holiday (aholiday@xilodyne.com)
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
+ *
+ */
 public class Test_Perceptron {
 	
 	//private Logger log = new Logger();
 
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		
 		// create a perceptron of 2 w, 2 i, 0 t
@@ -59,10 +63,10 @@ public class Test_Perceptron {
 	
 	@Test
 	public void check_PerceptonTrueFalse() {
-		// G.setLoggerLevel(G.LOG_OFF);
-		G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		System.out.println();
 		System.out.println("*** TEST *** Check Perceptron True/False");
@@ -95,10 +99,10 @@ public class Test_Perceptron {
 	
 	@Test
 	public void check_PerceptonUpdateWeights() {
-		// G.setLoggerLevel(G.LOG_OFF);
-		G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		System.out.println();
 		System.out.println("*** TEST *** Check Perceptron update weights");
@@ -124,10 +128,10 @@ public class Test_Perceptron {
 
 
 	public static void mainNew(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		// create a perceptron of 2 w, 2 i, 0 t
 

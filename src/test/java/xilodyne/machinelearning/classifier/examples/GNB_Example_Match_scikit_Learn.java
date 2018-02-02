@@ -14,21 +14,25 @@ import mikera.arrayz.NDArray;
 
 import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 
+/**
+ * @author Austin Davis Holiday (aholiday@xilodyne.com)
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
+ *
+ */
 public class GNB_Example_Match_scikit_Learn {
 
-	private static Logger log = new Logger();
+	private static Logger log = new Logger("egnb");
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		//G.setLoggerLevel(G.LOG_DEBUG);
-		log.logln_withClassName(G.lF, "");
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		//Logger.setLoggerLevel(Logger.LOG_DEBUG);
+		log.logln_withClassName(Logger.lF, "");
 
-		log.logln_withClassName(G.lD, "");
+		log.logln_withClassName(Logger.lD, "");
 
 		NDArray trainingData = NDArray.newArray(6, 2);
 		NDArray testingData1 = NDArray.newArray(2, 2);

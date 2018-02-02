@@ -11,20 +11,24 @@ import org.junit.Test;
 
 import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Austin Davis Holiday (aholiday@xilodyne.com)
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
+ *
+ */
 public class Test_NaiveBayes {
 
-	private Logger log = new Logger();
+	private Logger log = new Logger("tNB");
 	private int nextNumber = 0;
 
 	public Test_NaiveBayes() {
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 	}
 
@@ -283,8 +287,8 @@ public class Test_NaiveBayes {
 
 	@Test
 	public void checkProp_NDArray_TwoFeatures() {
-		// log.logln_withClassName(G.lF,"");
-		log.logln_withClassName(G.lD, "");
+		// log.logln_withClassName(Logger.lF,"");
+		log.logln_withClassName(Logger.lD, "");
 
 		NDArray featuresTrain = NDArray.newArray(8, 2);
 		NDArray featuresTest = NDArray.newArray(1, 2);
@@ -366,8 +370,8 @@ public class Test_NaiveBayes {
 
 	@Test
 	public void checkProb_NDArray_TwoFeatures_TwoBatches() {
-		// log.logln_withClassName(G.lF,"");
-		log.logln_withClassName(G.lD, "");
+		// log.logln_withClassName(Logger.lF,"");
+		log.logln_withClassName(Logger.lD, "");
 
 		NDArray featuresTrain1 = NDArray.newArray(4, 2);
 		NDArray featuresTrain2 = NDArray.newArray(4, 2);
@@ -460,7 +464,7 @@ public class Test_NaiveBayes {
 
 	@Test
 	public void checkProp_NDArray_TwoSamples_AssignedNames() {
-		log.logln_withClassName(G.lF, "");
+		log.logln_withClassName(Logger.lF, "");
 
 		NDArray featuresTrain = NDArray.newArray(8, 2);
 		NDArray featuresTest = NDArray.newArray(1, 2);

@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import mikera.arrayz.NDArray;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 
 
 /**
  * Gaussian NB using gender (float) and float attributes
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
  * @version 0.1
  */
 public class GNB_Example_GenderHeight {
 
-	private static Logger log = new Logger();
+	private static Logger log = new Logger("egnb");
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
-		log.logln_withClassName(G.lF,"");
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
+		log.logln_withClassName(Logger.lF,"");
 
 		NDArray trainingData = NDArray.newArray(8, 2);
 		NDArray testingData = NDArray.newArray(1,2);

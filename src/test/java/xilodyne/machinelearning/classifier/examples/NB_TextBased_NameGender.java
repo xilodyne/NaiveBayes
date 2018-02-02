@@ -5,27 +5,27 @@ import java.util.Hashtable;
 
 import xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues;
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 
 
 /**
  * Tests Naive Bayes using Gender (text) and Names (text).
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
  * @version 0.2
  * 
  */
 public class NB_TextBased_NameGender {
 
-	private static Logger log = new Logger();
+	private static Logger log = new Logger("nbTB");
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
-		log.logln_withClassName(G.lF, "");
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
+		log.logln_withClassName(Logger.lF, "");
 
 		String[] featureCategories = new String[]{"Name",">170cm","Eye","Hair"};
 		String[] labels = new String[]{"Male","Female"};

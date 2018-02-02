@@ -10,14 +10,13 @@ import java.util.List;
 import mikera.arrayz.NDArray;
 import xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier;
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.io.FileSplitter;
+import xilodyne.util.file.io.FileSplitter;
 import xilodyne.util.metrics.OutputResults;
 import xilodyne.util.metrics.TestResultsDataML;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
-import xilodyne.util.LoggerCSV;
-import xilodyne.util.weka.WekaARFFUtils;
-import xilodyne.util.weka.WekaUtils;
+import xilodyne.util.logger.Logger;
+import xilodyne.util.logger.LoggerCSV;
+import xilodyne.util.weka_helper.WekaARFFUtils;
+import xilodyne.util.weka_helper.WekaUtils;
 import weka.core.Instances;
 
 /**
@@ -27,6 +26,7 @@ import weka.core.Instances;
  * Uses NDArray by vectorz https://github.com/mikera/vectorz
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
  * @version 0.2
  * 
  */
@@ -54,17 +54,17 @@ public class Example_IRIS_GNB_FromARFF {
 
 	public static void main(String[] args) {
 
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		String className = "xilodyne.machinelearning.classifier.GaussianNB";
 		TestResultsDataML resultsData = new TestResultsDataML();
 		resultsData.setClassMLName(className);
 
 //		log = new Logger("logs", "IRIS_xd_GNB_NoCV" + "_" + className.substring(className.lastIndexOf(".") + 1));
-		log = new Logger("logs", "IRIS_xd_GNB_NoCV" + "_" + resultsData.getClassMLNameWithoutDomain());
+		log = new Logger("egnb", "logs", "IRIS_xd_GNB_NoCV" + "_" + resultsData.getClassMLNameWithoutDomain());
 
 		logCSV = new LoggerCSV("results", CSV_Filename, 
 				delimiter, header);
@@ -72,7 +72,7 @@ public class Example_IRIS_GNB_FromARFF {
 		logCSV.log_CSV_Entry(resultsData.getClassMLName());
 
 		
-		log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(Logger.lF,"");
 
 		//startData = Instant.now();
 		resultsData.setStartData();
@@ -98,7 +98,7 @@ public class Example_IRIS_GNB_FromARFF {
 					//WekaUtils.getClassNames(data, WekaUtils.ClassAtEnd)));
 			String[] sLabels = WekaUtils.getLabelNames(data);
 			String[] sFeatures = WekaUtils.getFeatureNames(data);
-			log.logln(G.lD, ArrayUtils.printArray(sLabels));
+			log.logln(Logger.lD, ArrayUtils.printArray(sLabels));
 
 			ArrayList<String> labelNames = new ArrayList<String>(Arrays.asList(sLabels));
 			List<String> featureNames = new ArrayList<String>(Arrays.asList(sFeatures));
@@ -133,8 +133,8 @@ public class Example_IRIS_GNB_FromARFF {
 			resultsData.setEndPredict();
 
 			labels = getLabelsFromfile(filePath, fileName + "." + FileSplitter.fileExtARFF_DATA, 10, indexClassLabel, labelNames);
-			log.logln(G.lF, "Predicted Results size: " + predictResults.length);
-			log.logln(G.lF, "Class Labels size: " + labels.length);
+			log.logln(Logger.lF, "Predicted Results size: " + predictResults.length);
+			log.logln(Logger.lF, "Class Labels size: " + labels.length);
 			
 			/*long trainingTime = Duration.between(startFit, endFit).toMillis();
 			long predictTime = Duration.between(startPredict, endPredict).toMillis();
@@ -153,7 +153,7 @@ public class Example_IRIS_GNB_FromARFF {
 				
 			//load2D_NDArray(filePath, fileName + "." + FileSplitter.fileExtARFF_DATA, 5, 9);
 
-			//log.logln_withClassName(G.lI, "Output of ND Array...");
+			//log.logln_withClassName(Logger.lI, "Output of ND Array...");
 			//log.logln("\ndata: "+ dataArray);
 			//log.logln("ND array dim: " + dataArray.getShape(1));
 			
@@ -162,7 +162,7 @@ public class Example_IRIS_GNB_FromARFF {
 	//		System.out.println(WekaUtils.getInstanceDetails(data));
 	/*		load2D_NDArray(filePath, fileName, 5, 5);
 
-			log.logln_withClassName(G.lD, "Output of ND Array...");
+			log.logln_withClassName(Logger.lD, "Output of ND Array...");
 			log.logln("\ndata: "+ dataArray);
 			log.logln("ND array dim: " + dataArray.getShape(1));
 			
@@ -173,7 +173,7 @@ public class Example_IRIS_GNB_FromARFF {
 
 			load2D_NDArray(filePath, fileName, 4, 5);
 
-			log.logln(G.lD, "Output of ND Array...");
+			log.logln(Logger.lD, "Output of ND Array...");
 			log.logln(dataArray.toString());
 			log.logln("ND array size: " + dataArray.getShape(1));
 			
@@ -229,7 +229,7 @@ public class Example_IRIS_GNB_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			//log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			//log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			String label = null;
 			// load the last value into the class array
@@ -252,7 +252,7 @@ public class Example_IRIS_GNB_FromARFF {
 
 		}
 
-		log.logln(G.lD,  "Loading : " + ArrayUtils.printArray(labels));
+		log.logln(Logger.lD,  "Loading : " + ArrayUtils.printArray(labels));
 		log.logln("Data: " + dataArray);
 		br.close();
 		try {
@@ -284,7 +284,7 @@ public class Example_IRIS_GNB_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			//log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			//log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			String label = null;
 			// load the last value into the class array
@@ -307,7 +307,7 @@ public class Example_IRIS_GNB_FromARFF {
 
 		}
 
-		log.logln(G.lD,  "Loading : " + ArrayUtils.printArray(labels));
+		log.logln(Logger.lD,  "Loading : " + ArrayUtils.printArray(labels));
 		log.logln("Data: " + dataArray);
 		br.close();
 
@@ -340,7 +340,7 @@ public class Example_IRIS_GNB_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			//log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			//log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			String label = null;
 
@@ -374,7 +374,7 @@ public class Example_IRIS_GNB_FromARFF {
 		long dataPercent = Math.round((dDataTime / totalDuration) * 100);
 		long trainPercent = Math.round((dTrainTime / totalDuration) * 100);
 		long predictPercent = Math.round((dPredictTime / totalDuration) * 100);
-		log.logln(G.lF, "Class tested: " + className);
+		log.logln(Logger.lF, "Class tested: " + className);
 		log.logln("Accuracy: " + accuracy + "%");
 		log.logln("Total lines training: " + gnb.getFitCount());
 		log.logln("Total lines predicted: " + predictResults.length);

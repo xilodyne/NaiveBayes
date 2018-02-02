@@ -12,14 +12,13 @@ import mikera.arrayz.NDArray;
 import weka.core.Instances;
 import xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues;
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.io.FileSplitter;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
-import xilodyne.util.LoggerCSV;
+import xilodyne.util.file.io.FileSplitter;
+import xilodyne.util.logger.Logger;
+import xilodyne.util.logger.LoggerCSV;
 import xilodyne.util.metrics.OutputResults;
 import xilodyne.util.metrics.TestResultsDataML;
-import xilodyne.util.weka.WekaARFFUtils;
-import xilodyne.util.weka.WekaUtils;
+import xilodyne.util.weka_helper.WekaARFFUtils;
+import xilodyne.util.weka_helper.WekaUtils;
 
 /**
  * Naive Bayes using Iris Data Set.
@@ -28,6 +27,7 @@ import xilodyne.util.weka.WekaUtils;
  * Uses NDArray by vectorz https://github.com/mikera/vectorz
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
  * @version 0.2
  * 
  */
@@ -64,21 +64,21 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 	static String[] sFeatures = null;
 
 	public static void main(String[] args) {
-		// G.setLoggerLevel(G.LOG_OFF);
-		// G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		// Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 		String classNamex = "xilodyne.machinelearning.classifier.NaiveBayesClassifier";
 		TestResultsDataML resultsData = new TestResultsDataML();
 		resultsData.setClassMLName(classNamex);
 		
 	//	log = new Logger("logs", "IRIS_xd_NB_NoCV" + "_" + className.substring(className.lastIndexOf(".") + 1));
-		log = new Logger("logs", "IRIS_xd_NB_NoCV" + "_" + resultsData.getClassMLNameWithoutDomain());
+		log = new Logger("egnb", "logs", "IRIS_xd_NB_NoCV" + "_" + resultsData.getClassMLNameWithoutDomain());
 		logCSV = new LoggerCSV("results", CSV_Filename, 
 				delimiter, header);
 
-		log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(Logger.lF,"");
 		
 		log.logln("IRIS data set using Naive Bayes");
 		logCSV.log_CSV_Timestamp();
@@ -114,7 +114,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 
 		sLabels = WekaUtils.getLabelNames(data);
 		sFeatures = WekaUtils.getFeatureNames(data);
-		log.logln(G.lD, ArrayUtils.printArray(sLabels));
+		log.logln(Logger.lD, ArrayUtils.printArray(sLabels));
 
 		List<String> labelNames = new ArrayList<String>(Arrays.asList(sLabels));
 		List<String> featureNames = new ArrayList<String>(Arrays.asList(sFeatures));
@@ -154,7 +154,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 			//log.logln ("result: " + ArrayUtils.printArray(fval));
 			//log.logln(nb.predict(new ArrayList<String>(Arrays.asList("5.4","3.0","4.5","1.5"))));
 			predictResults = predict(filePath, fileName + "." + FileSplitter.fileExtARFF_DATA, 10,indexClassLabel);
-			log.logln(G.lI, "Predicted Count: " + predictResults.size());
+			log.logln(Logger.lI, "Predicted Count: " + predictResults.size());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -194,7 +194,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			//nb.fit(new ArrayList<String>(Arrays.asList("Drew", "No", "Blue", "Short")), "Male");
 
@@ -223,7 +223,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 			
 			log.logln_noTimestamp("]");
 
-		//	log.logln(G.lD,  "Loading : " + ArrayUtils.printArray(list));
+		//	log.logln(Logger.lD,  "Loading : " + ArrayUtils.printArray(list));
 
 		//	nb.fit(list, label);
 
@@ -248,14 +248,14 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			log.logln(G.lI, "");
-			log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			log.logln(Logger.lI, "");
+			log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			//nb.fit(new ArrayList<String>(Arrays.asList("Drew", "No", "Blue", "Short")), "Male");
 
 			
 			// load the last value into the class array
-			log.log(G.lI, "Values extracted [");
+			log.log(Logger.lI, "Values extracted [");
 			Hashtable<String, String> testingData_OneSet = new Hashtable<String, String>();
 
 			for (int index = 0; index < values.length; index++) {
@@ -270,10 +270,10 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 			}
 			log.logln_noTimestamp("]");
 
-		//	log.logln(G.lF, predictedCount +":" + labels.size() +": Label: " + labels.get(labels.size()-1));
+		//	log.logln(Logger.lF, predictedCount +":" + labels.size() +": Label: " + labels.get(labels.size()-1));
 			String predictedLabel = nb.predict_TestingSet(testingData_OneSet);
 			labels.add(predictedLabel);
-			log.logln(G.lI, "\nLooking at: " + ArrayUtils.printArray(testingData_OneSet));
+			log.logln(Logger.lI, "\nLooking at: " + ArrayUtils.printArray(testingData_OneSet));
 			log.logln("Predicted: " + predictedLabel);
 		}
 		br.close();
@@ -297,15 +297,15 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 		//for each line, load data
 		while ((line = br.readLine()) != null) {
 			values = line.split(",");
-			log.logln(G.lD, "");
-			log.logln(G.lD, "Row: " + ArrayUtils.printArray(values));
+			log.logln(Logger.lD, "");
+			log.logln(Logger.lD, "Row: " + ArrayUtils.printArray(values));
 			
 			//nb.fit(new ArrayList<String>(Arrays.asList("Drew", "No", "Blue", "Short")), "Male");
 
 			//ArrayList<String> list = new ArrayList<String>();
 			
 			// load the last value into the class array
-			log.log(G.lD, "Values extracted [");
+			log.log(Logger.lD, "Values extracted [");
 			for (int index = 0; index < values.length; index++) {
 				//skip the label
 				log.log_noTimestamp(values[index] + ", ");
@@ -315,7 +315,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 			}
 			log.logln_noTimestamp("]");
 
-			log.logln(G.lD, "Label: " + labels.get(labels.size()-1));
+			log.logln(Logger.lD, "Label: " + labels.get(labels.size()-1));
 
 		}
 		br.close();
@@ -335,7 +335,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 		long dataPercent = Math.round((dDataTime / totalDuration) * 100);
 		long trainPercent = Math.round((dTrainTime / totalDuration) * 100);
 		long predictPercent = Math.round((dPredictTime / totalDuration) * 100);
-		log.logln(G.lF, "Class tested: " + className);
+		log.logln(Logger.lF, "Class tested: " + className);
 		log.logln("Accuracy: " + accuracy + "%");
 		log.logln("Total lines training: " + nb.getFitCount());
 		log.logln("Total lines predicted: " + predictResults.size());
@@ -365,7 +365,7 @@ public class Example_IRIS_NB_TextBased_FromARFF {
 		long dataPercent = Math.round((dDataTime / totalDuration) * 100);
 		long trainPercent = Math.round((dTrainTime / totalDuration) * 100);
 		long predictPercent = Math.round((dPredictTime / totalDuration) * 100);
-		log.logln(G.lF, "Class tested: " + className);
+		log.logln(Logger.lF, "Class tested: " + className);
 		log.logln("Accuracy: " + accuracy + "%");
 		log.logln("Total lines training: " + nb.getFitCount());
 		log.logln("Total lines predicted: " + predictResults.size());

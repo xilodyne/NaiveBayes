@@ -11,8 +11,7 @@ import java.util.TreeMap;
 import java.util.Map.Entry;
 
 import xilodyne.util.ArrayUtils;
-import xilodyne.util.G;
-import xilodyne.util.Logger;
+import xilodyne.util.logger.Logger;
 
 /**
  * Text Based.  Only text values (not numerics) are used.
@@ -23,6 +22,7 @@ import xilodyne.util.Logger;
  * <p>
  * 
  * @author Austin Davis Holiday, aholiday@xilodyne.com
+ * @version 0.4 - 1/29/2018 - reflect xilodyne util changes
  * @version 0.2 -- 5/9/2017
  * 	changed labels/classes to features/labels;
  *  allow text input instead of numeric
@@ -32,7 +32,7 @@ import xilodyne.util.Logger;
 public class NaiveBayesClassifier_UsingTextValues {
 
 
-	private Logger log = new Logger();
+	private Logger log = new Logger("NBTV");
 	private int totalFitEntries = 0;
 
 
@@ -56,7 +56,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 	private String[] labels = null;	
 
 	//Hashtable:  featureID, (TreeMap (featureValue(s), label list count, must match index of labels[]))
-	private Hashtable<String, TreeMap<String, int[]>> features = new Hashtable<String, TreeMap<String, int[]>>();
+	private Hashtable<String, TreeMap<String, int[]>> featuresList = new Hashtable<String, TreeMap<String, int[]>>();
 
 	//classification of label, i.e. if labels are "male / female", classification would be "gender"
 	private String labelClassCategory = "LABEL";
@@ -67,7 +67,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 * @param allowEmptyValues TRUE allows empty values (i.e. zero) to be added into data set
 	 */
 	public NaiveBayesClassifier_UsingTextValues(boolean allowEmptyValues) {
-		log.logln_withClassName(G.lF,"");
+		log.logln_withClassName(Logger.lF,"");
 		this.allowEmptySampleValues = allowEmptyValues;
 	}
 
@@ -106,11 +106,11 @@ public class NaiveBayesClassifier_UsingTextValues {
 		this.setMoreTrainingData(true);	
 		this.addNewLabelToList(trainingLabel);
 		
-		log.logln(G.lI, feature + ", " + trainingData_OneValue + ", " + trainingLabel);
+		log.logln(Logger.lI, feature + ", " + trainingData_OneValue + ", " + trainingLabel);
 		this.updateFeatures(feature, trainingData_OneValue, trainingLabel);
 
 		this.totalFitEntries++;
-		log.logln(G.lD, "total entries: " + this.totalFitEntries);
+		log.logln(Logger.lD, "total entries: " + this.totalFitEntries);
 	}
 
 
@@ -140,11 +140,11 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 * @return return gaussian probability of sample value being of this label
 	 */
 	public float getProbabilty_OneFeature(String featureName, String labelName, String testingData) {
-		TreeMap<String, int[]> tempMap = this.features.get(featureName.toUpperCase());
+		TreeMap<String, int[]> featureValues = this.featuresList.get(featureName.toUpperCase());
 		int labelIndex = this.getLabelIndex(labelName);
-		float Pc = this.getPcPerLabel(labelIndex, tempMap);
-		float Pd_given_c = this.getPd_given_c(labelIndex, testingData, tempMap);
-		log.logln_withClassName(G.lI, this.labels[labelIndex] + "\tPc: " + Pc + "\t* Pd_given_c: "
+		float Pc = this.getPcPerLabel(labelIndex, featureValues);
+		float Pd_given_c = this.getPd_given_c(labelIndex, testingData, featureValues);
+		log.logln_withClassName(Logger.lI, this.labels[labelIndex] + "\tPc: " + Pc + "\t* Pd_given_c: "
 				+ Pd_given_c + "\t= " + Pd_given_c * Pc);
 
 		return Pd_given_c * Pc;
@@ -174,7 +174,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 		float Pc_given_d = 1, Pc = 0;
 		float[] labelScores = new float[this.labels.length];
 
-		log.log_noTimestamp(G.lD, "");
+		log.log_noTimestamp(Logger.lD, "");
 		
 		log.log("Predict label using values:\t");
 		Collection<String> valueSet = testingData.values();
@@ -190,16 +190,16 @@ public class NaiveBayesClassifier_UsingTextValues {
 			Pc = this.getPcForAllValuesByLabel(labelIndex);
 			log.log(this.labels[labelIndex] + "\t(");
 
-			Collection<String> featureKeys = testingData.keySet();
-			Iterator<String> featureNames = featureKeys.iterator();
+			Collection<String> featuresKeys = testingData.keySet();
+			Iterator<String> featureNames = featuresKeys.iterator();
 			while (featureNames.hasNext()) {
 				String featureName = featureNames.next();
 				String featureValue = testingData.get(featureName);
 				log.log_noTimestamp(featureName + "/" +featureValue +":");
 
 				float local_Pd_given_c = 0;
-				TreeMap<String, int[]> tempMap = this.features.get(featureName.toUpperCase());
-				local_Pd_given_c = this.getPd_given_c(labelIndex, featureValue.toLowerCase(), tempMap);
+				TreeMap<String, int[]> featureValues = this.featuresList.get(featureName.toUpperCase());
+				local_Pd_given_c = this.getPd_given_c(labelIndex, featureValue.toLowerCase(), featureValues);
 
 				log.log_noTimestamp(String.format("%.8f", local_Pd_given_c) + ")*(");
 
@@ -249,7 +249,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 				labelMax = index;
 			}
 		}
-		log.logln(G.lD,  "Label Predicted: " + this.labels[labelMax]);
+		log.logln(Logger.lD,  "Label Predicted: " + this.labels[labelMax]);
 		return this.labels[labelMax];
 	}
 	
@@ -266,12 +266,12 @@ public class NaiveBayesClassifier_UsingTextValues {
 		int totalLabelsCount = 0;
 
 		//for (int featureKey = 0; featureKey < this.features.size(); featureKey++) {
-		Set<String> keySet = this.features.keySet();
-		for (String featureKey: keySet) {
-			TreeMap<String, int[]> tempMap = this.features.get(featureKey);
+		Set<String> keySet = this.featuresList.keySet();
+		for (String featuresKey: keySet) {
+			TreeMap<String, int[]> featureValues = this.featuresList.get(featuresKey);
 				uniqueLabelCount = uniqueLabelCount
-						+ this.getLabelCountFromFeature(labelIndex, tempMap);
-				totalLabelsCount = totalLabelsCount + this.getCountAllLabelsbyFeature(tempMap);
+						+ this.getLabelCountFromFeature(labelIndex, featureValues);
+				totalLabelsCount = totalLabelsCount + this.getCountAllLabelsbyFeature(featureValues);
 			}
 		Pc = (float) uniqueLabelCount / totalLabelsCount;
 		return Pc;
@@ -283,13 +283,13 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 * Given label index, determine probabilty for one feature.
 	 *
 	 * @param labelIndex the label index
-	 * @param tempMap the temp map
+	 * @param featureValues the temp map
 	 * @return the pc per label
 	 */
 	// className divided bgetPcPerLabely all classes
-	private float getPcPerLabel(int labelIndex, TreeMap<String, int[]> tempMap) {
+	private float getPcPerLabel(int labelIndex, TreeMap<String, int[]> featureValues) {
 		float Pc;
-		Pc = (float) getLabelCountFromFeature(labelIndex, tempMap) / this.getCountAllLabelsbyFeature(tempMap);
+		Pc = (float) getLabelCountFromFeature(labelIndex, featureValues) / this.getCountAllLabelsbyFeature(featureValues);
 		return Pc;
 	}
 
@@ -304,18 +304,18 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 *            the class name
 	 * @param featureValue
 	 *            the feature name
-	 * @param tempMap
+	 * @param featureValues
 	 *            the temp map
 	 * @return the pd given c
 	 */
-	private float getPd_given_c(int labelIndex, String featureValue, SortedMap<String, int[]> tempMap) {
+	private float getPd_given_c(int labelIndex, String featureValue, SortedMap<String, int[]> featureValues) {
 		float Pd_given_c = 0;
 		// p(d | cj )
 		// given class, determine number of times featureName has className /
 		// total # className
-		if (tempMap.containsKey(featureValue.toLowerCase())) {
-			Pd_given_c = (float) this.getLabelCountFromFeatureValues(labelIndex, featureValue.toLowerCase(), tempMap)
-					/ this.getLabelCountFromFeature(labelIndex, tempMap);
+		if (featureValues.containsKey(featureValue.toLowerCase())) {
+			Pd_given_c = (float) this.getLabelCountFromFeatureValues(labelIndex, featureValue.toLowerCase(), featureValues)
+					/ this.getLabelCountFromFeature(labelIndex, featureValues);
 		} else {
 			System.out.println("No instances of " + featureValue.toLowerCase() + ".");
 		//	throw new Exception("Not in dictionary: " + featureName);
@@ -342,13 +342,13 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 *            the class name
 	 * @param featureName
 	 *            the feature name
-	 * @param tempMap
+	 * @param featureValues
 	 *            the temp map
 	 * @return the feature freq by class
 	 */
 	// find how many times a feature is associated to a label
-	private int getLabelCountFromFeatureValues(int labelIndex, String featureName, SortedMap<String, int[]> tempMap) {
-		int[] classCounts = tempMap.get(featureName);
+	private int getLabelCountFromFeatureValues(int labelIndex, String featureName, SortedMap<String, int[]> featureValues) {
+		int[] classCounts = featureValues.get(featureName);
 		return classCounts[labelIndex];
 	}
 
@@ -357,15 +357,15 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 *
 	 * @param className
 	 *            the class name
-	 * @param tempMap
+	 * @param featureValues
 	 *            the temp map
 	 * @return the class frequency from features
 	 */
 	// get total number of times className has been incremented
 	@SuppressWarnings("unused")
-	private int getClassFrequencyFromFeatures(String className, SortedMap<String, int[]> tempMap) {
+	private int getClassFrequencyFromFeatures(String className, SortedMap<String, int[]> featureValues) {
 		int classFrequency = 0;
-		Collection<int[]> cLoop = tempMap.values();
+		Collection<int[]> cLoop = featureValues.values();
 		Iterator<int[]> iLoop = cLoop.iterator();
 		while (iLoop.hasNext()) {
 			int[] iValues = iLoop.next();
@@ -388,7 +388,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 	private void addNewLabelToList(String label) {
 		
 		if (this.labels == null) {
-			log.logln_withClassName(G.lF, "UPDATING Label list with: " + label);
+			log.logln_withClassName(Logger.lF, "UPDATING Label list with: " + label);
 
 			this.labels = new String[1];
 			this.labels[0] = label.toUpperCase();
@@ -396,9 +396,9 @@ public class NaiveBayesClassifier_UsingTextValues {
 			//only add new labels
 			if (this.getLabelIndex(label) == -1) {
 				//add to list
-				log.logln_withClassName(G.lF, "UPDATING Label list with: " + label);
+				log.logln_withClassName(Logger.lF, "UPDATING Label list with: " + label);
 				this.createNewLabelList(label);
-				log.logln_withClassName(G.lF, "UPDATING all Features with new label.");
+				log.logln_withClassName(Logger.lF, "UPDATING all Features with new label.");
 				this.addNewLabelToAllFeatures();
 			}
 		}
@@ -425,22 +425,22 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 */
 	//if label added to list, the feature count needs to be updated
 	private void addNewLabelToAllFeatures(){
-		Set<String> featureKeys = this.features.keySet();
-		Iterator<String> keyIterator = featureKeys.iterator();
+		Set<String> featuresKeys = this.featuresList.keySet();
+		Iterator<String> keyIterator = featuresKeys.iterator();
 		
 		while (keyIterator.hasNext()) {
 
 			String feature = keyIterator.next();
-			TreeMap<String, int[]> tempMap = this.features.get(feature);
+			TreeMap<String, int[]> featureValues = this.featuresList.get(feature);
 				
-			Set<String> mapKeys = tempMap.keySet();
+			Set<String> mapKeys = featureValues.keySet();
 			Iterator<String> mapIterator = mapKeys.iterator();
 			while (mapIterator.hasNext()) {
 				String mapKey = mapIterator.next();
-				int[] oldCounts = this.features.get(feature).get(mapKey);
+				int[] oldCounts = this.featuresList.get(feature).get(mapKey);
 				int[] newCounts = this.emptyLabelCountsForFeatures();
 				System.arraycopy(oldCounts, 0, newCounts, 0, oldCounts.length);
-				this.features.get(feature).replace(mapKey, newCounts);
+				this.featuresList.get(feature).replace(mapKey, newCounts);
 			}
 		}
 	}
@@ -475,9 +475,9 @@ public class NaiveBayesClassifier_UsingTextValues {
 	// increment the appropriate label[index] for the feature
 	private void updateFeatures(String feature, String featureValue, String labelToIncrement) {
 		if (featureValue.isEmpty() && !this.allowEmptySampleValues) {
-			log.logln_withClassName(G.lF, "Value: " + featureValue + " not accepted.");
+			log.logln_withClassName(Logger.lF, "Value: " + featureValue + " not accepted.");
 		} else {
-			boolean featureExists = this.features.containsKey(feature.toUpperCase());
+			boolean featureExists = this.featuresList.containsKey(feature.toUpperCase());
 			int labelIndexFound = this.getLabelIndex(labelToIncrement);
 			// get the label index to update
 			// get the feature index to update the list of feature values &
@@ -489,24 +489,24 @@ public class NaiveBayesClassifier_UsingTextValues {
 			// if feature found, and no map found and put
 			// else and newfeature to amp
 			if (featureExists) {
-				if (this.features.get(feature.toUpperCase()).containsKey(featureValue.toLowerCase())) {
+				if (this.featuresList.get(feature.toUpperCase()).containsKey(featureValue.toLowerCase())) {
 					// update label count
-					int[] labelCounts = this.features.get(feature.toUpperCase()).get(featureValue.toLowerCase());
+					int[] labelCounts = this.featuresList.get(feature.toUpperCase()).get(featureValue.toLowerCase());
 					labelCounts[labelIndexFound]++;
-					this.features.get(feature.toUpperCase()).replace(featureValue.toLowerCase(), labelCounts);
+					this.featuresList.get(feature.toUpperCase()).replace(featureValue.toLowerCase(), labelCounts);
 				} else {
 					// add new feature value
 					int[] labelCounts = this.emptyLabelCountsForFeatures();
 					labelCounts[labelIndexFound] = 1;
-					this.features.get(feature.toUpperCase()).put(featureValue.toLowerCase(), labelCounts);
+					this.featuresList.get(feature.toUpperCase()).put(featureValue.toLowerCase(), labelCounts);
 				}
 			} else {
 				// no entries, create the feature and add the first map
 				int[] labelCounts = this.emptyLabelCountsForFeatures();
 				labelCounts[labelIndexFound] = 1;
-				TreeMap<String, int[]> tempMap = new TreeMap<String, int[]>();
-				tempMap.put(featureValue.toLowerCase(), labelCounts);
-				this.features.put(feature.toUpperCase(), tempMap);
+				TreeMap<String, int[]> featureValues = new TreeMap<String, int[]>();
+				featureValues.put(featureValue.toLowerCase(), labelCounts);
+				this.featuresList.put(feature.toUpperCase(), featureValues);
 			}
 		}
 	}
@@ -533,10 +533,10 @@ public class NaiveBayesClassifier_UsingTextValues {
 		System.out.println();
 		System.out.println("Label counts by feature.\n");
 
-		Set<String> featureKeys = this.features.keySet();
+		Set<String> featuresKeys = this.featuresList.keySet();
 		
 		//print the heading row
-		Iterator<String> feature = featureKeys.iterator();
+		Iterator<String> feature = featuresKeys.iterator();
 		while (feature.hasNext()) {
 			feature.next();
 			System.out.print("Feature\t\t");
@@ -547,7 +547,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 		}
 		System.out.println();
 		
-		feature = featureKeys.iterator();
+		feature = featuresKeys.iterator();
 		while (feature.hasNext()) {
 
 			//String feat = feature.next();
@@ -562,7 +562,7 @@ public class NaiveBayesClassifier_UsingTextValues {
 		}
 		System.out.println();
 		
-		feature = featureKeys.iterator();
+		feature = featuresKeys.iterator();
 		while (feature.hasNext()) {
 			feature.next();
 			System.out.print("----------\t");
@@ -574,20 +574,20 @@ public class NaiveBayesClassifier_UsingTextValues {
 		System.out.println();
 
 		int maxFeatureValueCount = this.getMaxCountFeatureValues();
-		TreeMap<String, int[]> tempMap = null;
+		TreeMap<String, int[]> featureValues = null;
 		int[] tempLabelCount = null;
 		for (int index = 0; index < maxFeatureValueCount; index++) {
 		//	for (int featNames = 0; featNames < this.features.size(); featNames++) {
-			feature = featureKeys.iterator();	
+			feature = featuresKeys.iterator();	
 			while (feature.hasNext()) {
 
 			//	System.out.println("feature search: " + )
-				tempMap = this.features.get(feature.next());
-				if (tempMap.size() > index) {
+				featureValues = this.featuresList.get(feature.next());
+				if (featureValues.size() > index) {
 					//Set<String> maps = tempMap.keySet();
 					//Iterator<String> mapKeys = maps.iterator();
 				
-					Entry<String, int[]> map = this.getMapAtIndex(index, tempMap);
+					Entry<String, int[]> map = this.getMapAtIndex(index, featureValues);
 					//Entry<String, int[]> map = 
 					// this.getMapAtIndex(index, tempMap, tempLabelCount,
 					// mapFloat );
@@ -619,11 +619,11 @@ public class NaiveBayesClassifier_UsingTextValues {
 	//determine the which feature has the most values associated to it
 	private int getMaxCountFeatureValues(){
 		int max = 0;
-		Enumeration<TreeMap<String, int[]>> eLoop = this.features.elements();
+		Enumeration<TreeMap<String, int[]>> eLoop = this.featuresList.elements();
 		while (eLoop.hasMoreElements()) {
-			TreeMap<String, int[]> tempMap = eLoop.nextElement();
-			if (max < tempMap.size()) {
-				max = tempMap.size();
+			TreeMap<String, int[]> featureValues = eLoop.nextElement();
+			if (max < featureValues.size()) {
+				max = featureValues.size();
 			}
 		}	
 		return max;
@@ -633,18 +633,18 @@ public class NaiveBayesClassifier_UsingTextValues {
 	 * Given feature map, return an Entry at index.
 	 *
 	 * @param featureIndex the feature index
-	 * @param tempMap the temp map
+	 * @param featureValues the temp map
 	 * @return the map at index
 	 */
 	//get an Entry of the data we need at index
-	private Entry<String, int[]> getMapAtIndex(int featureIndex, TreeMap<String, int[]> tempMap){
-		Set<String> keys = tempMap.keySet();
+	private Entry<String, int[]> getMapAtIndex(int featureIndex, TreeMap<String, int[]> featureValues){
+		Set<String> keys = featureValues.keySet();
 		Iterator<String> loop = keys.iterator();
 		int count = 0;
 		Entry<String, int[]> map = null;
 		
 		while (loop.hasNext() && (count <= featureIndex)) {
-			map = tempMap.ceilingEntry(loop.next());
+			map = featureValues.ceilingEntry(loop.next());
 			count++;
 		}
 		return map;
@@ -672,14 +672,14 @@ public class NaiveBayesClassifier_UsingTextValues {
 	/**
 	 * Sum total label counts for a feature.
 	 *
-	 * @param tempMap all the feature values for one feature
+	 * @param featureValues all the feature values for one feature
 	 * @return the total count
 	 */
-	private int getCountAllLabelsbyFeature(TreeMap<String, int[]> tempMap) {
+	private int getCountAllLabelsbyFeature(TreeMap<String, int[]> featureValues) {
 		int totalLabels = 0;
 
 		// count number of times all label has been incremented
-		Collection<int[]> cindex = tempMap.values();
+		Collection<int[]> cindex = featureValues.values();
 		Iterator<int[]> iindex = cindex.iterator();
 		while (iindex.hasNext()) {
 			int[] iValues = iindex.next();

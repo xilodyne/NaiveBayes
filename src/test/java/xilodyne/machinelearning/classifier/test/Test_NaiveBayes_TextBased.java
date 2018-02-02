@@ -6,19 +6,24 @@ import java.util.Hashtable;
 import org.junit.Test;
 
 import xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues;
-import xilodyne.util.G;
-//import xilodyne.util.Logger;
+
+import xilodyne.util.logger.Logger;
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Austin Davis Holiday (aholiday@xilodyne.com)
+ * @version 0.4 - 1/30/2018 - reflect xilodyne util changes
+ *
+ */
 public class Test_NaiveBayes_TextBased {
 	
 	//private Logger log = new Logger();
 
 	public Test_NaiveBayes_TextBased(){
-		// G.setLoggerLevel(G.LOG_OFF);
-		//G.setLoggerLevel(G.LOG_FINE);
-		// G.setLoggerLevel(G.LOG_INFO);
-		G.setLoggerLevel(G.LOG_DEBUG);
+		// Logger.setLoggerLevel(Logger.LOG_OFF);
+		//Logger.setLoggerLevel(Logger.LOG_FINE);
+		// Logger.setLoggerLevel(Logger.LOG_INFO);
+		Logger.setLoggerLevel(Logger.LOG_DEBUG);
 
 	}
 	
