@@ -1,17 +1,16 @@
-# Naive Bayes / Gaussian Naive Bayes
+ # Naive Bayes / Gaussian Naive Bayes
 
-Java implementation of Naive Bayes [ProfEamonnKeogh]
-(http://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf) and Gaussian Naive Bayes [wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Gaussian_naive_Bayes)
+Java implementation of Naive Bayes ([as described by Prof Eamonn Keogh, UCR](http://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf)) and Gaussian Naive Bayes ([as described by wikipedia](https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Gaussian_naive_Bayes) ).
 
 
 ## NDArray
 
-These routines make use of the NDArray from Mike Anderson ([github] (https://github.com/mikera/vectorz)
+These routines make use of the NDArray from Mike Anderson ([GitHub](https://github.com/mikera/vectorz)).
 
 
 ## Required libraries
 
-The xilodyne util libraries are required.[github] (https://github.com/xilodyne/xilodyne.util) 
+The xilodyne util libraries are required ([GitHub](https://github.com/xilodyne/xilodyne.util)).
 
 ```
 xilodyne-util-array-bin.jar
