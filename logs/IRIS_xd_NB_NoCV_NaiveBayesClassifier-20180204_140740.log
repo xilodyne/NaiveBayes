@@ -1,0 +1,1976 @@
+
+02:07:40.523 [xilodyne.machinelearning.classifier.examples.Example_IRIS_NB_TextBased_FromARFF] [Log Level: ALL]
+02:07:40.524 [egnb:main] 
+02:07:40.524 Log file: C:\Backup\Java\ML\workspace-MachineLearning\Xilodyne - GNB - v-0.4\logs\IRIS_xd_NB_NoCV_NaiveBayesClassifier-20180204_140740.log
+02:07:40.524 [egnb:main] IRIS data set using Naive Bayes
+
+02:07:40.541 [xilodyne.util.file.io.FileSplitter] [Log Level: ALL]
+02:07:40.541 [fSplt:splitARFFIntoInfoData] Extract iris.arff to .arff_info and .arff_data
+02:07:40.549 [fSplt:splitARFFIntoInfoData] Info file size: 72, Data file size: 150
+
+02:07:40.601 [xilodyne.util.math.GetUniqueRandomRange] [Log Level: ALL]
+02:07:40.601 [gRan:<init>] 
+02:07:40.601 [gRan:<init>] max size: 149
+02:07:40.602 [gRan:<init>] Random list size: 149
+02:07:40.604 [gRan:<init>] list: [105, 113, 132, 117, 43, 138, 50, 31, 9, 61, 98, 103, 99, 0, 
+72, 2, 26, 25, 141, 33, 75, 60, 14, 23, 125, 77, 124, 115, 
+59, 15, 57, 46, 131, 49, 133, 66, 63, 34, 116, 112, 10, 19, 
+80, 102, 82, 85, 126, 51, 11, 41, 83, 4, 135, 54, 65, 147, 
+69, 39, 37, 139, 107, 109, 130, 13, 28, 70, 92, 145, 86, 17, 
+5, 12, 148, 76, 114, 71, 119, 91, 120, 106, 97, 52, 18, 88, 
+20, 74, 108, 73, 140, 127, 47, 101, 67, 68, 90, 7, 42, 62, 
+144, 122, 129, 16, 53, 93, 45, 87, 24, 8, 3, 40, 44, 56, 
+81, 22, 128, 143, 1, 94, 55, 121, 136, 111, 27, 95, 35, 123, 
+118, 38, 48, 104, 30, 142, 32, 84, 21, 6, 134, 100, 64, 96, 
+110, 89, 79, 78, 29, 36, 58, 146, 137 ]
+
+02:07:40.605 [xilodyne.util.file.io.FileSplitter] [Log Level: ALL]
+02:07:40.605 [fSplt:createSubFilesShuffle] Total of 149 lines in file iris.arff.arff_data
+02:07:40.605 [fSplt:createSubFilesShuffle] 10 files of 14 lines, plus 9 in last file.
+02:07:40.605 [fSplt:createSubFilesShuffle] File #	Line #	Line
+02:07:40.606 [gRan:next] 0:105
+02:07:40.610 [gRan:next] 1:113
+02:07:40.611 [gRan:next] 2:132
+02:07:40.611 [gRan:next] 3:117
+02:07:40.612 [gRan:next] 4:43
+02:07:40.612 [gRan:next] 5:138
+02:07:40.613 [gRan:next] 6:50
+02:07:40.613 [gRan:next] 7:31
+02:07:40.613 [gRan:next] 8:9
+02:07:40.615 [gRan:next] 9:61
+02:07:40.615 [gRan:next] 10:98
+02:07:40.615 [gRan:next] 11:103
+02:07:40.616 [gRan:next] 12:99
+02:07:40.616 [gRan:next] 13:0
+02:07:40.621 [gRan:next] 14:72
+02:07:40.623 [gRan:next] 15:2
+02:07:40.623 [gRan:next] 16:26
+02:07:40.623 [gRan:next] 17:25
+02:07:40.624 [gRan:next] 18:141
+02:07:40.624 [gRan:next] 19:33
+02:07:40.626 [gRan:next] 20:75
+02:07:40.626 [gRan:next] 21:60
+02:07:40.627 [gRan:next] 22:14
+02:07:40.628 [gRan:next] 23:23
+02:07:40.629 [gRan:next] 24:125
+02:07:40.630 [gRan:next] 25:77
+02:07:40.631 [gRan:next] 26:124
+02:07:40.632 [gRan:next] 27:115
+02:07:40.637 [gRan:next] 28:59
+02:07:40.638 [gRan:next] 29:15
+02:07:40.639 [gRan:next] 30:57
+02:07:40.639 [gRan:next] 31:46
+02:07:40.640 [gRan:next] 32:131
+02:07:40.640 [gRan:next] 33:49
+02:07:40.641 [gRan:next] 34:133
+02:07:40.642 [gRan:next] 35:66
+02:07:40.642 [gRan:next] 36:63
+02:07:40.643 [gRan:next] 37:34
+02:07:40.643 [gRan:next] 38:116
+02:07:40.644 [gRan:next] 39:112
+02:07:40.645 [gRan:next] 40:10
+02:07:40.645 [gRan:next] 41:19
+02:07:40.651 [gRan:next] 42:80
+02:07:40.652 [gRan:next] 43:102
+02:07:40.652 [gRan:next] 44:82
+02:07:40.653 [gRan:next] 45:85
+02:07:40.653 [gRan:next] 46:126
+02:07:40.654 [gRan:next] 47:51
+02:07:40.655 [gRan:next] 48:11
+02:07:40.656 [gRan:next] 49:41
+02:07:40.657 [gRan:next] 50:83
+02:07:40.659 [gRan:next] 51:4
+02:07:40.660 [gRan:next] 52:135
+02:07:40.660 [gRan:next] 53:54
+02:07:40.661 [gRan:next] 54:65
+02:07:40.661 [gRan:next] 55:147
+02:07:40.666 [gRan:next] 56:69
+02:07:40.666 [gRan:next] 57:39
+02:07:40.667 [gRan:next] 58:37
+02:07:40.667 [gRan:next] 59:139
+02:07:40.667 [gRan:next] 60:107
+02:07:40.668 [gRan:next] 61:109
+02:07:40.668 [gRan:next] 62:130
+02:07:40.669 [gRan:next] 63:13
+02:07:40.669 [gRan:next] 64:28
+02:07:40.670 [gRan:next] 65:70
+02:07:40.670 [gRan:next] 66:92
+02:07:40.671 [gRan:next] 67:145
+02:07:40.672 [gRan:next] 68:86
+02:07:40.672 [gRan:next] 69:17
+02:07:40.678 [gRan:next] 70:5
+02:07:40.678 [gRan:next] 71:12
+02:07:40.679 [gRan:next] 72:148
+02:07:40.679 [gRan:next] 73:76
+02:07:40.680 [gRan:next] 74:114
+02:07:40.681 [gRan:next] 75:71
+02:07:40.681 [gRan:next] 76:119
+02:07:40.682 [gRan:next] 77:91
+02:07:40.682 [gRan:next] 78:120
+02:07:40.683 [gRan:next] 79:106
+02:07:40.683 [gRan:next] 80:97
+02:07:40.684 [gRan:next] 81:52
+02:07:40.685 [gRan:next] 82:18
+02:07:40.685 [gRan:next] 83:88
+02:07:40.691 [gRan:next] 84:20
+02:07:40.691 [gRan:next] 85:74
+02:07:40.692 [gRan:next] 86:108
+02:07:40.692 [gRan:next] 87:73
+02:07:40.692 [gRan:next] 88:140
+02:07:40.693 [gRan:next] 89:127
+02:07:40.695 [gRan:next] 90:47
+02:07:40.695 [gRan:next] 91:101
+02:07:40.695 [gRan:next] 92:67
+02:07:40.695 [gRan:next] 93:68
+02:07:40.696 [gRan:next] 94:90
+02:07:40.696 [gRan:next] 95:7
+02:07:40.696 [gRan:next] 96:42
+02:07:40.697 [gRan:next] 97:62
+02:07:40.702 [gRan:next] 98:144
+02:07:40.703 [gRan:next] 99:122
+02:07:40.703 [gRan:next] 100:129
+02:07:40.704 [gRan:next] 101:16
+02:07:40.704 [gRan:next] 102:53
+02:07:40.704 [gRan:next] 103:93
+02:07:40.705 [gRan:next] 104:45
+02:07:40.705 [gRan:next] 105:87
+02:07:40.706 [gRan:next] 106:24
+02:07:40.708 [gRan:next] 107:8
+02:07:40.709 [gRan:next] 108:3
+02:07:40.709 [gRan:next] 109:40
+02:07:40.709 [gRan:next] 110:44
+02:07:40.710 [gRan:next] 111:56
+02:07:40.714 [gRan:next] 112:81
+02:07:40.714 [gRan:next] 113:22
+02:07:40.714 [gRan:next] 114:128
+02:07:40.715 [gRan:next] 115:143
+02:07:40.715 [gRan:next] 116:1
+02:07:40.715 [gRan:next] 117:94
+02:07:40.715 [gRan:next] 118:55
+02:07:40.715 [gRan:next] 119:121
+02:07:40.715 [gRan:next] 120:136
+02:07:40.717 [gRan:next] 121:111
+02:07:40.717 [gRan:next] 122:27
+02:07:40.717 [gRan:next] 123:95
+02:07:40.717 [gRan:next] 124:35
+02:07:40.717 [gRan:next] 125:123
+02:07:40.723 [gRan:next] 126:118
+02:07:40.723 [gRan:next] 127:38
+02:07:40.723 [gRan:next] 128:48
+02:07:40.724 [gRan:next] 129:104
+02:07:40.724 [gRan:next] 130:30
+02:07:40.724 [gRan:next] 131:142
+02:07:40.724 [gRan:next] 132:32
+02:07:40.726 [gRan:next] 133:84
+02:07:40.726 [gRan:next] 134:21
+02:07:40.726 [gRan:next] 135:6
+02:07:40.727 [gRan:next] 136:134
+02:07:40.727 [gRan:next] 137:100
+02:07:40.727 [gRan:next] 138:64
+02:07:40.727 [gRan:next] 139:96
+02:07:40.727 [gRan:hasNext] currentIndex: 140:149	hasNext: true
+02:07:40.727 [gRan:next] 140:110
+02:07:40.727 [gRan:hasNext] currentIndex: 141:149	hasNext: true
+02:07:40.727 [gRan:next] 141:89
+02:07:40.728 [gRan:hasNext] currentIndex: 142:149	hasNext: true
+02:07:40.728 [gRan:next] 142:79
+02:07:40.728 [gRan:hasNext] currentIndex: 143:149	hasNext: true
+02:07:40.728 [gRan:next] 143:78
+02:07:40.728 [gRan:hasNext] currentIndex: 144:149	hasNext: true
+02:07:40.728 [gRan:next] 144:29
+02:07:40.728 [gRan:hasNext] currentIndex: 145:149	hasNext: true
+02:07:40.728 [gRan:next] 145:36
+02:07:40.728 [gRan:hasNext] currentIndex: 146:149	hasNext: true
+02:07:40.730 [gRan:next] 146:58
+02:07:40.730 [gRan:hasNext] currentIndex: 147:149	hasNext: true
+02:07:40.730 [gRan:next] 147:146
+02:07:40.730 [gRan:hasNext] currentIndex: 148:149	hasNext: true
+02:07:40.730 [gRan:next] 148:137
+02:07:40.730 [gRan:hasNext] currentIndex: 149:149	hasNext: false
+02:07:40.771 [egnb:printInstanceDetails]  
+02:07:40.772 [egnb:printInstanceDetails] *** Output 'Iris' Attribute Info ****
+02:07:40.773 [egnb:printInstanceDetails] 	# of Attributes: 5
+02:07:40.773 [egnb:printInstanceDetails] 	index: 0	type: numeric/0	name: @attribute sepallength numeric
+02:07:40.777 [egnb:printInstanceDetails] 	# of values: 0
+02:07:40.777 [egnb:printInstanceDetails] 	index: 1	type: numeric/0	name: @attribute sepalwidth numeric
+02:07:40.777 [egnb:printInstanceDetails] 	# of values: 0
+02:07:40.777 [egnb:printInstanceDetails] 	index: 2	type: numeric/0	name: @attribute petallength numeric
+02:07:40.777 [egnb:printInstanceDetails] 	# of values: 0
+02:07:40.778 [egnb:printInstanceDetails] 	index: 3	type: numeric/0	name: @attribute petalwidth numeric
+02:07:40.778 [egnb:printInstanceDetails] 	# of values: 0
+02:07:40.778 [egnb:printInstanceDetails] 	index: 4	type: nominal/1	name: @attribute class {Iris-setosa,Iris-versicolor,Iris-virginica}
+02:07:40.780 [egnb:printInstanceDetails] 	# of values: 3
+02:07:40.780 [egnb:printInstanceDetails] 	1	name: Iris-setosa
+02:07:40.780 [egnb:printInstanceDetails] 	2	name: Iris-versicolor
+02:07:40.780 [egnb:printInstanceDetails] 	3	name: Iris-virginica
+02:07:40.780 [egnb:main] ['Iris-setosa','Iris-versicolor','Iris-virginica,]
+02:07:40.780 [egnb:main] ['Iris-setosa','Iris-versicolor','Iris-virginica,]
+02:07:40.780 [egnb:main] ['sepallength','sepalwidth','petallength','petalwidth,]
+02:07:40.781 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.1.arff_data,
+02:07:40.781 [egnb:fitDataFile] Row: ['7.6','3.0','6.6','2.1','Iris-virginica,]
+02:07:40.781 [egnb:fitDataFile] Values extracted [7.6, 3.0, 6.6, 2.1, Iris-virginica, 02:07:40.781 [egnb:fitDataFile] Label: Iris-virginica
+7.6, 
+02:07:40.781 [xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues] [Log Level: ALL]
+02:07:40.781 [NBTV:addNewLabelToList] UPDATING Label list with: Iris-virginica
+02:07:40.781 [NBTV:fit] sepallength, 7.6, Iris-virginica
+02:07:40.781 [NBTV:fit] total entries: 1
+3.0, 02:07:40.781 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.781 [NBTV:fit] total entries: 2
+6.6, 02:07:40.782 [NBTV:fit] petallength, 6.6, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 3
+2.1, 02:07:40.782 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 4
+Iris-virginica, ]
+02:07:40.782 [egnb:fitDataFile] Row: ['5.7','2.5','5.0','2.0','Iris-virginica,]
+02:07:40.782 [egnb:fitDataFile] Values extracted [5.7, 2.5, 5.0, 2.0, Iris-virginica, 02:07:40.782 [egnb:fitDataFile] Label: Iris-virginica
+5.7, 02:07:40.782 [NBTV:fit] sepallength, 5.7, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 5
+2.5, 02:07:40.782 [NBTV:fit] sepalwidth, 2.5, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 6
+5.0, 02:07:40.782 [NBTV:fit] petallength, 5.0, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 7
+2.0, 02:07:40.782 [NBTV:fit] petalwidth, 2.0, Iris-virginica
+02:07:40.782 [NBTV:fit] total entries: 8
+Iris-virginica, ]
+02:07:40.782 [egnb:fitDataFile] Row: ['6.4','2.8','5.6','2.2','Iris-virginica,]
+02:07:40.782 [egnb:fitDataFile] Values extracted [6.4, 2.8, 5.6, 2.2, Iris-virginica, 02:07:40.782 [egnb:fitDataFile] Label: Iris-virginica
+6.4, 02:07:40.782 [NBTV:fit] sepallength, 6.4, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 9
+2.8, 02:07:40.783 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 10
+5.6, 02:07:40.783 [NBTV:fit] petallength, 5.6, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 11
+2.2, 02:07:40.783 [NBTV:fit] petalwidth, 2.2, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 12
+Iris-virginica, ]
+02:07:40.783 [egnb:fitDataFile] Row: ['7.7','3.8','6.7','2.2','Iris-virginica,]
+02:07:40.783 [egnb:fitDataFile] Values extracted [7.7, 3.8, 6.7, 2.2, Iris-virginica, 02:07:40.783 [egnb:fitDataFile] Label: Iris-virginica
+7.7, 02:07:40.783 [NBTV:fit] sepallength, 7.7, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 13
+3.8, 02:07:40.783 [NBTV:fit] sepalwidth, 3.8, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 14
+6.7, 02:07:40.783 [NBTV:fit] petallength, 6.7, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 15
+2.2, 02:07:40.783 [NBTV:fit] petalwidth, 2.2, Iris-virginica
+02:07:40.783 [NBTV:fit] total entries: 16
+Iris-virginica, ]
+02:07:40.783 [egnb:fitDataFile] Row: ['5.0','3.5','1.6','0.6','Iris-setosa,]
+02:07:40.783 [egnb:fitDataFile] Values extracted [5.0, 3.5, 1.6, 0.6, Iris-setosa, 02:07:40.784 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 
+02:07:40.784 [xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues] [Log Level: ALL]
+02:07:40.784 [NBTV:addNewLabelToList] UPDATING Label list with: Iris-setosa
+
+02:07:40.784 [xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues] [Log Level: ALL]
+02:07:40.784 [NBTV:addNewLabelToList] UPDATING all Features with new label.
+02:07:40.785 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.785 [NBTV:fit] total entries: 17
+3.5, 02:07:40.785 [NBTV:fit] sepalwidth, 3.5, Iris-setosa
+02:07:40.785 [NBTV:fit] total entries: 18
+1.6, 02:07:40.785 [NBTV:fit] petallength, 1.6, Iris-setosa
+02:07:40.785 [NBTV:fit] total entries: 19
+0.6, 02:07:40.785 [NBTV:fit] petalwidth, 0.6, Iris-setosa
+02:07:40.785 [NBTV:fit] total entries: 20
+Iris-setosa, ]
+02:07:40.785 [egnb:fitDataFile] Row: ['6.0','3.0','4.8','1.8','Iris-virginica,]
+02:07:40.785 [egnb:fitDataFile] Values extracted [6.0, 3.0, 4.8, 1.8, Iris-virginica, 02:07:40.785 [egnb:fitDataFile] Label: Iris-virginica
+6.0, 02:07:40.785 [NBTV:fit] sepallength, 6.0, Iris-virginica
+02:07:40.785 [NBTV:fit] total entries: 21
+3.0, 02:07:40.785 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.785 [NBTV:fit] total entries: 22
+4.8, 02:07:40.786 [NBTV:fit] petallength, 4.8, Iris-virginica
+02:07:40.786 [NBTV:fit] total entries: 23
+1.8, 02:07:40.786 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.786 [NBTV:fit] total entries: 24
+Iris-virginica, ]
+02:07:40.786 [egnb:fitDataFile] Row: ['7.0','3.2','4.7','1.4','Iris-versicolor,]
+02:07:40.786 [egnb:fitDataFile] Values extracted [7.0, 3.2, 4.7, 1.4, Iris-versicolor, 02:07:40.786 [egnb:fitDataFile] Label: Iris-versicolor
+7.0, 
+02:07:40.786 [xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues] [Log Level: ALL]
+02:07:40.786 [NBTV:addNewLabelToList] UPDATING Label list with: Iris-versicolor
+
+02:07:40.786 [xilodyne.machinelearning.classifier.bayes.NaiveBayesClassifier_UsingTextValues] [Log Level: ALL]
+02:07:40.786 [NBTV:addNewLabelToList] UPDATING all Features with new label.
+02:07:40.786 [NBTV:fit] sepallength, 7.0, Iris-versicolor
+02:07:40.786 [NBTV:fit] total entries: 25
+3.2, 02:07:40.786 [NBTV:fit] sepalwidth, 3.2, Iris-versicolor
+02:07:40.786 [NBTV:fit] total entries: 26
+4.7, 02:07:40.786 [NBTV:fit] petallength, 4.7, Iris-versicolor
+02:07:40.787 [NBTV:fit] total entries: 27
+1.4, 02:07:40.787 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.787 [NBTV:fit] total entries: 28
+Iris-versicolor, ]
+02:07:40.787 [egnb:fitDataFile] Row: ['5.4','3.4','1.5','0.4','Iris-setosa,]
+02:07:40.787 [egnb:fitDataFile] Values extracted [5.4, 3.4, 1.5, 0.4, Iris-setosa, 02:07:40.787 [egnb:fitDataFile] Label: Iris-setosa
+5.4, 02:07:40.787 [NBTV:fit] sepallength, 5.4, Iris-setosa
+02:07:40.787 [NBTV:fit] total entries: 29
+3.4, 02:07:40.787 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.787 [NBTV:fit] total entries: 30
+1.5, 02:07:40.787 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.788 [NBTV:fit] total entries: 31
+0.4, 02:07:40.788 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.788 [NBTV:fit] total entries: 32
+Iris-setosa, ]
+02:07:40.788 [egnb:fitDataFile] Row: ['4.9','3.1','1.5','0.1','Iris-setosa,]
+02:07:40.788 [egnb:fitDataFile] Values extracted [4.9, 3.1, 1.5, 0.1, Iris-setosa, 02:07:40.788 [egnb:fitDataFile] Label: Iris-setosa
+4.9, 02:07:40.788 [NBTV:fit] sepallength, 4.9, Iris-setosa
+02:07:40.788 [NBTV:fit] total entries: 33
+3.1, 02:07:40.788 [NBTV:fit] sepalwidth, 3.1, Iris-setosa
+02:07:40.788 [NBTV:fit] total entries: 34
+1.5, 02:07:40.788 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.788 [NBTV:fit] total entries: 35
+0.1, 02:07:40.788 [NBTV:fit] petalwidth, 0.1, Iris-setosa
+02:07:40.789 [NBTV:fit] total entries: 36
+Iris-setosa, ]
+02:07:40.789 [egnb:fitDataFile] Row: ['5.9','3.0','4.2','1.5','Iris-versicolor,]
+02:07:40.789 [egnb:fitDataFile] Values extracted [5.9, 3.0, 4.2, 1.5, Iris-versicolor, 02:07:40.789 [egnb:fitDataFile] Label: Iris-versicolor
+5.9, 02:07:40.789 [NBTV:fit] sepallength, 5.9, Iris-versicolor
+02:07:40.789 [NBTV:fit] total entries: 37
+3.0, 02:07:40.789 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.789 [NBTV:fit] total entries: 38
+4.2, 02:07:40.789 [NBTV:fit] petallength, 4.2, Iris-versicolor
+02:07:40.789 [NBTV:fit] total entries: 39
+1.5, 02:07:40.789 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.789 [NBTV:fit] total entries: 40
+Iris-versicolor, ]
+02:07:40.790 [egnb:fitDataFile] Row: ['5.1','2.5','3.0','1.1','Iris-versicolor,]
+02:07:40.790 [egnb:fitDataFile] Values extracted [5.1, 2.5, 3.0, 1.1, Iris-versicolor, 02:07:40.790 [egnb:fitDataFile] Label: Iris-versicolor
+5.1, 02:07:40.790 [NBTV:fit] sepallength, 5.1, Iris-versicolor
+02:07:40.790 [NBTV:fit] total entries: 41
+2.5, 02:07:40.790 [NBTV:fit] sepalwidth, 2.5, Iris-versicolor
+02:07:40.790 [NBTV:fit] total entries: 42
+3.0, 02:07:40.790 [NBTV:fit] petallength, 3.0, Iris-versicolor
+02:07:40.790 [NBTV:fit] total entries: 43
+1.1, 02:07:40.790 [NBTV:fit] petalwidth, 1.1, Iris-versicolor
+02:07:40.791 [NBTV:fit] total entries: 44
+Iris-versicolor, ]
+02:07:40.791 [egnb:fitDataFile] Row: ['6.3','2.9','5.6','1.8','Iris-virginica,]
+02:07:40.791 [egnb:fitDataFile] Values extracted [6.3, 2.9, 5.6, 1.8, Iris-virginica, 02:07:40.791 [egnb:fitDataFile] Label: Iris-virginica
+6.3, 02:07:40.791 [NBTV:fit] sepallength, 6.3, Iris-virginica
+02:07:40.791 [NBTV:fit] total entries: 45
+2.9, 02:07:40.791 [NBTV:fit] sepalwidth, 2.9, Iris-virginica
+02:07:40.792 [NBTV:fit] total entries: 46
+5.6, 02:07:40.792 [NBTV:fit] petallength, 5.6, Iris-virginica
+02:07:40.792 [NBTV:fit] total entries: 47
+1.8, 02:07:40.792 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.792 [NBTV:fit] total entries: 48
+Iris-virginica, ]
+02:07:40.792 [egnb:fitDataFile] Row: ['5.7','2.8','4.1','1.3','Iris-versicolor,]
+02:07:40.792 [egnb:fitDataFile] Values extracted [5.7, 2.8, 4.1, 1.3, Iris-versicolor, 02:07:40.792 [egnb:fitDataFile] Label: Iris-versicolor
+5.7, 02:07:40.792 [NBTV:fit] sepallength, 5.7, Iris-versicolor
+02:07:40.792 [NBTV:fit] total entries: 49
+2.8, 02:07:40.792 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.792 [NBTV:fit] total entries: 50
+4.1, 02:07:40.792 [NBTV:fit] petallength, 4.1, Iris-versicolor
+02:07:40.792 [NBTV:fit] total entries: 51
+1.3, 02:07:40.792 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.792 [NBTV:fit] total entries: 52
+Iris-versicolor, ]
+02:07:40.792 [egnb:fitDataFile] Row: ['5.1','3.5','1.4','0.2','Iris-setosa,]
+02:07:40.792 [egnb:fitDataFile] Values extracted [5.1, 3.5, 1.4, 0.2, Iris-setosa, 02:07:40.792 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.792 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.792 [NBTV:fit] total entries: 53
+3.5, 02:07:40.792 [NBTV:fit] sepalwidth, 3.5, Iris-setosa
+02:07:40.792 [NBTV:fit] total entries: 54
+1.4, 02:07:40.792 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.792 [NBTV:fit] total entries: 55
+0.2, 02:07:40.792 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.796 [NBTV:fit] total entries: 56
+Iris-setosa, ]
+02:07:40.797 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.2.arff_data,
+02:07:40.797 [egnb:fitDataFile] Row: ['6.3','2.5','4.9','1.5','Iris-versicolor,]
+02:07:40.797 [egnb:fitDataFile] Values extracted [6.3, 2.5, 4.9, 1.5, Iris-versicolor, 02:07:40.797 [egnb:fitDataFile] Label: Iris-versicolor
+6.3, 02:07:40.797 [NBTV:fit] sepallength, 6.3, Iris-versicolor
+02:07:40.797 [NBTV:fit] total entries: 57
+2.5, 02:07:40.797 [NBTV:fit] sepalwidth, 2.5, Iris-versicolor
+02:07:40.797 [NBTV:fit] total entries: 58
+4.9, 02:07:40.797 [NBTV:fit] petallength, 4.9, Iris-versicolor
+02:07:40.797 [NBTV:fit] total entries: 59
+1.5, 02:07:40.797 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.797 [NBTV:fit] total entries: 60
+Iris-versicolor, ]
+02:07:40.797 [egnb:fitDataFile] Row: ['4.7','3.2','1.3','0.2','Iris-setosa,]
+02:07:40.797 [egnb:fitDataFile] Values extracted [4.7, 3.2, 1.3, 0.2, Iris-setosa, 02:07:40.797 [egnb:fitDataFile] Label: Iris-setosa
+4.7, 02:07:40.797 [NBTV:fit] sepallength, 4.7, Iris-setosa
+02:07:40.797 [NBTV:fit] total entries: 61
+3.2, 02:07:40.797 [NBTV:fit] sepalwidth, 3.2, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 62
+1.3, 02:07:40.798 [NBTV:fit] petallength, 1.3, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 63
+0.2, 02:07:40.798 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 64
+Iris-setosa, ]
+02:07:40.798 [egnb:fitDataFile] Row: ['5.0','3.4','1.6','0.4','Iris-setosa,]
+02:07:40.798 [egnb:fitDataFile] Values extracted [5.0, 3.4, 1.6, 0.4, Iris-setosa, 02:07:40.798 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.798 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 65
+3.4, 02:07:40.798 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 66
+1.6, 02:07:40.798 [NBTV:fit] petallength, 1.6, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 67
+0.4, 02:07:40.798 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.798 [NBTV:fit] total entries: 68
+Iris-setosa, ]
+02:07:40.799 [egnb:fitDataFile] Row: ['5.0','3.0','1.6','0.2','Iris-setosa,]
+02:07:40.799 [egnb:fitDataFile] Values extracted [5.0, 3.0, 1.6, 0.2, Iris-setosa, 02:07:40.799 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.799 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.799 [NBTV:fit] total entries: 69
+3.0, 02:07:40.799 [NBTV:fit] sepalwidth, 3.0, Iris-setosa
+02:07:40.799 [NBTV:fit] total entries: 70
+1.6, 02:07:40.799 [NBTV:fit] petallength, 1.6, Iris-setosa
+02:07:40.799 [NBTV:fit] total entries: 71
+0.2, 02:07:40.799 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.799 [NBTV:fit] total entries: 72
+Iris-setosa, ]
+02:07:40.799 [egnb:fitDataFile] Row: ['6.9','3.1','5.1','2.3','Iris-virginica,]
+02:07:40.799 [egnb:fitDataFile] Values extracted [6.9, 3.1, 5.1, 2.3, Iris-virginica, 02:07:40.799 [egnb:fitDataFile] Label: Iris-virginica
+6.9, 02:07:40.799 [NBTV:fit] sepallength, 6.9, Iris-virginica
+02:07:40.799 [NBTV:fit] total entries: 73
+3.1, 02:07:40.799 [NBTV:fit] sepalwidth, 3.1, Iris-virginica
+02:07:40.799 [NBTV:fit] total entries: 74
+5.1, 02:07:40.799 [NBTV:fit] petallength, 5.1, Iris-virginica
+02:07:40.799 [NBTV:fit] total entries: 75
+2.3, 02:07:40.799 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.800 [NBTV:fit] total entries: 76
+Iris-virginica, ]
+02:07:40.800 [egnb:fitDataFile] Row: ['5.5','4.2','1.4','0.2','Iris-setosa,]
+02:07:40.800 [egnb:fitDataFile] Values extracted [5.5, 4.2, 1.4, 0.2, Iris-setosa, 02:07:40.800 [egnb:fitDataFile] Label: Iris-setosa
+5.5, 02:07:40.800 [NBTV:fit] sepallength, 5.5, Iris-setosa
+02:07:40.800 [NBTV:fit] total entries: 77
+4.2, 02:07:40.800 [NBTV:fit] sepalwidth, 4.2, Iris-setosa
+02:07:40.800 [NBTV:fit] total entries: 78
+1.4, 02:07:40.800 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.800 [NBTV:fit] total entries: 79
+0.2, 02:07:40.800 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.800 [NBTV:fit] total entries: 80
+Iris-setosa, ]
+02:07:40.800 [egnb:fitDataFile] Row: ['6.6','3.0','4.4','1.4','Iris-versicolor,]
+02:07:40.800 [egnb:fitDataFile] Values extracted [6.6, 3.0, 4.4, 1.4, Iris-versicolor, 02:07:40.800 [egnb:fitDataFile] Label: Iris-versicolor
+6.6, 02:07:40.800 [NBTV:fit] sepallength, 6.6, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 81
+3.0, 02:07:40.800 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 82
+4.4, 02:07:40.800 [NBTV:fit] petallength, 4.4, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 83
+1.4, 02:07:40.800 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 84
+Iris-versicolor, ]
+02:07:40.800 [egnb:fitDataFile] Row: ['5.0','2.0','3.5','1.0','Iris-versicolor,]
+02:07:40.800 [egnb:fitDataFile] Values extracted [5.0, 2.0, 3.5, 1.0, Iris-versicolor, 02:07:40.800 [egnb:fitDataFile] Label: Iris-versicolor
+5.0, 02:07:40.800 [NBTV:fit] sepallength, 5.0, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 85
+2.0, 02:07:40.800 [NBTV:fit] sepalwidth, 2.0, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 86
+3.5, 02:07:40.800 [NBTV:fit] petallength, 3.5, Iris-versicolor
+02:07:40.800 [NBTV:fit] total entries: 87
+1.0, 02:07:40.801 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.801 [NBTV:fit] total entries: 88
+Iris-versicolor, ]
+02:07:40.801 [egnb:fitDataFile] Row: ['5.8','4.0','1.2','0.2','Iris-setosa,]
+02:07:40.801 [egnb:fitDataFile] Values extracted [5.8, 4.0, 1.2, 0.2, Iris-setosa, 02:07:40.801 [egnb:fitDataFile] Label: Iris-setosa
+5.8, 02:07:40.801 [NBTV:fit] sepallength, 5.8, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 89
+4.0, 02:07:40.801 [NBTV:fit] sepalwidth, 4.0, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 90
+1.2, 02:07:40.801 [NBTV:fit] petallength, 1.2, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 91
+0.2, 02:07:40.801 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 92
+Iris-setosa, ]
+02:07:40.801 [egnb:fitDataFile] Row: ['5.1','3.3','1.7','0.5','Iris-setosa,]
+02:07:40.801 [egnb:fitDataFile] Values extracted [5.1, 3.3, 1.7, 0.5, Iris-setosa, 02:07:40.801 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.801 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 93
+3.3, 02:07:40.801 [NBTV:fit] sepalwidth, 3.3, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 94
+1.7, 02:07:40.801 [NBTV:fit] petallength, 1.7, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 95
+0.5, 02:07:40.801 [NBTV:fit] petalwidth, 0.5, Iris-setosa
+02:07:40.801 [NBTV:fit] total entries: 96
+Iris-setosa, ]
+02:07:40.801 [egnb:fitDataFile] Row: ['7.2','3.2','6.0','1.8','Iris-virginica,]
+02:07:40.802 [egnb:fitDataFile] Values extracted [7.2, 3.2, 6.0, 1.8, Iris-virginica, 02:07:40.802 [egnb:fitDataFile] Label: Iris-virginica
+7.2, 02:07:40.802 [NBTV:fit] sepallength, 7.2, Iris-virginica
+02:07:40.802 [NBTV:fit] total entries: 97
+3.2, 02:07:40.802 [NBTV:fit] sepalwidth, 3.2, Iris-virginica
+02:07:40.802 [NBTV:fit] total entries: 98
+6.0, 02:07:40.802 [NBTV:fit] petallength, 6.0, Iris-virginica
+02:07:40.802 [NBTV:fit] total entries: 99
+1.8, 02:07:40.802 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.802 [NBTV:fit] total entries: 100
+Iris-virginica, ]
+02:07:40.802 [egnb:fitDataFile] Row: ['6.7','3.0','5.0','1.7','Iris-versicolor,]
+02:07:40.802 [egnb:fitDataFile] Values extracted [6.7, 3.0, 5.0, 1.7, Iris-versicolor, 02:07:40.802 [egnb:fitDataFile] Label: Iris-versicolor
+6.7, 02:07:40.802 [NBTV:fit] sepallength, 6.7, Iris-versicolor
+02:07:40.802 [NBTV:fit] total entries: 101
+3.0, 02:07:40.802 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.802 [NBTV:fit] total entries: 102
+5.0, 02:07:40.802 [NBTV:fit] petallength, 5.0, Iris-versicolor
+02:07:40.802 [NBTV:fit] total entries: 103
+1.7, 02:07:40.803 [NBTV:fit] petalwidth, 1.7, Iris-versicolor
+02:07:40.803 [NBTV:fit] total entries: 104
+Iris-versicolor, ]
+02:07:40.803 [egnb:fitDataFile] Row: ['6.7','3.3','5.7','2.1','Iris-virginica,]
+02:07:40.803 [egnb:fitDataFile] Values extracted [6.7, 3.3, 5.7, 2.1, Iris-virginica, 02:07:40.803 [egnb:fitDataFile] Label: Iris-virginica
+6.7, 02:07:40.803 [NBTV:fit] sepallength, 6.7, Iris-virginica
+02:07:40.803 [NBTV:fit] total entries: 105
+3.3, 02:07:40.803 [NBTV:fit] sepalwidth, 3.3, Iris-virginica
+02:07:40.803 [NBTV:fit] total entries: 106
+5.7, 02:07:40.803 [NBTV:fit] petallength, 5.7, Iris-virginica
+02:07:40.803 [NBTV:fit] total entries: 107
+2.1, 02:07:40.803 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.803 [NBTV:fit] total entries: 108
+Iris-virginica, ]
+02:07:40.803 [egnb:fitDataFile] Row: ['6.4','3.2','5.3','2.3','Iris-virginica,]
+02:07:40.803 [egnb:fitDataFile] Values extracted [6.4, 3.2, 5.3, 2.3, Iris-virginica, 02:07:40.803 [egnb:fitDataFile] Label: Iris-virginica
+6.4, 02:07:40.803 [NBTV:fit] sepallength, 6.4, Iris-virginica
+02:07:40.803 [NBTV:fit] total entries: 109
+3.2, 02:07:40.803 [NBTV:fit] sepalwidth, 3.2, Iris-virginica
+02:07:40.804 [NBTV:fit] total entries: 110
+5.3, 02:07:40.804 [NBTV:fit] petallength, 5.3, Iris-virginica
+02:07:40.804 [NBTV:fit] total entries: 111
+2.3, 02:07:40.804 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.804 [NBTV:fit] total entries: 112
+Iris-virginica, ]
+02:07:40.804 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.3.arff_data,
+02:07:40.805 [egnb:fitDataFile] Row: ['5.2','2.7','3.9','1.4','Iris-versicolor,]
+02:07:40.805 [egnb:fitDataFile] Values extracted [5.2, 2.7, 3.9, 1.4, Iris-versicolor, 02:07:40.805 [egnb:fitDataFile] Label: Iris-versicolor
+5.2, 02:07:40.805 [NBTV:fit] sepallength, 5.2, Iris-versicolor
+02:07:40.805 [NBTV:fit] total entries: 113
+2.7, 02:07:40.805 [NBTV:fit] sepalwidth, 2.7, Iris-versicolor
+02:07:40.805 [NBTV:fit] total entries: 114
+3.9, 02:07:40.805 [NBTV:fit] petallength, 3.9, Iris-versicolor
+02:07:40.805 [NBTV:fit] total entries: 115
+1.4, 02:07:40.805 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.805 [NBTV:fit] total entries: 116
+Iris-versicolor, ]
+02:07:40.805 [egnb:fitDataFile] Row: ['5.7','4.4','1.5','0.4','Iris-setosa,]
+02:07:40.805 [egnb:fitDataFile] Values extracted [5.7, 4.4, 1.5, 0.4, Iris-setosa, 02:07:40.805 [egnb:fitDataFile] Label: Iris-setosa
+5.7, 02:07:40.805 [NBTV:fit] sepallength, 5.7, Iris-setosa
+02:07:40.805 [NBTV:fit] total entries: 117
+4.4, 02:07:40.805 [NBTV:fit] sepalwidth, 4.4, Iris-setosa
+02:07:40.805 [NBTV:fit] total entries: 118
+1.5, 02:07:40.805 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.805 [NBTV:fit] total entries: 119
+0.4, 02:07:40.805 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.805 [NBTV:fit] total entries: 120
+Iris-setosa, ]
+02:07:40.805 [egnb:fitDataFile] Row: ['4.9','2.4','3.3','1.0','Iris-versicolor,]
+02:07:40.805 [egnb:fitDataFile] Values extracted [4.9, 2.4, 3.3, 1.0, Iris-versicolor, 02:07:40.805 [egnb:fitDataFile] Label: Iris-versicolor
+4.9, 02:07:40.806 [NBTV:fit] sepallength, 4.9, Iris-versicolor
+02:07:40.806 [NBTV:fit] total entries: 121
+2.4, 02:07:40.806 [NBTV:fit] sepalwidth, 2.4, Iris-versicolor
+02:07:40.806 [NBTV:fit] total entries: 122
+3.3, 02:07:40.806 [NBTV:fit] petallength, 3.3, Iris-versicolor
+02:07:40.806 [NBTV:fit] total entries: 123
+1.0, 02:07:40.806 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.806 [NBTV:fit] total entries: 124
+Iris-versicolor, ]
+02:07:40.806 [egnb:fitDataFile] Row: ['5.1','3.8','1.6','0.2','Iris-setosa,]
+02:07:40.806 [egnb:fitDataFile] Values extracted [5.1, 3.8, 1.6, 0.2, Iris-setosa, 02:07:40.806 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.806 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.806 [NBTV:fit] total entries: 125
+3.8, 02:07:40.806 [NBTV:fit] sepalwidth, 3.8, Iris-setosa
+02:07:40.806 [NBTV:fit] total entries: 126
+1.6, 02:07:40.806 [NBTV:fit] petallength, 1.6, Iris-setosa
+02:07:40.806 [NBTV:fit] total entries: 127
+0.2, 02:07:40.806 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.806 [NBTV:fit] total entries: 128
+Iris-setosa, ]
+02:07:40.806 [egnb:fitDataFile] Row: ['7.9','3.8','6.4','2.0','Iris-virginica,]
+02:07:40.807 [egnb:fitDataFile] Values extracted [7.9, 3.8, 6.4, 2.0, Iris-virginica, 02:07:40.807 [egnb:fitDataFile] Label: Iris-virginica
+7.9, 02:07:40.807 [NBTV:fit] sepallength, 7.9, Iris-virginica
+02:07:40.807 [NBTV:fit] total entries: 129
+3.8, 02:07:40.807 [NBTV:fit] sepalwidth, 3.8, Iris-virginica
+02:07:40.807 [NBTV:fit] total entries: 130
+6.4, 02:07:40.807 [NBTV:fit] petallength, 6.4, Iris-virginica
+02:07:40.807 [NBTV:fit] total entries: 131
+2.0, 02:07:40.807 [NBTV:fit] petalwidth, 2.0, Iris-virginica
+02:07:40.807 [NBTV:fit] total entries: 132
+Iris-virginica, ]
+02:07:40.807 [egnb:fitDataFile] Row: ['5.0','3.3','1.4','0.2','Iris-setosa,]
+02:07:40.807 [egnb:fitDataFile] Values extracted [5.0, 3.3, 1.4, 0.2, Iris-setosa, 02:07:40.807 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.807 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.807 [NBTV:fit] total entries: 133
+3.3, 02:07:40.807 [NBTV:fit] sepalwidth, 3.3, Iris-setosa
+02:07:40.807 [NBTV:fit] total entries: 134
+1.4, 02:07:40.807 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.807 [NBTV:fit] total entries: 135
+0.2, 02:07:40.807 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.807 [NBTV:fit] total entries: 136
+Iris-setosa, ]
+02:07:40.807 [egnb:fitDataFile] Row: ['6.3','2.8','5.1','1.5','Iris-virginica,]
+02:07:40.807 [egnb:fitDataFile] Values extracted [6.3, 2.8, 5.1, 1.5, Iris-virginica, 02:07:40.807 [egnb:fitDataFile] Label: Iris-virginica
+6.3, 02:07:40.807 [NBTV:fit] sepallength, 6.3, Iris-virginica
+02:07:40.808 [NBTV:fit] total entries: 137
+2.8, 02:07:40.808 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.808 [NBTV:fit] total entries: 138
+5.1, 02:07:40.808 [NBTV:fit] petallength, 5.1, Iris-virginica
+02:07:40.808 [NBTV:fit] total entries: 139
+1.5, 02:07:40.808 [NBTV:fit] petalwidth, 1.5, Iris-virginica
+02:07:40.808 [NBTV:fit] total entries: 140
+Iris-virginica, ]
+02:07:40.808 [egnb:fitDataFile] Row: ['5.6','3.0','4.5','1.5','Iris-versicolor,]
+02:07:40.808 [egnb:fitDataFile] Values extracted [5.6, 3.0, 4.5, 1.5, Iris-versicolor, 02:07:40.808 [egnb:fitDataFile] Label: Iris-versicolor
+5.6, 02:07:40.808 [NBTV:fit] sepallength, 5.6, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 141
+3.0, 02:07:40.808 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 142
+4.5, 02:07:40.808 [NBTV:fit] petallength, 4.5, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 143
+1.5, 02:07:40.808 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 144
+Iris-versicolor, ]
+02:07:40.808 [egnb:fitDataFile] Row: ['6.1','2.9','4.7','1.4','Iris-versicolor,]
+02:07:40.808 [egnb:fitDataFile] Values extracted [6.1, 2.9, 4.7, 1.4, Iris-versicolor, 02:07:40.808 [egnb:fitDataFile] Label: Iris-versicolor
+6.1, 02:07:40.808 [NBTV:fit] sepallength, 6.1, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 145
+2.9, 02:07:40.808 [NBTV:fit] sepalwidth, 2.9, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 146
+4.7, 02:07:40.808 [NBTV:fit] petallength, 4.7, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 147
+1.4, 02:07:40.808 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.808 [NBTV:fit] total entries: 148
+Iris-versicolor, ]
+02:07:40.808 [egnb:fitDataFile] Row: ['4.9','3.1','1.5','0.1','Iris-setosa,]
+02:07:40.808 [egnb:fitDataFile] Values extracted [4.9, 3.1, 1.5, 0.1, Iris-setosa, 02:07:40.808 [egnb:fitDataFile] Label: Iris-setosa
+4.9, 02:07:40.808 [NBTV:fit] sepallength, 4.9, Iris-setosa
+02:07:40.808 [NBTV:fit] total entries: 149
+3.1, 02:07:40.808 [NBTV:fit] sepalwidth, 3.1, Iris-setosa
+02:07:40.808 [NBTV:fit] total entries: 150
+1.5, 02:07:40.808 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.808 [NBTV:fit] total entries: 151
+0.1, 02:07:40.808 [NBTV:fit] petalwidth, 0.1, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 152
+Iris-setosa, ]
+02:07:40.810 [egnb:fitDataFile] Row: ['6.5','3.0','5.5','1.8','Iris-virginica,]
+02:07:40.810 [egnb:fitDataFile] Values extracted [6.5, 3.0, 5.5, 1.8, Iris-virginica, 02:07:40.810 [egnb:fitDataFile] Label: Iris-virginica
+6.5, 02:07:40.810 [NBTV:fit] sepallength, 6.5, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 153
+3.0, 02:07:40.810 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 154
+5.5, 02:07:40.810 [NBTV:fit] petallength, 5.5, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 155
+1.8, 02:07:40.810 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 156
+Iris-virginica, ]
+02:07:40.810 [egnb:fitDataFile] Row: ['6.8','3.0','5.5','2.1','Iris-virginica,]
+02:07:40.810 [egnb:fitDataFile] Values extracted [6.8, 3.0, 5.5, 2.1, Iris-virginica, 02:07:40.810 [egnb:fitDataFile] Label: Iris-virginica
+6.8, 02:07:40.810 [NBTV:fit] sepallength, 6.8, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 157
+3.0, 02:07:40.810 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 158
+5.5, 02:07:40.810 [NBTV:fit] petallength, 5.5, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 159
+2.1, 02:07:40.810 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.810 [NBTV:fit] total entries: 160
+Iris-virginica, ]
+02:07:40.810 [egnb:fitDataFile] Row: ['5.4','3.7','1.5','0.2','Iris-setosa,]
+02:07:40.810 [egnb:fitDataFile] Values extracted [5.4, 3.7, 1.5, 0.2, Iris-setosa, 02:07:40.810 [egnb:fitDataFile] Label: Iris-setosa
+5.4, 02:07:40.810 [NBTV:fit] sepallength, 5.4, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 161
+3.7, 02:07:40.810 [NBTV:fit] sepalwidth, 3.7, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 162
+1.5, 02:07:40.810 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 163
+0.2, 02:07:40.810 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 164
+Iris-setosa, ]
+02:07:40.810 [egnb:fitDataFile] Row: ['5.1','3.8','1.5','0.3','Iris-setosa,]
+02:07:40.810 [egnb:fitDataFile] Values extracted [5.1, 3.8, 1.5, 0.3, Iris-setosa, 02:07:40.810 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.810 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 165
+3.8, 02:07:40.810 [NBTV:fit] sepalwidth, 3.8, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 166
+1.5, 02:07:40.810 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 167
+0.3, 02:07:40.810 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.810 [NBTV:fit] total entries: 168
+Iris-setosa, ]
+02:07:40.811 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.4.arff_data,
+02:07:40.811 [egnb:fitDataFile] Row: ['5.5','2.4','3.8','1.1','Iris-versicolor,]
+02:07:40.811 [egnb:fitDataFile] Values extracted [5.5, 2.4, 3.8, 1.1, Iris-versicolor, 02:07:40.811 [egnb:fitDataFile] Label: Iris-versicolor
+5.5, 02:07:40.811 [NBTV:fit] sepallength, 5.5, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 169
+2.4, 02:07:40.811 [NBTV:fit] sepalwidth, 2.4, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 170
+3.8, 02:07:40.811 [NBTV:fit] petallength, 3.8, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 171
+1.1, 02:07:40.811 [NBTV:fit] petalwidth, 1.1, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 172
+Iris-versicolor, ]
+02:07:40.811 [egnb:fitDataFile] Row: ['7.1','3.0','5.9','2.1','Iris-virginica,]
+02:07:40.811 [egnb:fitDataFile] Values extracted [7.1, 3.0, 5.9, 2.1, Iris-virginica, 02:07:40.811 [egnb:fitDataFile] Label: Iris-virginica
+7.1, 02:07:40.811 [NBTV:fit] sepallength, 7.1, Iris-virginica
+02:07:40.811 [NBTV:fit] total entries: 173
+3.0, 02:07:40.811 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.811 [NBTV:fit] total entries: 174
+5.9, 02:07:40.811 [NBTV:fit] petallength, 5.9, Iris-virginica
+02:07:40.811 [NBTV:fit] total entries: 175
+2.1, 02:07:40.811 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.811 [NBTV:fit] total entries: 176
+Iris-virginica, ]
+02:07:40.811 [egnb:fitDataFile] Row: ['5.8','2.7','3.9','1.2','Iris-versicolor,]
+02:07:40.811 [egnb:fitDataFile] Values extracted [5.8, 2.7, 3.9, 1.2, Iris-versicolor, 02:07:40.811 [egnb:fitDataFile] Label: Iris-versicolor
+5.8, 02:07:40.811 [NBTV:fit] sepallength, 5.8, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 177
+2.7, 02:07:40.811 [NBTV:fit] sepalwidth, 2.7, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 178
+3.9, 02:07:40.811 [NBTV:fit] petallength, 3.9, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 179
+1.2, 02:07:40.811 [NBTV:fit] petalwidth, 1.2, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 180
+Iris-versicolor, ]
+02:07:40.811 [egnb:fitDataFile] Row: ['6.0','3.4','4.5','1.6','Iris-versicolor,]
+02:07:40.811 [egnb:fitDataFile] Values extracted [6.0, 3.4, 4.5, 1.6, Iris-versicolor, 02:07:40.811 [egnb:fitDataFile] Label: Iris-versicolor
+6.0, 02:07:40.811 [NBTV:fit] sepallength, 6.0, Iris-versicolor
+02:07:40.811 [NBTV:fit] total entries: 181
+3.4, 02:07:40.811 [NBTV:fit] sepalwidth, 3.4, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 182
+4.5, 02:07:40.813 [NBTV:fit] petallength, 4.5, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 183
+1.6, 02:07:40.813 [NBTV:fit] petalwidth, 1.6, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 184
+Iris-versicolor, ]
+02:07:40.813 [egnb:fitDataFile] Row: ['6.2','2.8','4.8','1.8','Iris-virginica,]
+02:07:40.813 [egnb:fitDataFile] Values extracted [6.2, 2.8, 4.8, 1.8, Iris-virginica, 02:07:40.813 [egnb:fitDataFile] Label: Iris-virginica
+6.2, 02:07:40.813 [NBTV:fit] sepallength, 6.2, Iris-virginica
+02:07:40.813 [NBTV:fit] total entries: 185
+2.8, 02:07:40.813 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.813 [NBTV:fit] total entries: 186
+4.8, 02:07:40.813 [NBTV:fit] petallength, 4.8, Iris-virginica
+02:07:40.813 [NBTV:fit] total entries: 187
+1.8, 02:07:40.813 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.813 [NBTV:fit] total entries: 188
+Iris-virginica, ]
+02:07:40.813 [egnb:fitDataFile] Row: ['6.4','3.2','4.5','1.5','Iris-versicolor,]
+02:07:40.813 [egnb:fitDataFile] Values extracted [6.4, 3.2, 4.5, 1.5, Iris-versicolor, 02:07:40.813 [egnb:fitDataFile] Label: Iris-versicolor
+6.4, 02:07:40.813 [NBTV:fit] sepallength, 6.4, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 189
+3.2, 02:07:40.813 [NBTV:fit] sepalwidth, 3.2, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 190
+4.5, 02:07:40.813 [NBTV:fit] petallength, 4.5, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 191
+1.5, 02:07:40.813 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.813 [NBTV:fit] total entries: 192
+Iris-versicolor, ]
+02:07:40.813 [egnb:fitDataFile] Row: ['4.8','3.4','1.6','0.2','Iris-setosa,]
+02:07:40.813 [egnb:fitDataFile] Values extracted [4.8, 3.4, 1.6, 0.2, Iris-setosa, 02:07:40.813 [egnb:fitDataFile] Label: Iris-setosa
+4.8, 02:07:40.813 [NBTV:fit] sepallength, 4.8, Iris-setosa
+02:07:40.813 [NBTV:fit] total entries: 193
+3.4, 02:07:40.813 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.813 [NBTV:fit] total entries: 194
+1.6, 02:07:40.814 [NBTV:fit] petallength, 1.6, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 195
+0.2, 02:07:40.814 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 196
+Iris-setosa, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['4.5','2.3','1.3','0.3','Iris-setosa,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [4.5, 2.3, 1.3, 0.3, Iris-setosa, 02:07:40.814 [egnb:fitDataFile] Label: Iris-setosa
+4.5, 02:07:40.814 [NBTV:fit] sepallength, 4.5, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 197
+2.3, 02:07:40.814 [NBTV:fit] sepalwidth, 2.3, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 198
+1.3, 02:07:40.814 [NBTV:fit] petallength, 1.3, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 199
+0.3, 02:07:40.814 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 200
+Iris-setosa, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['6.0','2.7','5.1','1.6','Iris-versicolor,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [6.0, 2.7, 5.1, 1.6, Iris-versicolor, 02:07:40.814 [egnb:fitDataFile] Label: Iris-versicolor
+6.0, 02:07:40.814 [NBTV:fit] sepallength, 6.0, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 201
+2.7, 02:07:40.814 [NBTV:fit] sepalwidth, 2.7, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 202
+5.1, 02:07:40.814 [NBTV:fit] petallength, 5.1, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 203
+1.6, 02:07:40.814 [NBTV:fit] petalwidth, 1.6, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 204
+Iris-versicolor, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['5.0','3.6','1.4','0.2','Iris-setosa,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [5.0, 3.6, 1.4, 0.2, Iris-setosa, 02:07:40.814 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.814 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 205
+3.6, 02:07:40.814 [NBTV:fit] sepalwidth, 3.6, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 206
+1.4, 02:07:40.814 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 207
+0.2, 02:07:40.814 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.814 [NBTV:fit] total entries: 208
+Iris-setosa, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['7.7','3.0','6.1','2.3','Iris-virginica,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [7.7, 3.0, 6.1, 2.3, Iris-virginica, 02:07:40.814 [egnb:fitDataFile] Label: Iris-virginica
+7.7, 02:07:40.814 [NBTV:fit] sepallength, 7.7, Iris-virginica
+02:07:40.814 [NBTV:fit] total entries: 209
+3.0, 02:07:40.814 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.814 [NBTV:fit] total entries: 210
+6.1, 02:07:40.814 [NBTV:fit] petallength, 6.1, Iris-virginica
+02:07:40.814 [NBTV:fit] total entries: 211
+2.3, 02:07:40.814 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.814 [NBTV:fit] total entries: 212
+Iris-virginica, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['6.5','2.8','4.6','1.5','Iris-versicolor,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [6.5, 2.8, 4.6, 1.5, Iris-versicolor, 02:07:40.814 [egnb:fitDataFile] Label: Iris-versicolor
+6.5, 02:07:40.814 [NBTV:fit] sepallength, 6.5, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 213
+2.8, 02:07:40.814 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 214
+4.6, 02:07:40.814 [NBTV:fit] petallength, 4.6, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 215
+1.5, 02:07:40.814 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.814 [NBTV:fit] total entries: 216
+Iris-versicolor, ]
+02:07:40.814 [egnb:fitDataFile] Row: ['6.7','3.1','4.4','1.4','Iris-versicolor,]
+02:07:40.814 [egnb:fitDataFile] Values extracted [6.7, 3.1, 4.4, 1.4, Iris-versicolor, 02:07:40.814 [egnb:fitDataFile] Label: Iris-versicolor
+6.7, 02:07:40.816 [NBTV:fit] sepallength, 6.7, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 217
+3.1, 02:07:40.816 [NBTV:fit] sepalwidth, 3.1, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 218
+4.4, 02:07:40.816 [NBTV:fit] petallength, 4.4, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 219
+1.4, 02:07:40.816 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 220
+Iris-versicolor, ]
+02:07:40.816 [egnb:fitDataFile] Row: ['6.5','3.0','5.2','2.0','Iris-virginica,]
+02:07:40.816 [egnb:fitDataFile] Values extracted [6.5, 3.0, 5.2, 2.0, Iris-virginica, 02:07:40.816 [egnb:fitDataFile] Label: Iris-virginica
+6.5, 02:07:40.816 [NBTV:fit] sepallength, 6.5, Iris-virginica
+02:07:40.816 [NBTV:fit] total entries: 221
+3.0, 02:07:40.816 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.816 [NBTV:fit] total entries: 222
+5.2, 02:07:40.816 [NBTV:fit] petallength, 5.2, Iris-virginica
+02:07:40.816 [NBTV:fit] total entries: 223
+2.0, 02:07:40.816 [NBTV:fit] petalwidth, 2.0, Iris-virginica
+02:07:40.816 [NBTV:fit] total entries: 224
+Iris-virginica, ]
+02:07:40.816 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.5.arff_data,
+02:07:40.816 [egnb:fitDataFile] Row: ['5.6','2.5','3.9','1.1','Iris-versicolor,]
+02:07:40.816 [egnb:fitDataFile] Values extracted [5.6, 2.5, 3.9, 1.1, Iris-versicolor, 02:07:40.816 [egnb:fitDataFile] Label: Iris-versicolor
+5.6, 02:07:40.816 [NBTV:fit] sepallength, 5.6, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 225
+2.5, 02:07:40.816 [NBTV:fit] sepalwidth, 2.5, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 226
+3.9, 02:07:40.816 [NBTV:fit] petallength, 3.9, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 227
+1.1, 02:07:40.816 [NBTV:fit] petalwidth, 1.1, Iris-versicolor
+02:07:40.816 [NBTV:fit] total entries: 228
+Iris-versicolor, ]
+02:07:40.816 [egnb:fitDataFile] Row: ['5.1','3.4','1.5','0.2','Iris-setosa,]
+02:07:40.816 [egnb:fitDataFile] Values extracted [5.1, 3.4, 1.5, 0.2, Iris-setosa, 02:07:40.817 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.817 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 229
+3.4, 02:07:40.817 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 230
+1.5, 02:07:40.817 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 231
+0.2, 02:07:40.817 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 232
+Iris-setosa, ]
+02:07:40.817 [egnb:fitDataFile] Row: ['4.9','3.1','1.5','0.1','Iris-setosa,]
+02:07:40.817 [egnb:fitDataFile] Values extracted [4.9, 3.1, 1.5, 0.1, Iris-setosa, 02:07:40.817 [egnb:fitDataFile] Label: Iris-setosa
+4.9, 02:07:40.817 [NBTV:fit] sepallength, 4.9, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 233
+3.1, 02:07:40.817 [NBTV:fit] sepalwidth, 3.1, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 234
+1.5, 02:07:40.817 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 235
+0.1, 02:07:40.817 [NBTV:fit] petalwidth, 0.1, Iris-setosa
+02:07:40.817 [NBTV:fit] total entries: 236
+Iris-setosa, ]
+02:07:40.817 [egnb:fitDataFile] Row: ['6.9','3.1','5.4','2.1','Iris-virginica,]
+02:07:40.817 [egnb:fitDataFile] Values extracted [6.9, 3.1, 5.4, 2.1, Iris-virginica, 02:07:40.817 [egnb:fitDataFile] Label: Iris-virginica
+6.9, 02:07:40.817 [NBTV:fit] sepallength, 6.9, Iris-virginica
+02:07:40.817 [NBTV:fit] total entries: 237
+3.1, 02:07:40.817 [NBTV:fit] sepalwidth, 3.1, Iris-virginica
+02:07:40.817 [NBTV:fit] total entries: 238
+5.4, 02:07:40.817 [NBTV:fit] petallength, 5.4, Iris-virginica
+02:07:40.817 [NBTV:fit] total entries: 239
+2.1, 02:07:40.817 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.817 [NBTV:fit] total entries: 240
+Iris-virginica, ]
+02:07:40.817 [egnb:fitDataFile] Row: ['7.3','2.9','6.3','1.8','Iris-virginica,]
+02:07:40.817 [egnb:fitDataFile] Values extracted [7.3, 2.9, 6.3, 1.8, Iris-virginica, 02:07:40.817 [egnb:fitDataFile] Label: Iris-virginica
+7.3, 02:07:40.817 [NBTV:fit] sepallength, 7.3, Iris-virginica
+02:07:40.817 [NBTV:fit] total entries: 241
+2.9, 02:07:40.818 [NBTV:fit] sepalwidth, 2.9, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 242
+6.3, 02:07:40.818 [NBTV:fit] petallength, 6.3, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 243
+1.8, 02:07:40.818 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 244
+Iris-virginica, ]
+02:07:40.818 [egnb:fitDataFile] Row: ['7.2','3.6','6.1','2.5','Iris-virginica,]
+02:07:40.818 [egnb:fitDataFile] Values extracted [7.2, 3.6, 6.1, 2.5, Iris-virginica, 02:07:40.818 [egnb:fitDataFile] Label: Iris-virginica
+7.2, 02:07:40.818 [NBTV:fit] sepallength, 7.2, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 245
+3.6, 02:07:40.818 [NBTV:fit] sepalwidth, 3.6, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 246
+6.1, 02:07:40.818 [NBTV:fit] petallength, 6.1, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 247
+2.5, 02:07:40.818 [NBTV:fit] petalwidth, 2.5, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 248
+Iris-virginica, ]
+02:07:40.818 [egnb:fitDataFile] Row: ['7.4','2.8','6.1','1.9','Iris-virginica,]
+02:07:40.818 [egnb:fitDataFile] Values extracted [7.4, 2.8, 6.1, 1.9, Iris-virginica, 02:07:40.818 [egnb:fitDataFile] Label: Iris-virginica
+7.4, 02:07:40.818 [NBTV:fit] sepallength, 7.4, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 249
+2.8, 02:07:40.818 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 250
+6.1, 02:07:40.818 [NBTV:fit] petallength, 6.1, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 251
+1.9, 02:07:40.818 [NBTV:fit] petalwidth, 1.9, Iris-virginica
+02:07:40.818 [NBTV:fit] total entries: 252
+Iris-virginica, ]
+02:07:40.818 [egnb:fitDataFile] Row: ['4.3','3.0','1.1','0.1','Iris-setosa,]
+02:07:40.818 [egnb:fitDataFile] Values extracted [4.3, 3.0, 1.1, 0.1, Iris-setosa, 02:07:40.818 [egnb:fitDataFile] Label: Iris-setosa
+4.3, 02:07:40.818 [NBTV:fit] sepallength, 4.3, Iris-setosa
+02:07:40.818 [NBTV:fit] total entries: 253
+3.0, 02:07:40.818 [NBTV:fit] sepalwidth, 3.0, Iris-setosa
+02:07:40.818 [NBTV:fit] total entries: 254
+1.1, 02:07:40.818 [NBTV:fit] petallength, 1.1, Iris-setosa
+02:07:40.818 [NBTV:fit] total entries: 255
+0.1, 02:07:40.818 [NBTV:fit] petalwidth, 0.1, Iris-setosa
+02:07:40.819 [NBTV:fit] total entries: 256
+Iris-setosa, ]
+02:07:40.819 [egnb:fitDataFile] Row: ['5.2','3.4','1.4','0.2','Iris-setosa,]
+02:07:40.819 [egnb:fitDataFile] Values extracted [5.2, 3.4, 1.4, 0.2, Iris-setosa, 02:07:40.819 [egnb:fitDataFile] Label: Iris-setosa
+5.2, 02:07:40.819 [NBTV:fit] sepallength, 5.2, Iris-setosa
+02:07:40.819 [NBTV:fit] total entries: 257
+3.4, 02:07:40.819 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.819 [NBTV:fit] total entries: 258
+1.4, 02:07:40.819 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.819 [NBTV:fit] total entries: 259
+0.2, 02:07:40.819 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.819 [NBTV:fit] total entries: 260
+Iris-setosa, ]
+02:07:40.819 [egnb:fitDataFile] Row: ['5.9','3.2','4.8','1.8','Iris-versicolor,]
+02:07:40.819 [egnb:fitDataFile] Values extracted [5.9, 3.2, 4.8, 1.8, Iris-versicolor, 02:07:40.819 [egnb:fitDataFile] Label: Iris-versicolor
+5.9, 02:07:40.819 [NBTV:fit] sepallength, 5.9, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 261
+3.2, 02:07:40.819 [NBTV:fit] sepalwidth, 3.2, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 262
+4.8, 02:07:40.819 [NBTV:fit] petallength, 4.8, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 263
+1.8, 02:07:40.819 [NBTV:fit] petalwidth, 1.8, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 264
+Iris-versicolor, ]
+02:07:40.819 [egnb:fitDataFile] Row: ['5.8','2.6','4.0','1.2','Iris-versicolor,]
+02:07:40.819 [egnb:fitDataFile] Values extracted [5.8, 2.6, 4.0, 1.2, Iris-versicolor, 02:07:40.819 [egnb:fitDataFile] Label: Iris-versicolor
+5.8, 02:07:40.819 [NBTV:fit] sepallength, 5.8, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 265
+2.6, 02:07:40.819 [NBTV:fit] sepalwidth, 2.6, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 266
+4.0, 02:07:40.819 [NBTV:fit] petallength, 4.0, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 267
+1.2, 02:07:40.819 [NBTV:fit] petalwidth, 1.2, Iris-versicolor
+02:07:40.819 [NBTV:fit] total entries: 268
+Iris-versicolor, ]
+02:07:40.819 [egnb:fitDataFile] Row: ['6.7','3.0','5.2','2.3','Iris-virginica,]
+02:07:40.819 [egnb:fitDataFile] Values extracted [6.7, 3.0, 5.2, 2.3, Iris-virginica, 02:07:40.819 [egnb:fitDataFile] Label: Iris-virginica
+6.7, 02:07:40.819 [NBTV:fit] sepallength, 6.7, Iris-virginica
+02:07:40.819 [NBTV:fit] total entries: 269
+3.0, 02:07:40.819 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.819 [NBTV:fit] total entries: 270
+5.2, 02:07:40.820 [NBTV:fit] petallength, 5.2, Iris-virginica
+02:07:40.820 [NBTV:fit] total entries: 271
+2.3, 02:07:40.820 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.820 [NBTV:fit] total entries: 272
+Iris-virginica, ]
+02:07:40.820 [egnb:fitDataFile] Row: ['6.7','3.1','4.7','1.5','Iris-versicolor,]
+02:07:40.820 [egnb:fitDataFile] Values extracted [6.7, 3.1, 4.7, 1.5, Iris-versicolor, 02:07:40.821 [egnb:fitDataFile] Label: Iris-versicolor
+6.7, 02:07:40.821 [NBTV:fit] sepallength, 6.7, Iris-versicolor
+02:07:40.821 [NBTV:fit] total entries: 273
+3.1, 02:07:40.821 [NBTV:fit] sepalwidth, 3.1, Iris-versicolor
+02:07:40.821 [NBTV:fit] total entries: 274
+4.7, 02:07:40.821 [NBTV:fit] petallength, 4.7, Iris-versicolor
+02:07:40.821 [NBTV:fit] total entries: 275
+1.5, 02:07:40.821 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.821 [NBTV:fit] total entries: 276
+Iris-versicolor, ]
+02:07:40.821 [egnb:fitDataFile] Row: ['5.1','3.5','1.4','0.3','Iris-setosa,]
+02:07:40.821 [egnb:fitDataFile] Values extracted [5.1, 3.5, 1.4, 0.3, Iris-setosa, 02:07:40.821 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.821 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.821 [NBTV:fit] total entries: 277
+3.5, 02:07:40.821 [NBTV:fit] sepalwidth, 3.5, Iris-setosa
+02:07:40.821 [NBTV:fit] total entries: 278
+1.4, 02:07:40.821 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.821 [NBTV:fit] total entries: 279
+0.3, 02:07:40.821 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.821 [NBTV:fit] total entries: 280
+Iris-setosa, ]
+02:07:40.822 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.6.arff_data,
+02:07:40.822 [egnb:fitDataFile] Row: ['5.4','3.9','1.7','0.4','Iris-setosa,]
+02:07:40.822 [egnb:fitDataFile] Values extracted [5.4, 3.9, 1.7, 0.4, Iris-setosa, 02:07:40.822 [egnb:fitDataFile] Label: Iris-setosa
+5.4, 02:07:40.822 [NBTV:fit] sepallength, 5.4, Iris-setosa
+02:07:40.822 [NBTV:fit] total entries: 281
+3.9, 02:07:40.822 [NBTV:fit] sepalwidth, 3.9, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 282
+1.7, 02:07:40.823 [NBTV:fit] petallength, 1.7, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 283
+0.4, 02:07:40.823 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 284
+Iris-setosa, ]
+02:07:40.823 [egnb:fitDataFile] Row: ['4.8','3.0','1.4','0.1','Iris-setosa,]
+02:07:40.823 [egnb:fitDataFile] Values extracted [4.8, 3.0, 1.4, 0.1, Iris-setosa, 02:07:40.823 [egnb:fitDataFile] Label: Iris-setosa
+4.8, 02:07:40.823 [NBTV:fit] sepallength, 4.8, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 285
+3.0, 02:07:40.823 [NBTV:fit] sepalwidth, 3.0, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 286
+1.4, 02:07:40.823 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 287
+0.1, 02:07:40.823 [NBTV:fit] petalwidth, 0.1, Iris-setosa
+02:07:40.823 [NBTV:fit] total entries: 288
+Iris-setosa, ]
+02:07:40.823 [egnb:fitDataFile] Row: ['6.2','3.4','5.4','2.3','Iris-virginica,]
+02:07:40.823 [egnb:fitDataFile] Values extracted [6.2, 3.4, 5.4, 2.3, Iris-virginica, 02:07:40.823 [egnb:fitDataFile] Label: Iris-virginica
+6.2, 02:07:40.823 [NBTV:fit] sepallength, 6.2, Iris-virginica
+02:07:40.823 [NBTV:fit] total entries: 289
+3.4, 02:07:40.823 [NBTV:fit] sepalwidth, 3.4, Iris-virginica
+02:07:40.823 [NBTV:fit] total entries: 290
+5.4, 02:07:40.823 [NBTV:fit] petallength, 5.4, Iris-virginica
+02:07:40.823 [NBTV:fit] total entries: 291
+2.3, 02:07:40.824 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.824 [NBTV:fit] total entries: 292
+Iris-virginica, ]
+02:07:40.824 [egnb:fitDataFile] Row: ['6.8','2.8','4.8','1.4','Iris-versicolor,]
+02:07:40.824 [egnb:fitDataFile] Values extracted [6.8, 2.8, 4.8, 1.4, Iris-versicolor, 02:07:40.824 [egnb:fitDataFile] Label: Iris-versicolor
+6.8, 02:07:40.824 [NBTV:fit] sepallength, 6.8, Iris-versicolor
+02:07:40.824 [NBTV:fit] total entries: 293
+2.8, 02:07:40.824 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.824 [NBTV:fit] total entries: 294
+4.8, 02:07:40.824 [NBTV:fit] petallength, 4.8, Iris-versicolor
+02:07:40.824 [NBTV:fit] total entries: 295
+1.4, 02:07:40.824 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.824 [NBTV:fit] total entries: 296
+Iris-versicolor, ]
+02:07:40.824 [egnb:fitDataFile] Row: ['5.8','2.8','5.1','2.4','Iris-virginica,]
+02:07:40.824 [egnb:fitDataFile] Values extracted [5.8, 2.8, 5.1, 2.4, Iris-virginica, 02:07:40.824 [egnb:fitDataFile] Label: Iris-virginica
+5.8, 02:07:40.824 [NBTV:fit] sepallength, 5.8, Iris-virginica
+02:07:40.824 [NBTV:fit] total entries: 297
+2.8, 02:07:40.824 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.824 [NBTV:fit] total entries: 298
+5.1, 02:07:40.824 [NBTV:fit] petallength, 5.1, Iris-virginica
+02:07:40.824 [NBTV:fit] total entries: 299
+2.4, 02:07:40.824 [NBTV:fit] petalwidth, 2.4, Iris-virginica
+02:07:40.825 [NBTV:fit] total entries: 300
+Iris-virginica, ]
+02:07:40.825 [egnb:fitDataFile] Row: ['6.1','2.8','4.0','1.3','Iris-versicolor,]
+02:07:40.825 [egnb:fitDataFile] Values extracted [6.1, 2.8, 4.0, 1.3, Iris-versicolor, 02:07:40.825 [egnb:fitDataFile] Label: Iris-versicolor
+6.1, 02:07:40.825 [NBTV:fit] sepallength, 6.1, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 301
+2.8, 02:07:40.825 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 302
+4.0, 02:07:40.825 [NBTV:fit] petallength, 4.0, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 303
+1.3, 02:07:40.825 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 304
+Iris-versicolor, ]
+02:07:40.825 [egnb:fitDataFile] Row: ['6.0','2.2','5.0','1.5','Iris-virginica,]
+02:07:40.825 [egnb:fitDataFile] Values extracted [6.0, 2.2, 5.0, 1.5, Iris-virginica, 02:07:40.825 [egnb:fitDataFile] Label: Iris-virginica
+6.0, 02:07:40.825 [NBTV:fit] sepallength, 6.0, Iris-virginica
+02:07:40.825 [NBTV:fit] total entries: 305
+2.2, 02:07:40.825 [NBTV:fit] sepalwidth, 2.2, Iris-virginica
+02:07:40.825 [NBTV:fit] total entries: 306
+5.0, 02:07:40.825 [NBTV:fit] petallength, 5.0, Iris-virginica
+02:07:40.825 [NBTV:fit] total entries: 307
+1.5, 02:07:40.825 [NBTV:fit] petalwidth, 1.5, Iris-virginica
+02:07:40.825 [NBTV:fit] total entries: 308
+Iris-virginica, ]
+02:07:40.825 [egnb:fitDataFile] Row: ['6.1','3.0','4.6','1.4','Iris-versicolor,]
+02:07:40.825 [egnb:fitDataFile] Values extracted [6.1, 3.0, 4.6, 1.4, Iris-versicolor, 02:07:40.825 [egnb:fitDataFile] Label: Iris-versicolor
+6.1, 02:07:40.825 [NBTV:fit] sepallength, 6.1, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 309
+3.0, 02:07:40.825 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.825 [NBTV:fit] total entries: 310
+4.6, 02:07:40.825 [NBTV:fit] petallength, 4.6, Iris-versicolor
+02:07:40.826 [NBTV:fit] total entries: 311
+1.4, 02:07:40.826 [NBTV:fit] petalwidth, 1.4, Iris-versicolor
+02:07:40.826 [NBTV:fit] total entries: 312
+Iris-versicolor, ]
+02:07:40.826 [egnb:fitDataFile] Row: ['6.9','3.2','5.7','2.3','Iris-virginica,]
+02:07:40.826 [egnb:fitDataFile] Values extracted [6.9, 3.2, 5.7, 2.3, Iris-virginica, 02:07:40.826 [egnb:fitDataFile] Label: Iris-virginica
+6.9, 02:07:40.826 [NBTV:fit] sepallength, 6.9, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 313
+3.2, 02:07:40.826 [NBTV:fit] sepalwidth, 3.2, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 314
+5.7, 02:07:40.826 [NBTV:fit] petallength, 5.7, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 315
+2.3, 02:07:40.826 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 316
+Iris-virginica, ]
+02:07:40.826 [egnb:fitDataFile] Row: ['4.9','2.5','4.5','1.7','Iris-virginica,]
+02:07:40.826 [egnb:fitDataFile] Values extracted [4.9, 2.5, 4.5, 1.7, Iris-virginica, 02:07:40.826 [egnb:fitDataFile] Label: Iris-virginica
+4.9, 02:07:40.826 [NBTV:fit] sepallength, 4.9, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 317
+2.5, 02:07:40.826 [NBTV:fit] sepalwidth, 2.5, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 318
+4.5, 02:07:40.826 [NBTV:fit] petallength, 4.5, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 319
+1.7, 02:07:40.826 [NBTV:fit] petalwidth, 1.7, Iris-virginica
+02:07:40.826 [NBTV:fit] total entries: 320
+Iris-virginica, ]
+02:07:40.826 [egnb:fitDataFile] Row: ['6.2','2.9','4.3','1.3','Iris-versicolor,]
+02:07:40.826 [egnb:fitDataFile] Values extracted [6.2, 2.9, 4.3, 1.3, Iris-versicolor, 02:07:40.826 [egnb:fitDataFile] Label: Iris-versicolor
+6.2, 02:07:40.826 [NBTV:fit] sepallength, 6.2, Iris-versicolor
+02:07:40.826 [NBTV:fit] total entries: 321
+2.9, 02:07:40.826 [NBTV:fit] sepalwidth, 2.9, Iris-versicolor
+02:07:40.826 [NBTV:fit] total entries: 322
+4.3, 02:07:40.826 [NBTV:fit] petallength, 4.3, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 323
+1.3, 02:07:40.827 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 324
+Iris-versicolor, ]
+02:07:40.827 [egnb:fitDataFile] Row: ['6.9','3.1','4.9','1.5','Iris-versicolor,]
+02:07:40.827 [egnb:fitDataFile] Values extracted [6.9, 3.1, 4.9, 1.5, Iris-versicolor, 02:07:40.827 [egnb:fitDataFile] Label: Iris-versicolor
+6.9, 02:07:40.827 [NBTV:fit] sepallength, 6.9, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 325
+3.1, 02:07:40.827 [NBTV:fit] sepalwidth, 3.1, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 326
+4.9, 02:07:40.827 [NBTV:fit] petallength, 4.9, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 327
+1.5, 02:07:40.827 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.827 [NBTV:fit] total entries: 328
+Iris-versicolor, ]
+02:07:40.827 [egnb:fitDataFile] Row: ['5.7','3.8','1.7','0.3','Iris-setosa,]
+02:07:40.827 [egnb:fitDataFile] Values extracted [5.7, 3.8, 1.7, 0.3, Iris-setosa, 02:07:40.827 [egnb:fitDataFile] Label: Iris-setosa
+5.7, 02:07:40.827 [NBTV:fit] sepallength, 5.7, Iris-setosa
+02:07:40.827 [NBTV:fit] total entries: 329
+3.8, 02:07:40.827 [NBTV:fit] sepalwidth, 3.8, Iris-setosa
+02:07:40.827 [NBTV:fit] total entries: 330
+1.7, 02:07:40.827 [NBTV:fit] petallength, 1.7, Iris-setosa
+02:07:40.827 [NBTV:fit] total entries: 331
+0.3, 02:07:40.827 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.831 [NBTV:fit] total entries: 332
+Iris-setosa, ]
+02:07:40.831 [egnb:fitDataFile] Row: ['5.6','3.0','4.1','1.3','Iris-versicolor,]
+02:07:40.831 [egnb:fitDataFile] Values extracted [5.6, 3.0, 4.1, 1.3, Iris-versicolor, 02:07:40.831 [egnb:fitDataFile] Label: Iris-versicolor
+5.6, 02:07:40.831 [NBTV:fit] sepallength, 5.6, Iris-versicolor
+02:07:40.831 [NBTV:fit] total entries: 333
+3.0, 02:07:40.831 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.831 [NBTV:fit] total entries: 334
+4.1, 02:07:40.831 [NBTV:fit] petallength, 4.1, Iris-versicolor
+02:07:40.831 [NBTV:fit] total entries: 335
+1.3, 02:07:40.832 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.832 [NBTV:fit] total entries: 336
+Iris-versicolor, ]
+02:07:40.832 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.7.arff_data,
+02:07:40.832 [egnb:fitDataFile] Row: ['5.4','3.4','1.7','0.2','Iris-setosa,]
+02:07:40.832 [egnb:fitDataFile] Values extracted [5.4, 3.4, 1.7, 0.2, Iris-setosa, 02:07:40.832 [egnb:fitDataFile] Label: Iris-setosa
+5.4, 02:07:40.832 [NBTV:fit] sepallength, 5.4, Iris-setosa
+02:07:40.832 [NBTV:fit] total entries: 337
+3.4, 02:07:40.832 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.832 [NBTV:fit] total entries: 338
+1.7, 02:07:40.832 [NBTV:fit] petallength, 1.7, Iris-setosa
+02:07:40.832 [NBTV:fit] total entries: 339
+0.2, 02:07:40.832 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.832 [NBTV:fit] total entries: 340
+Iris-setosa, ]
+02:07:40.832 [egnb:fitDataFile] Row: ['6.4','2.9','4.3','1.3','Iris-versicolor,]
+02:07:40.832 [egnb:fitDataFile] Values extracted [6.4, 2.9, 4.3, 1.3, Iris-versicolor, 02:07:40.832 [egnb:fitDataFile] Label: Iris-versicolor
+6.4, 02:07:40.832 [NBTV:fit] sepallength, 6.4, Iris-versicolor
+02:07:40.832 [NBTV:fit] total entries: 341
+2.9, 02:07:40.832 [NBTV:fit] sepalwidth, 2.9, Iris-versicolor
+02:07:40.832 [NBTV:fit] total entries: 342
+4.3, 02:07:40.833 [NBTV:fit] petallength, 4.3, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 343
+1.3, 02:07:40.833 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 344
+Iris-versicolor, ]
+02:07:40.833 [egnb:fitDataFile] Row: ['6.7','2.5','5.8','1.8','Iris-virginica,]
+02:07:40.833 [egnb:fitDataFile] Values extracted [6.7, 2.5, 5.8, 1.8, Iris-virginica, 02:07:40.833 [egnb:fitDataFile] Label: Iris-virginica
+6.7, 02:07:40.833 [NBTV:fit] sepallength, 6.7, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 345
+2.5, 02:07:40.833 [NBTV:fit] sepalwidth, 2.5, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 346
+5.8, 02:07:40.833 [NBTV:fit] petallength, 5.8, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 347
+1.8, 02:07:40.833 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 348
+Iris-virginica, ]
+02:07:40.833 [egnb:fitDataFile] Row: ['6.1','2.8','4.7','1.2','Iris-versicolor,]
+02:07:40.833 [egnb:fitDataFile] Values extracted [6.1, 2.8, 4.7, 1.2, Iris-versicolor, 02:07:40.833 [egnb:fitDataFile] Label: Iris-versicolor
+6.1, 02:07:40.833 [NBTV:fit] sepallength, 6.1, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 349
+2.8, 02:07:40.833 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 350
+4.7, 02:07:40.833 [NBTV:fit] petallength, 4.7, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 351
+1.2, 02:07:40.833 [NBTV:fit] petalwidth, 1.2, Iris-versicolor
+02:07:40.833 [NBTV:fit] total entries: 352
+Iris-versicolor, ]
+02:07:40.833 [egnb:fitDataFile] Row: ['6.7','3.1','5.6','2.4','Iris-virginica,]
+02:07:40.833 [egnb:fitDataFile] Values extracted [6.7, 3.1, 5.6, 2.4, Iris-virginica, 02:07:40.833 [egnb:fitDataFile] Label: Iris-virginica
+6.7, 02:07:40.833 [NBTV:fit] sepallength, 6.7, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 353
+3.1, 02:07:40.833 [NBTV:fit] sepalwidth, 3.1, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 354
+5.6, 02:07:40.833 [NBTV:fit] petallength, 5.6, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 355
+2.4, 02:07:40.833 [NBTV:fit] petalwidth, 2.4, Iris-virginica
+02:07:40.833 [NBTV:fit] total entries: 356
+Iris-virginica, ]
+02:07:40.834 [egnb:fitDataFile] Row: ['6.1','3.0','4.9','1.8','Iris-virginica,]
+02:07:40.834 [egnb:fitDataFile] Values extracted [6.1, 3.0, 4.9, 1.8, Iris-virginica, 02:07:40.834 [egnb:fitDataFile] Label: Iris-virginica
+6.1, 02:07:40.834 [NBTV:fit] sepallength, 6.1, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 357
+3.0, 02:07:40.834 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 358
+4.9, 02:07:40.834 [NBTV:fit] petallength, 4.9, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 359
+1.8, 02:07:40.834 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 360
+Iris-virginica, ]
+02:07:40.834 [egnb:fitDataFile] Row: ['4.6','3.2','1.4','0.2','Iris-setosa,]
+02:07:40.834 [egnb:fitDataFile] Values extracted [4.6, 3.2, 1.4, 0.2, Iris-setosa, 02:07:40.834 [egnb:fitDataFile] Label: Iris-setosa
+4.6, 02:07:40.834 [NBTV:fit] sepallength, 4.6, Iris-setosa
+02:07:40.834 [NBTV:fit] total entries: 361
+3.2, 02:07:40.834 [NBTV:fit] sepalwidth, 3.2, Iris-setosa
+02:07:40.834 [NBTV:fit] total entries: 362
+1.4, 02:07:40.834 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.834 [NBTV:fit] total entries: 363
+0.2, 02:07:40.834 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.834 [NBTV:fit] total entries: 364
+Iris-setosa, ]
+02:07:40.834 [egnb:fitDataFile] Row: ['5.8','2.7','5.1','1.9','Iris-virginica,]
+02:07:40.834 [egnb:fitDataFile] Values extracted [5.8, 2.7, 5.1, 1.9, Iris-virginica, 02:07:40.834 [egnb:fitDataFile] Label: Iris-virginica
+5.8, 02:07:40.834 [NBTV:fit] sepallength, 5.8, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 365
+2.7, 02:07:40.834 [NBTV:fit] sepalwidth, 2.7, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 366
+5.1, 02:07:40.834 [NBTV:fit] petallength, 5.1, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 367
+1.9, 02:07:40.834 [NBTV:fit] petalwidth, 1.9, Iris-virginica
+02:07:40.834 [NBTV:fit] total entries: 368
+Iris-virginica, ]
+02:07:40.834 [egnb:fitDataFile] Row: ['5.8','2.7','4.1','1.0','Iris-versicolor,]
+02:07:40.834 [egnb:fitDataFile] Values extracted [5.8, 2.7, 4.1, 1.0, Iris-versicolor, 02:07:40.834 [egnb:fitDataFile] Label: Iris-versicolor
+5.8, 02:07:40.834 [NBTV:fit] sepallength, 5.8, Iris-versicolor
+02:07:40.834 [NBTV:fit] total entries: 369
+2.7, 02:07:40.835 [NBTV:fit] sepalwidth, 2.7, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 370
+4.1, 02:07:40.835 [NBTV:fit] petallength, 4.1, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 371
+1.0, 02:07:40.835 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 372
+Iris-versicolor, ]
+02:07:40.835 [egnb:fitDataFile] Row: ['6.2','2.2','4.5','1.5','Iris-versicolor,]
+02:07:40.835 [egnb:fitDataFile] Values extracted [6.2, 2.2, 4.5, 1.5, Iris-versicolor, 02:07:40.835 [egnb:fitDataFile] Label: Iris-versicolor
+6.2, 02:07:40.835 [NBTV:fit] sepallength, 6.2, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 373
+2.2, 02:07:40.835 [NBTV:fit] sepalwidth, 2.2, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 374
+4.5, 02:07:40.835 [NBTV:fit] petallength, 4.5, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 375
+1.5, 02:07:40.835 [NBTV:fit] petalwidth, 1.5, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 376
+Iris-versicolor, ]
+02:07:40.835 [egnb:fitDataFile] Row: ['5.5','2.6','4.4','1.2','Iris-versicolor,]
+02:07:40.835 [egnb:fitDataFile] Values extracted [5.5, 2.6, 4.4, 1.2, Iris-versicolor, 02:07:40.835 [egnb:fitDataFile] Label: Iris-versicolor
+5.5, 02:07:40.835 [NBTV:fit] sepallength, 5.5, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 377
+2.6, 02:07:40.835 [NBTV:fit] sepalwidth, 2.6, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 378
+4.4, 02:07:40.835 [NBTV:fit] petallength, 4.4, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 379
+1.2, 02:07:40.835 [NBTV:fit] petalwidth, 1.2, Iris-versicolor
+02:07:40.835 [NBTV:fit] total entries: 380
+Iris-versicolor, ]
+02:07:40.835 [egnb:fitDataFile] Row: ['5.0','3.4','1.5','0.2','Iris-setosa,]
+02:07:40.835 [egnb:fitDataFile] Values extracted [5.0, 3.4, 1.5, 0.2, Iris-setosa, 02:07:40.835 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.835 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.835 [NBTV:fit] total entries: 381
+3.4, 02:07:40.835 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.835 [NBTV:fit] total entries: 382
+1.5, 02:07:40.835 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.835 [NBTV:fit] total entries: 383
+0.2, 02:07:40.836 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.836 [NBTV:fit] total entries: 384
+Iris-setosa, ]
+02:07:40.836 [egnb:fitDataFile] Row: ['4.4','3.2','1.3','0.2','Iris-setosa,]
+02:07:40.836 [egnb:fitDataFile] Values extracted [4.4, 3.2, 1.3, 0.2, Iris-setosa, 02:07:40.836 [egnb:fitDataFile] Label: Iris-setosa
+4.4, 02:07:40.836 [NBTV:fit] sepallength, 4.4, Iris-setosa
+02:07:40.836 [NBTV:fit] total entries: 385
+3.2, 02:07:40.836 [NBTV:fit] sepalwidth, 3.2, Iris-setosa
+02:07:40.836 [NBTV:fit] total entries: 386
+1.3, 02:07:40.836 [NBTV:fit] petallength, 1.3, Iris-setosa
+02:07:40.836 [NBTV:fit] total entries: 387
+0.2, 02:07:40.836 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.836 [NBTV:fit] total entries: 388
+Iris-setosa, ]
+02:07:40.836 [egnb:fitDataFile] Row: ['6.0','2.2','4.0','1.0','Iris-versicolor,]
+02:07:40.836 [egnb:fitDataFile] Values extracted [6.0, 2.2, 4.0, 1.0, Iris-versicolor, 02:07:40.836 [egnb:fitDataFile] Label: Iris-versicolor
+6.0, 02:07:40.836 [NBTV:fit] sepallength, 6.0, Iris-versicolor
+02:07:40.836 [NBTV:fit] total entries: 389
+2.2, 02:07:40.836 [NBTV:fit] sepalwidth, 2.2, Iris-versicolor
+02:07:40.836 [NBTV:fit] total entries: 390
+4.0, 02:07:40.836 [NBTV:fit] petallength, 4.0, Iris-versicolor
+02:07:40.836 [NBTV:fit] total entries: 391
+1.0, 02:07:40.836 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.836 [NBTV:fit] total entries: 392
+Iris-versicolor, ]
+02:07:40.836 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.8.arff_data,
+02:07:40.836 [egnb:fitDataFile] Row: ['6.7','3.3','5.7','2.5','Iris-virginica,]
+02:07:40.836 [egnb:fitDataFile] Values extracted [6.7, 3.3, 5.7, 2.5, Iris-virginica, 02:07:40.837 [egnb:fitDataFile] Label: Iris-virginica
+6.7, 02:07:40.837 [NBTV:fit] sepallength, 6.7, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 393
+3.3, 02:07:40.837 [NBTV:fit] sepalwidth, 3.3, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 394
+5.7, 02:07:40.837 [NBTV:fit] petallength, 5.7, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 395
+2.5, 02:07:40.837 [NBTV:fit] petalwidth, 2.5, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 396
+Iris-virginica, ]
+02:07:40.837 [egnb:fitDataFile] Row: ['7.7','2.8','6.7','2.0','Iris-virginica,]
+02:07:40.837 [egnb:fitDataFile] Values extracted [7.7, 2.8, 6.7, 2.0, Iris-virginica, 02:07:40.837 [egnb:fitDataFile] Label: Iris-virginica
+7.7, 02:07:40.837 [NBTV:fit] sepallength, 7.7, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 397
+2.8, 02:07:40.837 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 398
+6.7, 02:07:40.837 [NBTV:fit] petallength, 6.7, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 399
+2.0, 02:07:40.837 [NBTV:fit] petalwidth, 2.0, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 400
+Iris-virginica, ]
+02:07:40.837 [egnb:fitDataFile] Row: ['7.2','3.0','5.8','1.6','Iris-virginica,]
+02:07:40.837 [egnb:fitDataFile] Values extracted [7.2, 3.0, 5.8, 1.6, Iris-virginica, 02:07:40.837 [egnb:fitDataFile] Label: Iris-virginica
+7.2, 02:07:40.837 [NBTV:fit] sepallength, 7.2, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 401
+3.0, 02:07:40.837 [NBTV:fit] sepalwidth, 3.0, Iris-virginica
+02:07:40.837 [NBTV:fit] total entries: 402
+5.8, 02:07:40.837 [NBTV:fit] petallength, 5.8, Iris-virginica
+02:07:40.838 [NBTV:fit] total entries: 403
+1.6, 02:07:40.838 [NBTV:fit] petalwidth, 1.6, Iris-virginica
+02:07:40.838 [NBTV:fit] total entries: 404
+Iris-virginica, ]
+02:07:40.838 [egnb:fitDataFile] Row: ['5.4','3.9','1.3','0.4','Iris-setosa,]
+02:07:40.838 [egnb:fitDataFile] Values extracted [5.4, 3.9, 1.3, 0.4, Iris-setosa, 02:07:40.838 [egnb:fitDataFile] Label: Iris-setosa
+5.4, 02:07:40.838 [NBTV:fit] sepallength, 5.4, Iris-setosa
+02:07:40.838 [NBTV:fit] total entries: 405
+3.9, 02:07:40.838 [NBTV:fit] sepalwidth, 3.9, Iris-setosa
+02:07:40.838 [NBTV:fit] total entries: 406
+1.3, 02:07:40.838 [NBTV:fit] petallength, 1.3, Iris-setosa
+02:07:40.838 [NBTV:fit] total entries: 407
+0.4, 02:07:40.838 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.838 [NBTV:fit] total entries: 408
+Iris-setosa, ]
+02:07:40.838 [egnb:fitDataFile] Row: ['5.5','2.3','4.0','1.3','Iris-versicolor,]
+02:07:40.838 [egnb:fitDataFile] Values extracted [5.5, 2.3, 4.0, 1.3, Iris-versicolor, 02:07:40.838 [egnb:fitDataFile] Label: Iris-versicolor
+5.5, 02:07:40.838 [NBTV:fit] sepallength, 5.5, Iris-versicolor
+02:07:40.838 [NBTV:fit] total entries: 409
+2.3, 02:07:40.838 [NBTV:fit] sepalwidth, 2.3, Iris-versicolor
+02:07:40.838 [NBTV:fit] total entries: 410
+4.0, 02:07:40.839 [NBTV:fit] petallength, 4.0, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 411
+1.3, 02:07:40.839 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 412
+Iris-versicolor, ]
+02:07:40.839 [egnb:fitDataFile] Row: ['5.0','2.3','3.3','1.0','Iris-versicolor,]
+02:07:40.839 [egnb:fitDataFile] Values extracted [5.0, 2.3, 3.3, 1.0, Iris-versicolor, 02:07:40.839 [egnb:fitDataFile] Label: Iris-versicolor
+5.0, 02:07:40.839 [NBTV:fit] sepallength, 5.0, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 413
+2.3, 02:07:40.839 [NBTV:fit] sepalwidth, 2.3, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 414
+3.3, 02:07:40.839 [NBTV:fit] petallength, 3.3, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 415
+1.0, 02:07:40.839 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.839 [NBTV:fit] total entries: 416
+Iris-versicolor, ]
+02:07:40.839 [egnb:fitDataFile] Row: ['4.8','3.0','1.4','0.3','Iris-setosa,]
+02:07:40.839 [egnb:fitDataFile] Values extracted [4.8, 3.0, 1.4, 0.3, Iris-setosa, 02:07:40.839 [egnb:fitDataFile] Label: Iris-setosa
+4.8, 02:07:40.839 [NBTV:fit] sepallength, 4.8, Iris-setosa
+02:07:40.839 [NBTV:fit] total entries: 417
+3.0, 02:07:40.839 [NBTV:fit] sepalwidth, 3.0, Iris-setosa
+02:07:40.839 [NBTV:fit] total entries: 418
+1.4, 02:07:40.839 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.839 [NBTV:fit] total entries: 419
+0.3, 02:07:40.839 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.839 [NBTV:fit] total entries: 420
+Iris-setosa, ]
+02:07:40.839 [egnb:fitDataFile] Row: ['6.3','2.3','4.4','1.3','Iris-versicolor,]
+02:07:40.839 [egnb:fitDataFile] Values extracted [6.3, 2.3, 4.4, 1.3, Iris-versicolor, 02:07:40.839 [egnb:fitDataFile] Label: Iris-versicolor
+6.3, 02:07:40.840 [NBTV:fit] sepallength, 6.3, Iris-versicolor
+02:07:40.840 [NBTV:fit] total entries: 421
+2.3, 02:07:40.840 [NBTV:fit] sepalwidth, 2.3, Iris-versicolor
+02:07:40.840 [NBTV:fit] total entries: 422
+4.4, 02:07:40.840 [NBTV:fit] petallength, 4.4, Iris-versicolor
+02:07:40.840 [NBTV:fit] total entries: 423
+1.3, 02:07:40.840 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.840 [NBTV:fit] total entries: 424
+Iris-versicolor, ]
+02:07:40.840 [egnb:fitDataFile] Row: ['4.8','3.4','1.9','0.2','Iris-setosa,]
+02:07:40.840 [egnb:fitDataFile] Values extracted [4.8, 3.4, 1.9, 0.2, Iris-setosa, 02:07:40.840 [egnb:fitDataFile] Label: Iris-setosa
+4.8, 02:07:40.840 [NBTV:fit] sepallength, 4.8, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 425
+3.4, 02:07:40.840 [NBTV:fit] sepalwidth, 3.4, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 426
+1.9, 02:07:40.840 [NBTV:fit] petallength, 1.9, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 427
+0.2, 02:07:40.840 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 428
+Iris-setosa, ]
+02:07:40.840 [egnb:fitDataFile] Row: ['4.4','2.9','1.4','0.2','Iris-setosa,]
+02:07:40.840 [egnb:fitDataFile] Values extracted [4.4, 2.9, 1.4, 0.2, Iris-setosa, 02:07:40.840 [egnb:fitDataFile] Label: Iris-setosa
+4.4, 02:07:40.840 [NBTV:fit] sepallength, 4.4, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 429
+2.9, 02:07:40.840 [NBTV:fit] sepalwidth, 2.9, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 430
+1.4, 02:07:40.840 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 431
+0.2, 02:07:40.840 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 432
+Iris-setosa, ]
+02:07:40.840 [egnb:fitDataFile] Row: ['4.6','3.1','1.5','0.2','Iris-setosa,]
+02:07:40.840 [egnb:fitDataFile] Values extracted [4.6, 3.1, 1.5, 0.2, Iris-setosa, 02:07:40.840 [egnb:fitDataFile] Label: Iris-setosa
+4.6, 02:07:40.840 [NBTV:fit] sepallength, 4.6, Iris-setosa
+02:07:40.840 [NBTV:fit] total entries: 433
+3.1, 02:07:40.841 [NBTV:fit] sepalwidth, 3.1, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 434
+1.5, 02:07:40.841 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 435
+0.2, 02:07:40.841 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 436
+Iris-setosa, ]
+02:07:40.841 [egnb:fitDataFile] Row: ['5.0','3.5','1.3','0.3','Iris-setosa,]
+02:07:40.841 [egnb:fitDataFile] Values extracted [5.0, 3.5, 1.3, 0.3, Iris-setosa, 02:07:40.841 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.841 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 437
+3.5, 02:07:40.841 [NBTV:fit] sepalwidth, 3.5, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 438
+1.3, 02:07:40.841 [NBTV:fit] petallength, 1.3, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 439
+0.3, 02:07:40.841 [NBTV:fit] petalwidth, 0.3, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 440
+Iris-setosa, ]
+02:07:40.841 [egnb:fitDataFile] Row: ['5.1','3.8','1.9','0.4','Iris-setosa,]
+02:07:40.841 [egnb:fitDataFile] Values extracted [5.1, 3.8, 1.9, 0.4, Iris-setosa, 02:07:40.841 [egnb:fitDataFile] Label: Iris-setosa
+5.1, 02:07:40.841 [NBTV:fit] sepallength, 5.1, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 441
+3.8, 02:07:40.841 [NBTV:fit] sepalwidth, 3.8, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 442
+1.9, 02:07:40.841 [NBTV:fit] petallength, 1.9, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 443
+0.4, 02:07:40.841 [NBTV:fit] petalwidth, 0.4, Iris-setosa
+02:07:40.841 [NBTV:fit] total entries: 444
+Iris-setosa, ]
+02:07:40.841 [egnb:fitDataFile] Row: ['6.3','3.3','4.7','1.6','Iris-versicolor,]
+02:07:40.841 [egnb:fitDataFile] Values extracted [6.3, 3.3, 4.7, 1.6, Iris-versicolor, 02:07:40.842 [egnb:fitDataFile] Label: Iris-versicolor
+6.3, 02:07:40.842 [NBTV:fit] sepallength, 6.3, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 445
+3.3, 02:07:40.842 [NBTV:fit] sepalwidth, 3.3, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 446
+4.7, 02:07:40.842 [NBTV:fit] petallength, 4.7, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 447
+1.6, 02:07:40.842 [NBTV:fit] petalwidth, 1.6, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 448
+Iris-versicolor, ]
+02:07:40.842 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.9.arff_data,
+02:07:40.842 [egnb:fitDataFile] Row: ['5.5','2.4','3.7','1.0','Iris-versicolor,]
+02:07:40.842 [egnb:fitDataFile] Values extracted [5.5, 2.4, 3.7, 1.0, Iris-versicolor, 02:07:40.842 [egnb:fitDataFile] Label: Iris-versicolor
+5.5, 02:07:40.842 [NBTV:fit] sepallength, 5.5, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 449
+2.4, 02:07:40.842 [NBTV:fit] sepalwidth, 2.4, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 450
+3.7, 02:07:40.842 [NBTV:fit] petallength, 3.7, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 451
+1.0, 02:07:40.842 [NBTV:fit] petalwidth, 1.0, Iris-versicolor
+02:07:40.842 [NBTV:fit] total entries: 452
+Iris-versicolor, ]
+02:07:40.843 [egnb:fitDataFile] Row: ['4.6','3.6','1.0','0.2','Iris-setosa,]
+02:07:40.843 [egnb:fitDataFile] Values extracted [4.6, 3.6, 1.0, 0.2, Iris-setosa, 02:07:40.843 [egnb:fitDataFile] Label: Iris-setosa
+4.6, 02:07:40.843 [NBTV:fit] sepallength, 4.6, Iris-setosa
+02:07:40.843 [NBTV:fit] total entries: 453
+3.6, 02:07:40.843 [NBTV:fit] sepalwidth, 3.6, Iris-setosa
+02:07:40.843 [NBTV:fit] total entries: 454
+1.0, 02:07:40.843 [NBTV:fit] petallength, 1.0, Iris-setosa
+02:07:40.843 [NBTV:fit] total entries: 455
+0.2, 02:07:40.843 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.843 [NBTV:fit] total entries: 456
+Iris-setosa, ]
+02:07:40.843 [egnb:fitDataFile] Row: ['6.4','2.8','5.6','2.1','Iris-virginica,]
+02:07:40.843 [egnb:fitDataFile] Values extracted [6.4, 2.8, 5.6, 2.1, Iris-virginica, 02:07:40.843 [egnb:fitDataFile] Label: Iris-virginica
+6.4, 02:07:40.843 [NBTV:fit] sepallength, 6.4, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 457
+2.8, 02:07:40.843 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 458
+5.6, 02:07:40.843 [NBTV:fit] petallength, 5.6, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 459
+2.1, 02:07:40.843 [NBTV:fit] petalwidth, 2.1, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 460
+Iris-virginica, ]
+02:07:40.843 [egnb:fitDataFile] Row: ['6.8','3.2','5.9','2.3','Iris-virginica,]
+02:07:40.843 [egnb:fitDataFile] Values extracted [6.8, 3.2, 5.9, 2.3, Iris-virginica, 02:07:40.843 [egnb:fitDataFile] Label: Iris-virginica
+6.8, 02:07:40.843 [NBTV:fit] sepallength, 6.8, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 461
+3.2, 02:07:40.843 [NBTV:fit] sepalwidth, 3.2, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 462
+5.9, 02:07:40.843 [NBTV:fit] petallength, 5.9, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 463
+2.3, 02:07:40.843 [NBTV:fit] petalwidth, 2.3, Iris-virginica
+02:07:40.843 [NBTV:fit] total entries: 464
+Iris-virginica, ]
+02:07:40.843 [egnb:fitDataFile] Row: ['4.9','3.0','1.4','0.2','Iris-setosa,]
+02:07:40.843 [egnb:fitDataFile] Values extracted [4.9, 3.0, 1.4, 0.2, Iris-setosa, 02:07:40.844 [egnb:fitDataFile] Label: Iris-setosa
+4.9, 02:07:40.844 [NBTV:fit] sepallength, 4.9, Iris-setosa
+02:07:40.844 [NBTV:fit] total entries: 465
+3.0, 02:07:40.844 [NBTV:fit] sepalwidth, 3.0, Iris-setosa
+02:07:40.844 [NBTV:fit] total entries: 466
+1.4, 02:07:40.844 [NBTV:fit] petallength, 1.4, Iris-setosa
+02:07:40.844 [NBTV:fit] total entries: 467
+0.2, 02:07:40.844 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.844 [NBTV:fit] total entries: 468
+Iris-setosa, ]
+02:07:40.844 [egnb:fitDataFile] Row: ['5.6','2.7','4.2','1.3','Iris-versicolor,]
+02:07:40.844 [egnb:fitDataFile] Values extracted [5.6, 2.7, 4.2, 1.3, Iris-versicolor, 02:07:40.844 [egnb:fitDataFile] Label: Iris-versicolor
+5.6, 02:07:40.844 [NBTV:fit] sepallength, 5.6, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 469
+2.7, 02:07:40.844 [NBTV:fit] sepalwidth, 2.7, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 470
+4.2, 02:07:40.844 [NBTV:fit] petallength, 4.2, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 471
+1.3, 02:07:40.844 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 472
+Iris-versicolor, ]
+02:07:40.844 [egnb:fitDataFile] Row: ['5.7','2.8','4.5','1.3','Iris-versicolor,]
+02:07:40.844 [egnb:fitDataFile] Values extracted [5.7, 2.8, 4.5, 1.3, Iris-versicolor, 02:07:40.844 [egnb:fitDataFile] Label: Iris-versicolor
+5.7, 02:07:40.844 [NBTV:fit] sepallength, 5.7, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 473
+2.8, 02:07:40.844 [NBTV:fit] sepalwidth, 2.8, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 474
+4.5, 02:07:40.844 [NBTV:fit] petallength, 4.5, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 475
+1.3, 02:07:40.844 [NBTV:fit] petalwidth, 1.3, Iris-versicolor
+02:07:40.844 [NBTV:fit] total entries: 476
+Iris-versicolor, ]
+02:07:40.844 [egnb:fitDataFile] Row: ['5.6','2.8','4.9','2.0','Iris-virginica,]
+02:07:40.845 [egnb:fitDataFile] Values extracted [5.6, 2.8, 4.9, 2.0, Iris-virginica, 02:07:40.845 [egnb:fitDataFile] Label: Iris-virginica
+5.6, 02:07:40.845 [NBTV:fit] sepallength, 5.6, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 477
+2.8, 02:07:40.845 [NBTV:fit] sepalwidth, 2.8, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 478
+4.9, 02:07:40.845 [NBTV:fit] petallength, 4.9, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 479
+2.0, 02:07:40.845 [NBTV:fit] petalwidth, 2.0, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 480
+Iris-virginica, ]
+02:07:40.845 [egnb:fitDataFile] Row: ['6.3','3.4','5.6','2.4','Iris-virginica,]
+02:07:40.845 [egnb:fitDataFile] Values extracted [6.3, 3.4, 5.6, 2.4, Iris-virginica, 02:07:40.845 [egnb:fitDataFile] Label: Iris-virginica
+6.3, 02:07:40.845 [NBTV:fit] sepallength, 6.3, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 481
+3.4, 02:07:40.845 [NBTV:fit] sepalwidth, 3.4, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 482
+5.6, 02:07:40.845 [NBTV:fit] petallength, 5.6, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 483
+2.4, 02:07:40.845 [NBTV:fit] petalwidth, 2.4, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 484
+Iris-virginica, ]
+02:07:40.845 [egnb:fitDataFile] Row: ['6.4','2.7','5.3','1.9','Iris-virginica,]
+02:07:40.845 [egnb:fitDataFile] Values extracted [6.4, 2.7, 5.3, 1.9, Iris-virginica, 02:07:40.845 [egnb:fitDataFile] Label: Iris-virginica
+6.4, 02:07:40.845 [NBTV:fit] sepallength, 6.4, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 485
+2.7, 02:07:40.845 [NBTV:fit] sepalwidth, 2.7, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 486
+5.3, 02:07:40.845 [NBTV:fit] petallength, 5.3, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 487
+1.9, 02:07:40.845 [NBTV:fit] petalwidth, 1.9, Iris-virginica
+02:07:40.845 [NBTV:fit] total entries: 488
+Iris-virginica, ]
+02:07:40.845 [egnb:fitDataFile] Row: ['5.2','3.5','1.5','0.2','Iris-setosa,]
+02:07:40.845 [egnb:fitDataFile] Values extracted [5.2, 3.5, 1.5, 0.2, Iris-setosa, 02:07:40.845 [egnb:fitDataFile] Label: Iris-setosa
+5.2, 02:07:40.845 [NBTV:fit] sepallength, 5.2, Iris-setosa
+02:07:40.845 [NBTV:fit] total entries: 489
+3.5, 02:07:40.845 [NBTV:fit] sepalwidth, 3.5, Iris-setosa
+02:07:40.845 [NBTV:fit] total entries: 490
+1.5, 02:07:40.845 [NBTV:fit] petallength, 1.5, Iris-setosa
+02:07:40.845 [NBTV:fit] total entries: 491
+0.2, 02:07:40.846 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.846 [NBTV:fit] total entries: 492
+Iris-setosa, ]
+02:07:40.846 [egnb:fitDataFile] Row: ['5.7','3.0','4.2','1.2','Iris-versicolor,]
+02:07:40.846 [egnb:fitDataFile] Values extracted [5.7, 3.0, 4.2, 1.2, Iris-versicolor, 02:07:40.846 [egnb:fitDataFile] Label: Iris-versicolor
+5.7, 02:07:40.846 [NBTV:fit] sepallength, 5.7, Iris-versicolor
+02:07:40.846 [NBTV:fit] total entries: 493
+3.0, 02:07:40.846 [NBTV:fit] sepalwidth, 3.0, Iris-versicolor
+02:07:40.846 [NBTV:fit] total entries: 494
+4.2, 02:07:40.846 [NBTV:fit] petallength, 4.2, Iris-versicolor
+02:07:40.846 [NBTV:fit] total entries: 495
+1.2, 02:07:40.846 [NBTV:fit] petalwidth, 1.2, Iris-versicolor
+02:07:40.846 [NBTV:fit] total entries: 496
+Iris-versicolor, ]
+02:07:40.846 [egnb:fitDataFile] Row: ['5.0','3.2','1.2','0.2','Iris-setosa,]
+02:07:40.846 [egnb:fitDataFile] Values extracted [5.0, 3.2, 1.2, 0.2, Iris-setosa, 02:07:40.846 [egnb:fitDataFile] Label: Iris-setosa
+5.0, 02:07:40.846 [NBTV:fit] sepallength, 5.0, Iris-setosa
+02:07:40.846 [NBTV:fit] total entries: 497
+3.2, 02:07:40.846 [NBTV:fit] sepalwidth, 3.2, Iris-setosa
+02:07:40.846 [NBTV:fit] total entries: 498
+1.2, 02:07:40.846 [NBTV:fit] petallength, 1.2, Iris-setosa
+02:07:40.846 [NBTV:fit] total entries: 499
+0.2, 02:07:40.846 [NBTV:fit] petalwidth, 0.2, Iris-setosa
+02:07:40.846 [NBTV:fit] total entries: 500
+Iris-setosa, ]
+02:07:40.846 [egnb:fitDataFile] Row: ['6.3','2.7','4.9','1.8','Iris-virginica,]
+02:07:40.846 [egnb:fitDataFile] Values extracted [6.3, 2.7, 4.9, 1.8, Iris-virginica, 02:07:40.846 [egnb:fitDataFile] Label: Iris-virginica
+6.3, 02:07:40.846 [NBTV:fit] sepallength, 6.3, Iris-virginica
+02:07:40.846 [NBTV:fit] total entries: 501
+2.7, 02:07:40.846 [NBTV:fit] sepalwidth, 2.7, Iris-virginica
+02:07:40.846 [NBTV:fit] total entries: 502
+4.9, 02:07:40.846 [NBTV:fit] petallength, 4.9, Iris-virginica
+02:07:40.846 [NBTV:fit] total entries: 503
+1.8, 02:07:40.846 [NBTV:fit] petalwidth, 1.8, Iris-virginica
+02:07:40.846 [NBTV:fit] total entries: 504
+Iris-virginica, ]
+02:07:40.847 [egnb:predict] Loading file ./test-data/iris.arff.arff_data.10.arff_data,
+02:07:40.847 [egnb:predict] 
+02:07:40.847 [egnb:predict] Row: ['7.7','2.6','6.9','2.3','Iris-virginica,]
+02:07:40.847 [egnb:predict] Values extracted [7.7, 2.6, 6.9, 2.3, Iris-virginica, ]
+02:07:40.847 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.6	6.9	7.7	2.3	
+02:07:40.848 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.6:0.00000000)*(petallength/6.9:0.00000000)*(sepallength/7.7:0.07317073)*(petalwidth/2.3:0.17073171)*(0.325))	=0.0
+02:07:40.855 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.6:0.00000000)*(petallength/6.9:0.00000000)*(sepallength/7.7:0.00000000)*(petalwidth/2.3:0.00000000)*(0.333))	=0.0
+02:07:40.856 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.6:0.04651163)*(petallength/6.9:0.00000000)*(sepallength/7.7:0.00000000)*(petalwidth/2.3:0.00000000)*(0.341))	=0.0
+02:07:40.856 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.857 [egnb:predict] 
+Looking at: [sepalwidth:2.6] [petallength:6.9] [sepallength:7.7] [petalwidth:2.3] 
+02:07:40.857 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.857 [egnb:predict] 
+02:07:40.857 [egnb:predict] Row: ['4.4','3.0','1.3','0.2','Iris-setosa,]
+02:07:40.857 [egnb:predict] Values extracted [4.4, 3.0, 1.3, 0.2, Iris-setosa, ]
+02:07:40.857 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.0	1.3	4.4	0.2	
+02:07:40.857 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.0:0.24390244)*(petallength/1.3:0.00000000)*(sepallength/4.4:0.00000000)*(petalwidth/0.2:0.00000000)*(0.325))	=0.0
+02:07:40.858 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.0:0.11904762)*(petallength/1.3:0.11904762)*(sepallength/4.4:0.04761905)*(petalwidth/0.2:0.54761904)*(0.333))	=1.2319114E-4
+02:07:40.858 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.0:0.16279070)*(petallength/1.3:0.00000000)*(sepallength/4.4:0.00000000)*(petalwidth/0.2:0.00000000)*(0.341))	=0.0
+02:07:40.859 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.859 [egnb:predict] 
+Looking at: [sepalwidth:3.0] [petallength:1.3] [sepallength:4.4] [petalwidth:0.2] 
+02:07:40.859 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.859 [egnb:predict] 
+02:07:40.859 [egnb:predict] Row: ['5.3','3.7','1.5','0.2','Iris-setosa,]
+02:07:40.859 [egnb:predict] Values extracted [5.3, 3.7, 1.5, 0.2, Iris-setosa, ]
+02:07:40.859 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.7	1.5	5.3	0.2	
+02:07:40.859 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.7:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.3:0.00000000)*(petalwidth/0.2:0.00000000)*(0.325))	=0.0
+02:07:40.860 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.7:0.02380952)*(petallength/1.5:0.26190478)*(sepallength/5.3:0.00000000)*(petalwidth/0.2:0.54761904)*(0.333))	=0.0
+02:07:40.861 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.7:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.3:0.00000000)*(petalwidth/0.2:0.00000000)*(0.341))	=0.0
+02:07:40.862 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.862 [egnb:predict] 
+Looking at: [sepalwidth:3.7] [petallength:1.5] [sepallength:5.3] [petalwidth:0.2] 
+02:07:40.862 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.862 [egnb:predict] 
+02:07:40.862 [egnb:predict] Row: ['6.5','3.0','5.8','2.2','Iris-virginica,]
+02:07:40.862 [egnb:predict] Values extracted [6.5, 3.0, 5.8, 2.2, Iris-virginica, ]
+02:07:40.862 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.0	5.8	6.5	2.2	
+02:07:40.862 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.0:0.24390244)*(petallength/5.8:0.04878049)*(sepallength/6.5:0.04878049)*(petalwidth/2.2:0.04878049)*(0.325))	=9.212295E-6
+02:07:40.862 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.0:0.11904762)*(petallength/5.8:0.00000000)*(sepallength/6.5:0.00000000)*(petalwidth/2.2:0.00000000)*(0.333))	=0.0
+02:07:40.863 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.0:0.16279070)*(petallength/5.8:0.00000000)*(sepallength/6.5:0.02325581)*(petalwidth/2.2:0.00000000)*(0.341))	=0.0
+02:07:40.864 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.864 [egnb:predict] 
+Looking at: [sepalwidth:3.0] [petallength:5.8] [sepallength:6.5] [petalwidth:2.2] 
+02:07:40.864 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.864 [egnb:predict] 
+02:07:40.864 [egnb:predict] Row: ['4.8','3.1','1.6','0.2','Iris-setosa,]
+02:07:40.864 [egnb:predict] Values extracted [4.8, 3.1, 1.6, 0.2, Iris-setosa, ]
+02:07:40.864 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.1	1.6	4.8	0.2	
+02:07:40.865 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.1:0.07317073)*(petallength/1.6:0.00000000)*(sepallength/4.8:0.00000000)*(petalwidth/0.2:0.00000000)*(0.325))	=0.0
+02:07:40.867 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.1:0.09523810)*(petallength/1.6:0.11904762)*(sepallength/4.8:0.09523810)*(petalwidth/0.2:0.54761904)*(0.333))	=1.9710581E-4
+02:07:40.868 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.1:0.06976745)*(petallength/1.6:0.00000000)*(sepallength/4.8:0.00000000)*(petalwidth/0.2:0.00000000)*(0.341))	=0.0
+02:07:40.869 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.869 [egnb:predict] 
+Looking at: [sepalwidth:3.1] [petallength:1.6] [sepallength:4.8] [petalwidth:0.2] 
+02:07:40.869 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.869 [egnb:predict] 
+02:07:40.869 [egnb:predict] Row: ['5.8','2.7','5.1','1.9','Iris-virginica,]
+02:07:40.869 [egnb:predict] Values extracted [5.8, 2.7, 5.1, 1.9, Iris-virginica, ]
+02:07:40.869 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.7	5.1	5.8	1.9	
+02:07:40.869 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.7:0.07317073)*(petallength/5.1:0.09756097)*(sepallength/5.8:0.04878049)*(petalwidth/1.9:0.07317073)*(0.325))	=8.291066E-6
+02:07:40.869 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.7:0.00000000)*(petallength/5.1:0.00000000)*(sepallength/5.8:0.02380952)*(petalwidth/1.9:0.00000000)*(0.333))	=0.0
+02:07:40.870 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.7:0.11627907)*(petallength/5.1:0.02325581)*(sepallength/5.8:0.06976745)*(petalwidth/1.9:0.00000000)*(0.341))	=0.0
+02:07:40.870 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.870 [egnb:predict] 
+Looking at: [sepalwidth:2.7] [petallength:5.1] [sepallength:5.8] [petalwidth:1.9] 
+02:07:40.870 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.870 [egnb:predict] 
+02:07:40.870 [egnb:predict] Row: ['5.2','4.1','1.5','0.1','Iris-setosa,]
+02:07:40.870 [egnb:predict] Values extracted [5.2, 4.1, 1.5, 0.1, Iris-setosa, ]
+02:07:40.870 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	4.1	1.5	5.2	0.1	
+02:07:40.871 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/4.1:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.2:0.00000000)*(petalwidth/0.1:0.00000000)*(0.325))	=0.0
+02:07:40.871 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/4.1:0.00000000)*(petallength/1.5:0.26190478)*(sepallength/5.2:0.04761905)*(petalwidth/0.1:0.11904762)*(0.333))	=0.0
+02:07:40.873 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/4.1:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.2:0.02325581)*(petalwidth/0.1:0.00000000)*(0.341))	=0.0
+02:07:40.876 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.876 [egnb:predict] 
+Looking at: [sepalwidth:4.1] [petallength:1.5] [sepallength:5.2] [petalwidth:0.1] 
+02:07:40.876 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.876 [egnb:predict] 
+02:07:40.876 [egnb:predict] Row: ['5.4','3.0','4.5','1.5','Iris-versicolor,]
+02:07:40.876 [egnb:predict] Values extracted [5.4, 3.0, 4.5, 1.5, Iris-versicolor, ]
+02:07:40.876 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.0	4.5	5.4	1.5	
+02:07:40.877 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.0:0.24390244)*(petallength/4.5:0.02439024)*(sepallength/5.4:0.00000000)*(petalwidth/1.5:0.04878049)*(0.325))	=0.0
+02:07:40.881 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.0:0.11904762)*(petallength/4.5:0.00000000)*(sepallength/5.4:0.11904762)*(petalwidth/1.5:0.00000000)*(0.333))	=0.0
+02:07:40.883 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.0:0.16279070)*(petallength/4.5:0.11627907)*(sepallength/5.4:0.00000000)*(petalwidth/1.5:0.18604651)*(0.341))	=0.0
+02:07:40.884 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.884 [egnb:predict] 
+Looking at: [sepalwidth:3.0] [petallength:4.5] [sepallength:5.4] [petalwidth:1.5] 
+02:07:40.884 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.884 [egnb:predict] 
+02:07:40.884 [egnb:predict] Row: ['5.1','3.7','1.5','0.4','Iris-setosa,]
+02:07:40.884 [egnb:predict] Values extracted [5.1, 3.7, 1.5, 0.4, Iris-setosa, ]
+02:07:40.884 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.7	1.5	5.1	0.4	
+02:07:40.884 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.7:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.1:0.00000000)*(petalwidth/0.4:0.00000000)*(0.325))	=0.0
+02:07:40.885 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.7:0.02380952)*(petallength/1.5:0.26190478)*(sepallength/5.1:0.16666667)*(petalwidth/0.4:0.14285715)*(0.333))	=4.9490707E-5
+02:07:40.886 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.7:0.00000000)*(petallength/1.5:0.00000000)*(sepallength/5.1:0.02325581)*(petalwidth/0.4:0.00000000)*(0.341))	=0.0
+02:07:40.886 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.886 [egnb:predict] 
+Looking at: [sepalwidth:3.7] [petallength:1.5] [sepallength:5.1] [petalwidth:0.4] 
+02:07:40.886 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.887 [egnb:predict] 
+02:07:40.887 [egnb:predict] Row: ['4.6','3.4','1.4','0.3','Iris-setosa,]
+02:07:40.887 [egnb:predict] Values extracted [4.6, 3.4, 1.4, 0.3, Iris-setosa, ]
+02:07:40.887 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.4	1.4	4.6	0.3	
+02:07:40.887 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.4:0.04878049)*(petallength/1.4:0.00000000)*(sepallength/4.6:0.00000000)*(petalwidth/0.3:0.00000000)*(0.325))	=0.0
+02:07:40.888 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.4:0.19047619)*(petallength/1.4:0.26190478)*(sepallength/4.6:0.07142857)*(petalwidth/0.3:0.14285715)*(0.333))	=1.6968242E-4
+02:07:40.888 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.4:0.02325581)*(petallength/1.4:0.00000000)*(sepallength/4.6:0.00000000)*(petalwidth/0.3:0.00000000)*(0.341))	=0.0
+02:07:40.888 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.889 [egnb:predict] 
+Looking at: [sepalwidth:3.4] [petallength:1.4] [sepallength:4.6] [petalwidth:0.3] 
+02:07:40.889 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.889 [egnb:predict] 
+02:07:40.889 [egnb:predict] Row: ['6.1','2.6','5.6','1.4','Iris-virginica,]
+02:07:40.889 [egnb:predict] Values extracted [6.1, 2.6, 5.6, 1.4, Iris-virginica, ]
+02:07:40.889 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.6	5.6	6.1	1.4	
+02:07:40.889 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.6:0.00000000)*(petallength/5.6:0.12195122)*(sepallength/6.1:0.02439024)*(petalwidth/1.4:0.00000000)*(0.325))	=0.0
+02:07:40.890 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.6:0.00000000)*(petallength/5.6:0.00000000)*(sepallength/6.1:0.00000000)*(petalwidth/1.4:0.00000000)*(0.333))	=0.0
+02:07:40.891 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.6:0.04651163)*(petallength/5.6:0.00000000)*(sepallength/6.1:0.09302326)*(petalwidth/1.4:0.16279070)*(0.341))	=0.0
+02:07:40.891 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.891 [egnb:predict] 
+Looking at: [sepalwidth:2.6] [petallength:5.6] [sepallength:6.1] [petalwidth:1.4] 
+02:07:40.891 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.891 [egnb:predict] 
+02:07:40.891 [egnb:predict] Row: ['6.3','3.3','6.0','2.5','Iris-virginica,]
+02:07:40.891 [egnb:predict] Values extracted [6.3, 3.3, 6.0, 2.5, Iris-virginica, ]
+02:07:40.891 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.3	6.0	6.3	2.5	
+02:07:40.892 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.3:0.04878049)*(petallength/6.0:0.02439024)*(sepallength/6.3:0.09756097)*(petalwidth/2.5:0.04878049)*(0.325))	=1.8424589E-6
+02:07:40.892 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.3:0.04761905)*(petallength/6.0:0.00000000)*(sepallength/6.3:0.00000000)*(petalwidth/2.5:0.00000000)*(0.333))	=0.0
+02:07:40.893 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.3:0.02325581)*(petallength/6.0:0.00000000)*(sepallength/6.3:0.06976745)*(petalwidth/2.5:0.00000000)*(0.341))	=0.0
+02:07:40.894 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.894 [egnb:predict] 
+Looking at: [sepalwidth:3.3] [petallength:6.0] [sepallength:6.3] [petalwidth:2.5] 
+02:07:40.894 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.894 [egnb:predict] 
+02:07:40.894 [egnb:predict] Row: ['5.6','2.9','3.6','1.3','Iris-versicolor,]
+02:07:40.894 [egnb:predict] Values extracted [5.6, 2.9, 3.6, 1.3, Iris-versicolor, ]
+02:07:40.894 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.9	3.6	5.6	1.3	
+02:07:40.894 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.9:0.04878049)*(petallength/3.6:0.00000000)*(sepallength/5.6:0.02439024)*(petalwidth/1.3:0.00000000)*(0.325))	=0.0
+02:07:40.895 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.9:0.02380952)*(petallength/3.6:0.00000000)*(sepallength/5.6:0.00000000)*(petalwidth/1.3:0.00000000)*(0.333))	=0.0
+02:07:40.897 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.9:0.06976745)*(petallength/3.6:0.00000000)*(sepallength/5.6:0.09302326)*(petalwidth/1.3:0.20930232)*(0.341))	=0.0
+02:07:40.899 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.899 [egnb:predict] 
+Looking at: [sepalwidth:2.9] [petallength:3.6] [sepallength:5.6] [petalwidth:1.3] 
+02:07:40.899 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.899 [egnb:predict] 
+02:07:40.899 [egnb:predict] Row: ['5.7','2.9','4.2','1.3','Iris-versicolor,]
+02:07:40.899 [egnb:predict] Values extracted [5.7, 2.9, 4.2, 1.3, Iris-versicolor, ]
+02:07:40.899 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.9	4.2	5.7	1.3	
+02:07:40.899 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.9:0.04878049)*(petallength/4.2:0.00000000)*(sepallength/5.7:0.02439024)*(petalwidth/1.3:0.00000000)*(0.325))	=0.0
+02:07:40.899 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.9:0.02380952)*(petallength/4.2:0.00000000)*(sepallength/5.7:0.04761905)*(petalwidth/1.3:0.00000000)*(0.333))	=0.0
+02:07:40.901 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.9:0.06976745)*(petallength/4.2:0.06976745)*(sepallength/5.7:0.06976745)*(petalwidth/1.3:0.20930232)*(0.341))	=2.4256628E-5
+02:07:40.901 [NBTV:getPredictedLabel] Label Predicted: IRIS-VERSICOLOR
+02:07:40.901 [egnb:predict] 
+Looking at: [sepalwidth:2.9] [petallength:4.2] [sepallength:5.7] [petalwidth:1.3] 
+02:07:40.901 [egnb:predict] Predicted: IRIS-VERSICOLOR
+02:07:40.901 [egnb:predict] 
+02:07:40.901 [egnb:predict] Row: ['6.5','3.2','5.1','2.0','Iris-virginica,]
+02:07:40.901 [egnb:predict] Values extracted [6.5, 3.2, 5.1, 2.0, Iris-virginica, ]
+02:07:40.901 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.2	5.1	6.5	2.0	
+02:07:40.901 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.2:0.09756097)*(petallength/5.1:0.09756097)*(sepallength/6.5:0.04878049)*(petalwidth/2.0:0.12195122)*(0.325))	=1.8424591E-5
+02:07:40.901 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.2:0.09523810)*(petallength/5.1:0.00000000)*(sepallength/6.5:0.00000000)*(petalwidth/2.0:0.00000000)*(0.333))	=0.0
+02:07:40.902 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.2:0.06976745)*(petallength/5.1:0.02325581)*(sepallength/6.5:0.02325581)*(petalwidth/2.0:0.00000000)*(0.341))	=0.0
+02:07:40.902 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.902 [egnb:predict] 
+Looking at: [sepalwidth:3.2] [petallength:5.1] [sepallength:6.5] [petalwidth:2.0] 
+02:07:40.902 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.902 [egnb:predict] 
+02:07:40.902 [egnb:predict] Row: ['5.5','2.5','4.0','1.3','Iris-versicolor,]
+02:07:40.902 [egnb:predict] Values extracted [5.5, 2.5, 4.0, 1.3, Iris-versicolor, ]
+02:07:40.902 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.5	4.0	5.5	1.3	
+02:07:40.902 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.5:0.07317073)*(petallength/4.0:0.00000000)*(sepallength/5.5:0.00000000)*(petalwidth/1.3:0.00000000)*(0.325))	=0.0
+02:07:40.902 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.5:0.00000000)*(petallength/4.0:0.00000000)*(sepallength/5.5:0.02380952)*(petalwidth/1.3:0.00000000)*(0.333))	=0.0
+02:07:40.903 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.5:0.06976745)*(petallength/4.0:0.09302326)*(sepallength/5.5:0.09302326)*(petalwidth/1.3:0.20930232)*(0.341))	=4.3122887E-5
+02:07:40.903 [NBTV:getPredictedLabel] Label Predicted: IRIS-VERSICOLOR
+02:07:40.903 [egnb:predict] 
+Looking at: [sepalwidth:2.5] [petallength:4.0] [sepallength:5.5] [petalwidth:1.3] 
+02:07:40.903 [egnb:predict] Predicted: IRIS-VERSICOLOR
+02:07:40.903 [egnb:predict] 
+02:07:40.903 [egnb:predict] Row: ['5.7','2.6','3.5','1.0','Iris-versicolor,]
+02:07:40.903 [egnb:predict] Values extracted [5.7, 2.6, 3.5, 1.0, Iris-versicolor, ]
+02:07:40.903 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.6	3.5	5.7	1.0	
+02:07:40.903 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.6:0.00000000)*(petallength/3.5:0.00000000)*(sepallength/5.7:0.02439024)*(petalwidth/1.0:0.00000000)*(0.325))	=0.0
+02:07:40.905 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.6:0.00000000)*(petallength/3.5:0.00000000)*(sepallength/5.7:0.04761905)*(petalwidth/1.0:0.00000000)*(0.333))	=0.0
+02:07:40.905 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.6:0.04651163)*(petallength/3.5:0.02325581)*(sepallength/5.7:0.06976745)*(petalwidth/1.0:0.13953489)*(0.341))	=3.593574E-6
+02:07:40.905 [NBTV:getPredictedLabel] Label Predicted: IRIS-VERSICOLOR
+02:07:40.905 [egnb:predict] 
+Looking at: [sepalwidth:2.6] [petallength:3.5] [sepallength:5.7] [petalwidth:1.0] 
+02:07:40.905 [egnb:predict] Predicted: IRIS-VERSICOLOR
+02:07:40.905 [egnb:predict] 
+02:07:40.905 [egnb:predict] Row: ['6.0','2.9','4.5','1.5','Iris-versicolor,]
+02:07:40.905 [egnb:predict] Values extracted [6.0, 2.9, 4.5, 1.5, Iris-versicolor, ]
+02:07:40.905 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.9	4.5	6.0	1.5	
+02:07:40.906 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.9:0.04878049)*(petallength/4.5:0.02439024)*(sepallength/6.0:0.04878049)*(petalwidth/1.5:0.04878049)*(0.325))	=9.2122946E-7
+02:07:40.906 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.9:0.02380952)*(petallength/4.5:0.00000000)*(sepallength/6.0:0.00000000)*(petalwidth/1.5:0.00000000)*(0.333))	=0.0
+02:07:40.906 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.9:0.06976745)*(petallength/4.5:0.11627907)*(sepallength/6.0:0.06976745)*(petalwidth/1.5:0.18604651)*(0.341))	=3.5935744E-5
+02:07:40.906 [NBTV:getPredictedLabel] Label Predicted: IRIS-VERSICOLOR
+02:07:40.906 [egnb:predict] 
+Looking at: [sepalwidth:2.9] [petallength:4.5] [sepallength:6.0] [petalwidth:1.5] 
+02:07:40.906 [egnb:predict] Predicted: IRIS-VERSICOLOR
+02:07:40.908 [egnb:predict] 
+02:07:40.908 [egnb:predict] Row: ['4.7','3.2','1.6','0.2','Iris-setosa,]
+02:07:40.908 [egnb:predict] Values extracted [4.7, 3.2, 1.6, 0.2, Iris-setosa, ]
+02:07:40.908 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.2	1.6	4.7	0.2	
+02:07:40.908 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.2:0.09756097)*(petallength/1.6:0.00000000)*(sepallength/4.7:0.00000000)*(petalwidth/0.2:0.00000000)*(0.325))	=0.0
+02:07:40.908 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.2:0.09523810)*(petallength/1.6:0.11904762)*(sepallength/4.7:0.02380952)*(petalwidth/0.2:0.54761904)*(0.333))	=4.9276452E-5
+02:07:40.909 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.2:0.06976745)*(petallength/1.6:0.00000000)*(sepallength/4.7:0.00000000)*(petalwidth/0.2:0.00000000)*(0.341))	=0.0
+02:07:40.909 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.909 [egnb:predict] 
+Looking at: [sepalwidth:3.2] [petallength:1.6] [sepallength:4.7] [petalwidth:0.2] 
+02:07:40.909 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.909 [egnb:predict] 
+02:07:40.909 [egnb:predict] Row: ['5.5','3.5','1.3','0.2','Iris-setosa,]
+02:07:40.909 [egnb:predict] Values extracted [5.5, 3.5, 1.3, 0.2, Iris-setosa, ]
+02:07:40.909 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.5	1.3	5.5	0.2	
+02:07:40.909 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.5:0.00000000)*(petallength/1.3:0.00000000)*(sepallength/5.5:0.00000000)*(petalwidth/0.2:0.00000000)*(0.325))	=0.0
+02:07:40.909 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.5:0.11904762)*(petallength/1.3:0.11904762)*(sepallength/5.5:0.02380952)*(petalwidth/0.2:0.54761904)*(0.333))	=6.159557E-5
+02:07:40.910 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.5:0.00000000)*(petallength/1.3:0.00000000)*(sepallength/5.5:0.09302326)*(petalwidth/0.2:0.00000000)*(0.341))	=0.0
+02:07:40.910 [NBTV:getPredictedLabel] Label Predicted: IRIS-SETOSA
+02:07:40.910 [egnb:predict] 
+Looking at: [sepalwidth:3.5] [petallength:1.3] [sepallength:5.5] [petalwidth:0.2] 
+02:07:40.910 [egnb:predict] Predicted: IRIS-SETOSA
+02:07:40.910 [egnb:predict] 
+02:07:40.910 [egnb:predict] Row: ['6.6','2.9','4.6','1.3','Iris-versicolor,]
+02:07:40.910 [egnb:predict] Values extracted [6.6, 2.9, 4.6, 1.3, Iris-versicolor, ]
+02:07:40.910 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.9	4.6	6.6	1.3	
+02:07:40.910 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.9:0.04878049)*(petallength/4.6:0.00000000)*(sepallength/6.6:0.00000000)*(petalwidth/1.3:0.00000000)*(0.325))	=0.0
+02:07:40.910 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.9:0.02380952)*(petallength/4.6:0.00000000)*(sepallength/6.6:0.00000000)*(petalwidth/1.3:0.00000000)*(0.333))	=0.0
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.9:0.06976745)*(petallength/4.6:0.04651163)*(sepallength/6.6:0.02325581)*(petalwidth/1.3:0.20930232)*(0.341))	=5.390361E-6
+02:07:40.912 [NBTV:getPredictedLabel] Label Predicted: IRIS-VERSICOLOR
+02:07:40.912 [egnb:predict] 
+Looking at: [sepalwidth:2.9] [petallength:4.6] [sepallength:6.6] [petalwidth:1.3] 
+02:07:40.912 [egnb:predict] Predicted: IRIS-VERSICOLOR
+02:07:40.912 [egnb:predict] 
+02:07:40.912 [egnb:predict] Row: ['6.3','2.5','5.0','1.9','Iris-virginica,]
+02:07:40.912 [egnb:predict] Values extracted [6.3, 2.5, 5.0, 1.9, Iris-virginica, ]
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	2.5	5.0	6.3	1.9	
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/2.5:0.07317073)*(petallength/5.0:0.04878049)*(sepallength/6.3:0.09756097)*(petalwidth/1.9:0.07317073)*(0.325))	=8.291066E-6
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/2.5:0.00000000)*(petallength/5.0:0.00000000)*(sepallength/6.3:0.00000000)*(petalwidth/1.9:0.00000000)*(0.333))	=0.0
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/2.5:0.06976745)*(petallength/5.0:0.02325581)*(sepallength/6.3:0.06976745)*(petalwidth/1.9:0.00000000)*(0.341))	=0.0
+02:07:40.912 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.912 [egnb:predict] 
+Looking at: [sepalwidth:2.5] [petallength:5.0] [sepallength:6.3] [petalwidth:1.9] 
+02:07:40.912 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.912 [egnb:predict] 
+02:07:40.912 [egnb:predict] Row: ['6.4','3.1','5.5','1.8','Iris-virginica,]
+02:07:40.912 [egnb:predict] Values extracted [6.4, 3.1, 5.5, 1.8, Iris-virginica, ]
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] Predict label using values:	3.1	5.5	6.4	1.8	
+02:07:40.912 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VIRGINICA	(sepalwidth/3.1:0.07317073)*(petallength/5.5:0.04878049)*(sepallength/6.4:0.09756097)*(petalwidth/1.8:0.21951219)*(0.325))	=2.4873196E-5
+02:07:40.914 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-SETOSA	(sepalwidth/3.1:0.09523810)*(petallength/5.5:0.00000000)*(sepallength/6.4:0.00000000)*(petalwidth/1.8:0.00000000)*(0.333))	=0.0
+02:07:40.915 [NBTV:getResultsFromFeatureSetForOneLabel] IRIS-VERSICOLOR	(sepalwidth/3.1:0.06976745)*(petallength/5.5:0.00000000)*(sepallength/6.4:0.04651163)*(petalwidth/1.8:0.02325581)*(0.341))	=0.0
+02:07:40.915 [NBTV:getPredictedLabel] Label Predicted: IRIS-VIRGINICA
+02:07:40.915 [egnb:predict] 
+Looking at: [sepalwidth:3.1] [petallength:5.5] [sepallength:6.4] [petalwidth:1.8] 
+02:07:40.915 [egnb:predict] Predicted: IRIS-VIRGINICA
+02:07:40.915 [egnb:main] Predicted Count: 23
+02:07:40.915 [egnb:getLabelsFromFile] Loading file ./test-data/iris.arff.arff_data.10.arff_data,
+02:07:40.915 [egnb:getLabelsFromFile] 
+02:07:40.915 [egnb:getLabelsFromFile] Row: ['7.7','2.6','6.9','2.3','Iris-virginica,]
+02:07:40.915 [egnb:getLabelsFromFile] Values extracted [7.7, 2.6, 6.9, 2.3, Iris-virginica, ]
+02:07:40.915 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.915 [egnb:getLabelsFromFile] 
+02:07:40.915 [egnb:getLabelsFromFile] Row: ['4.4','3.0','1.3','0.2','Iris-setosa,]
+02:07:40.915 [egnb:getLabelsFromFile] Values extracted [4.4, 3.0, 1.3, 0.2, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.3','3.7','1.5','0.2','Iris-setosa,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.3, 3.7, 1.5, 0.2, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['6.5','3.0','5.8','2.2','Iris-virginica,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [6.5, 3.0, 5.8, 2.2, Iris-virginica, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['4.8','3.1','1.6','0.2','Iris-setosa,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [4.8, 3.1, 1.6, 0.2, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.8','2.7','5.1','1.9','Iris-virginica,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.8, 2.7, 5.1, 1.9, Iris-virginica, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.2','4.1','1.5','0.1','Iris-setosa,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.2, 4.1, 1.5, 0.1, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.4','3.0','4.5','1.5','Iris-versicolor,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.4, 3.0, 4.5, 1.5, Iris-versicolor, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.1','3.7','1.5','0.4','Iris-setosa,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.1, 3.7, 1.5, 0.4, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['4.6','3.4','1.4','0.3','Iris-setosa,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [4.6, 3.4, 1.4, 0.3, Iris-setosa, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['6.1','2.6','5.6','1.4','Iris-virginica,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [6.1, 2.6, 5.6, 1.4, Iris-virginica, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['6.3','3.3','6.0','2.5','Iris-virginica,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [6.3, 3.3, 6.0, 2.5, Iris-virginica, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.6','2.9','3.6','1.3','Iris-versicolor,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.6, 2.9, 3.6, 1.3, Iris-versicolor, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.7','2.9','4.2','1.3','Iris-versicolor,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.7, 2.9, 4.2, 1.3, Iris-versicolor, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['6.5','3.2','5.1','2.0','Iris-virginica,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [6.5, 3.2, 5.1, 2.0, Iris-virginica, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.916 [egnb:getLabelsFromFile] 
+02:07:40.916 [egnb:getLabelsFromFile] Row: ['5.5','2.5','4.0','1.3','Iris-versicolor,]
+02:07:40.916 [egnb:getLabelsFromFile] Values extracted [5.5, 2.5, 4.0, 1.3, Iris-versicolor, ]
+02:07:40.916 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['5.7','2.6','3.5','1.0','Iris-versicolor,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [5.7, 2.6, 3.5, 1.0, Iris-versicolor, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['6.0','2.9','4.5','1.5','Iris-versicolor,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [6.0, 2.9, 4.5, 1.5, Iris-versicolor, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['4.7','3.2','1.6','0.2','Iris-setosa,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [4.7, 3.2, 1.6, 0.2, Iris-setosa, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['5.5','3.5','1.3','0.2','Iris-setosa,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [5.5, 3.5, 1.3, 0.2, Iris-setosa, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-setosa
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['6.6','2.9','4.6','1.3','Iris-versicolor,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [6.6, 2.9, 4.6, 1.3, Iris-versicolor, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-versicolor
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['6.3','2.5','5.0','1.9','Iris-virginica,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [6.3, 2.5, 5.0, 1.9, Iris-virginica, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.918 [egnb:getLabelsFromFile] 
+02:07:40.918 [egnb:getLabelsFromFile] Row: ['6.4','3.1','5.5','1.8','Iris-virginica,]
+02:07:40.918 [egnb:getLabelsFromFile] Values extracted [6.4, 3.1, 5.5, 1.8, Iris-virginica, ]
+02:07:40.918 [egnb:getLabelsFromFile] Label: Iris-virginica
+02:07:40.919 [egnb:getMLStats] Class tested: xilodyne.machinelearning.classifier.NaiveBayesClassifier
+02:07:40.920 [egnb:getMLStats] Accuracy: 0.0%
+02:07:40.920 [egnb:getMLStats] Total lines training: 504
+02:07:40.920 [egnb:getMLStats] Total lines predicted: 23
+02:07:40.920 [egnb:getMLStats] Activity	Time (in seconds)	% of Total Duration
+02:07:40.920 [egnb:getMLStats] --------	-----------------	-------------------
+02:07:40.923 [egnb:getMLStats] Data setup	0.252			65%
+02:07:40.923 [egnb:getMLStats] Fit		0.066			17%
+02:07:40.923 [egnb:getMLStats] Predict	0.068			18%
+02:07:40.923 [egnb:getMLStats] Total Time	0.386

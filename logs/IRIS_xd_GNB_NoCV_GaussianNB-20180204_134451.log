@@ -1,0 +1,8 @@
+
+01:44:51.028 [xilodyne.machinelearning.classifier.examples.Example_IRIS_GNB_FromARFF] [Log Level: ALL]
+01:44:51.029 [egnb:main] 
+01:44:51.029 Log file: C:\Backup\Java\ML\workspace-MachineLearning\Xilodyne - GNB - v-0.4\logs\IRIS_xd_GNB_NoCV_GaussianNB-20180204_134451.log
+
+01:44:51.038 [xilodyne.util.file.io.FileSplitter] [Log Level: ALL]
+01:44:51.038 [fSplt:splitARFFIntoInfoData] Extract iris.arff to .arff_info and .arff_data
+01:44:51.042 [fSplt:splitARFFIntoInfoData] Info file size: 72, Data file size: 150

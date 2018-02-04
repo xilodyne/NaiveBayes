@@ -1,0 +1,1736 @@
+
+01:45:23.021 [xilodyne.machinelearning.classifier.examples.Example_IRIS_GNB_FromARFF] [Log Level: ALL]
+01:45:23.022 [egnb:main] 
+01:45:23.022 Log file: C:\Backup\Java\ML\workspace-MachineLearning\Xilodyne - GNB - v-0.4\logs\IRIS_xd_GNB_NoCV_GaussianNB-20180204_134523.log
+
+01:45:23.036 [xilodyne.util.file.io.FileSplitter] [Log Level: ALL]
+01:45:23.037 [fSplt:splitARFFIntoInfoData] Extract iris.arff to .arff_info and .arff_data
+01:45:23.041 [fSplt:splitARFFIntoInfoData] Info file size: 72, Data file size: 150
+
+01:45:23.086 [xilodyne.util.math.GetUniqueRandomRange] [Log Level: ALL]
+01:45:23.094 [gRan:<init>] 
+01:45:23.094 [gRan:<init>] max size: 149
+01:45:23.095 [gRan:<init>] Random list size: 149
+01:45:23.097 [gRan:<init>] list: [134, 146, 140, 101, 20, 64, 79, 115, 121, 97, 76, 68, 132, 111, 
+6, 4, 55, 41, 142, 46, 127, 39, 65, 31, 86, 15, 8, 35, 
+22, 42, 110, 48, 100, 139, 56, 148, 130, 85, 91, 66, 113, 143, 
+54, 21, 104, 98, 92, 83, 7, 99, 17, 82, 23, 52, 57, 106, 
+59, 103, 81, 138, 96, 77, 43, 122, 61, 107, 60, 137, 125, 27, 
+105, 34, 44, 109, 147, 45, 112, 70, 47, 118, 67, 74, 58, 63, 
+25, 12, 131, 62, 11, 128, 3, 75, 32, 119, 89, 50, 18, 94, 
+36, 13, 73, 0, 108, 80, 136, 2, 144, 114, 29, 33, 135, 37, 
+145, 9, 117, 93, 40, 30, 88, 123, 10, 71, 38, 102, 14, 26, 
+53, 141, 28, 124, 16, 19, 51, 78, 133, 129, 95, 49, 24, 90, 
+5, 72, 126, 1, 120, 69, 84, 87, 116 ]
+
+01:45:23.097 [xilodyne.util.file.io.FileSplitter] [Log Level: ALL]
+01:45:23.097 [fSplt:createSubFilesShuffle] Total of 149 lines in file iris.arff.arff_data
+01:45:23.097 [fSplt:createSubFilesShuffle] 10 files of 14 lines, plus 9 in last file.
+01:45:23.097 [fSplt:createSubFilesShuffle] File #	Line #	Line
+01:45:23.097 [gRan:next] 0:134
+01:45:23.101 [gRan:next] 1:146
+01:45:23.102 [gRan:next] 2:140
+01:45:23.103 [gRan:next] 3:101
+01:45:23.103 [gRan:next] 4:20
+01:45:23.104 [gRan:next] 5:64
+01:45:23.104 [gRan:next] 6:79
+01:45:23.105 [gRan:next] 7:115
+01:45:23.105 [gRan:next] 8:121
+01:45:23.105 [gRan:next] 9:97
+01:45:23.106 [gRan:next] 10:76
+01:45:23.107 [gRan:next] 11:68
+01:45:23.107 [gRan:next] 12:132
+01:45:23.108 [gRan:next] 13:111
+01:45:23.112 [gRan:next] 14:6
+01:45:23.113 [gRan:next] 15:4
+01:45:23.113 [gRan:next] 16:55
+01:45:23.113 [gRan:next] 17:41
+01:45:23.114 [gRan:next] 18:142
+01:45:23.114 [gRan:next] 19:46
+01:45:23.115 [gRan:next] 20:127
+01:45:23.115 [gRan:next] 21:39
+01:45:23.115 [gRan:next] 22:65
+01:45:23.116 [gRan:next] 23:31
+01:45:23.116 [gRan:next] 24:86
+01:45:23.116 [gRan:next] 25:15
+01:45:23.117 [gRan:next] 26:8
+01:45:23.117 [gRan:next] 27:35
+01:45:23.122 [gRan:next] 28:22
+01:45:23.123 [gRan:next] 29:42
+01:45:23.123 [gRan:next] 30:110
+01:45:23.123 [gRan:next] 31:48
+01:45:23.124 [gRan:next] 32:100
+01:45:23.124 [gRan:next] 33:139
+01:45:23.125 [gRan:next] 34:56
+01:45:23.127 [gRan:next] 35:148
+01:45:23.127 [gRan:next] 36:130
+01:45:23.132 [gRan:next] 37:85
+01:45:23.133 [gRan:next] 38:91
+01:45:23.134 [gRan:next] 39:66
+01:45:23.135 [gRan:next] 40:113
+01:45:23.136 [gRan:next] 41:143
+01:45:23.140 [gRan:next] 42:54
+01:45:23.141 [gRan:next] 43:21
+01:45:23.141 [gRan:next] 44:104
+01:45:23.142 [gRan:next] 45:98
+01:45:23.142 [gRan:next] 46:92
+01:45:23.143 [gRan:next] 47:83
+01:45:23.143 [gRan:next] 48:7
+01:45:23.143 [gRan:next] 49:99
+01:45:23.144 [gRan:next] 50:17
+01:45:23.144 [gRan:next] 51:82
+01:45:23.145 [gRan:next] 52:23
+01:45:23.145 [gRan:next] 53:52
+01:45:23.148 [gRan:next] 54:57
+01:45:23.148 [gRan:next] 55:106
+01:45:23.153 [gRan:next] 56:59
+01:45:23.154 [gRan:next] 57:103
+01:45:23.154 [gRan:next] 58:81
+01:45:23.155 [gRan:next] 59:138
+01:45:23.156 [gRan:next] 60:96
+01:45:23.156 [gRan:next] 61:77
+01:45:23.156 [gRan:next] 62:43
+01:45:23.156 [gRan:next] 63:122
+01:45:23.158 [gRan:next] 64:61
+01:45:23.158 [gRan:next] 65:107
+01:45:23.159 [gRan:next] 66:60
+01:45:23.159 [gRan:next] 67:137
+01:45:23.159 [gRan:next] 68:125
+01:45:23.160 [gRan:next] 69:27
+01:45:23.167 [gRan:next] 70:105
+01:45:23.167 [gRan:next] 71:34
+01:45:23.168 [gRan:next] 72:44
+01:45:23.168 [gRan:next] 73:109
+01:45:23.168 [gRan:next] 74:147
+01:45:23.169 [gRan:next] 75:45
+01:45:23.169 [gRan:next] 76:112
+01:45:23.169 [gRan:next] 77:70
+01:45:23.169 [gRan:next] 78:47
+01:45:23.171 [gRan:next] 79:118
+01:45:23.172 [gRan:next] 80:67
+01:45:23.175 [gRan:next] 81:74
+01:45:23.175 [gRan:next] 82:58
+01:45:23.176 [gRan:next] 83:63
+01:45:23.180 [gRan:next] 84:25
+01:45:23.181 [gRan:next] 85:12
+01:45:23.181 [gRan:next] 86:131
+01:45:23.182 [gRan:next] 87:62
+01:45:23.183 [gRan:next] 88:11
+01:45:23.183 [gRan:next] 89:128
+01:45:23.183 [gRan:next] 90:3
+01:45:23.184 [gRan:next] 91:75
+01:45:23.184 [gRan:next] 92:32
+01:45:23.185 [gRan:next] 93:119
+01:45:23.185 [gRan:next] 94:89
+01:45:23.185 [gRan:next] 95:50
+01:45:23.185 [gRan:next] 96:18
+01:45:23.186 [gRan:next] 97:94
+01:45:23.190 [gRan:next] 98:36
+01:45:23.191 [gRan:next] 99:13
+01:45:23.192 [gRan:next] 100:73
+01:45:23.192 [gRan:next] 101:0
+01:45:23.192 [gRan:next] 102:108
+01:45:23.192 [gRan:next] 103:80
+01:45:23.192 [gRan:next] 104:136
+01:45:23.193 [gRan:next] 105:2
+01:45:23.193 [gRan:next] 106:144
+01:45:23.193 [gRan:next] 107:114
+01:45:23.194 [gRan:next] 108:29
+01:45:23.195 [gRan:next] 109:33
+01:45:23.196 [gRan:next] 110:135
+01:45:23.196 [gRan:next] 111:37
+01:45:23.201 [gRan:next] 112:145
+01:45:23.201 [gRan:next] 113:9
+01:45:23.202 [gRan:next] 114:117
+01:45:23.202 [gRan:next] 115:93
+01:45:23.202 [gRan:next] 116:40
+01:45:23.202 [gRan:next] 117:30
+01:45:23.203 [gRan:next] 118:88
+01:45:23.204 [gRan:next] 119:123
+01:45:23.204 [gRan:next] 120:10
+01:45:23.205 [gRan:next] 121:71
+01:45:23.205 [gRan:next] 122:38
+01:45:23.205 [gRan:next] 123:102
+01:45:23.205 [gRan:next] 124:14
+01:45:23.205 [gRan:next] 125:26
+01:45:23.211 [gRan:next] 126:53
+01:45:23.213 [gRan:next] 127:141
+01:45:23.214 [gRan:next] 128:28
+01:45:23.215 [gRan:next] 129:124
+01:45:23.215 [gRan:next] 130:16
+01:45:23.215 [gRan:next] 131:19
+01:45:23.216 [gRan:next] 132:51
+01:45:23.216 [gRan:next] 133:78
+01:45:23.216 [gRan:next] 134:133
+01:45:23.217 [gRan:next] 135:129
+01:45:23.218 [gRan:next] 136:95
+01:45:23.218 [gRan:next] 137:49
+01:45:23.218 [gRan:next] 138:24
+01:45:23.218 [gRan:next] 139:90
+01:45:23.219 [gRan:hasNext] currentIndex: 140:149	hasNext: true
+01:45:23.219 [gRan:next] 140:5
+01:45:23.220 [gRan:hasNext] currentIndex: 141:149	hasNext: true
+01:45:23.220 [gRan:next] 141:72
+01:45:23.220 [gRan:hasNext] currentIndex: 142:149	hasNext: true
+01:45:23.220 [gRan:next] 142:126
+01:45:23.220 [gRan:hasNext] currentIndex: 143:149	hasNext: true
+01:45:23.220 [gRan:next] 143:1
+01:45:23.221 [gRan:hasNext] currentIndex: 144:149	hasNext: true
+01:45:23.221 [gRan:next] 144:120
+01:45:23.221 [gRan:hasNext] currentIndex: 145:149	hasNext: true
+01:45:23.221 [gRan:next] 145:69
+01:45:23.221 [gRan:hasNext] currentIndex: 146:149	hasNext: true
+01:45:23.221 [gRan:next] 146:84
+01:45:23.221 [gRan:hasNext] currentIndex: 147:149	hasNext: true
+01:45:23.221 [gRan:next] 147:87
+01:45:23.222 [gRan:hasNext] currentIndex: 148:149	hasNext: true
+01:45:23.223 [gRan:next] 148:116
+01:45:23.223 [gRan:hasNext] currentIndex: 149:149	hasNext: false
+01:45:23.279 [egnb:main] ['Iris-setosa','Iris-versicolor','Iris-virginica,]
+01:45:23.279 [egnb:main] ['Iris-setosa','Iris-versicolor','Iris-virginica,]
+01:45:23.280 [egnb:main] ['sepallength','sepalwidth','petallength','petalwidth,]
+01:45:23.304 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.1.arff_data,
+01:45:23.304 [egnb:fitDataFile] 0: Loading [6.1,  (0:6.1) 2.6,  (1:2.6) 5.6,  (2:5.6) 1.4,  (3:1.4) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.304 [egnb:fitDataFile] 1: Loading [6.3,  (0:6.3) 2.5,  (1:2.5) 5.0,  (2:5.0) 1.9,  (3:1.9) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.304 [egnb:fitDataFile] 2: Loading [6.7,  (0:6.7) 3.1,  (1:3.1) 5.6,  (2:5.6) 2.4,  (3:2.4) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.305 [egnb:fitDataFile] 3: Loading [5.8,  (0:5.8) 2.7,  (1:2.7) 5.1,  (2:5.1) 1.9,  (3:1.9) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.305 [egnb:fitDataFile] 4: Loading [5.4,  (0:5.4) 3.4,  (1:3.4) 1.7,  (2:1.7) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.305 [egnb:fitDataFile] 5: Loading [5.6,  (0:5.6) 2.9,  (1:2.9) 3.6,  (2:3.6) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.305 [egnb:fitDataFile] 6: Loading [5.7,  (0:5.7) 2.6,  (1:2.6) 3.5,  (2:3.5) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.306 [egnb:fitDataFile] 7: Loading [6.4,  (0:6.4) 3.2,  (1:3.2) 5.3,  (2:5.3) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.306 [egnb:fitDataFile] 8: Loading [5.6,  (0:5.6) 2.8,  (1:2.8) 4.9,  (2:4.9) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.306 [egnb:fitDataFile] 9: Loading [6.2,  (0:6.2) 2.9,  (1:2.9) 4.3,  (2:4.3) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.306 [egnb:fitDataFile] 10: Loading [6.8,  (0:6.8) 2.8,  (1:2.8) 4.8,  (2:4.8) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.307 [egnb:fitDataFile] 11: Loading [6.2,  (0:6.2) 2.2,  (1:2.2) 4.5,  (2:4.5) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.307 [egnb:fitDataFile] 12: Loading [6.4,  (0:6.4) 2.8,  (1:2.8) 5.6,  (2:5.6) 2.2,  (3:2.2) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.307 [egnb:fitDataFile] 13: Loading [6.4,  (0:6.4) 2.7,  (1:2.7) 5.3,  (2:5.3) 1.9,  (3:1.9) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.315 [egnb:fitDataFile] Loading : [2.0  2.0  2.0  2.0  0.0  1.0  1.0  2.0  2.0  1.0  1.0  1.0  2.0  2.0  
+]
+01:45:23.338 [egnb:fitDataFile] Data: [[6.1,2.6,5.6,1.4],[6.3,2.5,5.0,1.9],[6.7,3.1,5.6,2.4],[5.8,2.7,5.1,1.9],[5.4,3.4,1.7,0.2],[5.6,2.9,3.6,1.3],[5.7,2.6,3.5,1.0],[6.4,3.2,5.3,2.3],[5.6,2.8,4.9,2.0],[6.2,2.9,4.3,1.3],[6.8,2.8,4.8,1.4],[6.2,2.2,4.5,1.5],[6.4,2.8,5.6,2.2],[6.4,2.7,5.3,1.9]]
+01:45:23.339 [gnb:addNewLabelToList] UPDATING Label list with: 2.0
+01:45:23.339 [gnb:addNewLabelToList] UPDATING Label list with: 0.0
+01:45:23.339 [gnb:addNewLabelToList] UPDATING all Features with new label.
+01:45:23.339 [gnb:addNewLabelToList] UPDATING Label list with: 1.0
+01:45:23.339 [gnb:addNewLabelToList] UPDATING all Features with new label.
+01:45:23.339 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.340 [gnb:fit] Fitting data...
+01:45:23.340 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.340 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.340 [gnb:fit] 0		01:45:23.340 [gnb:updateFeatures] Feature Index Exists: false, New feat: 6.1, found: [1  0  0  ]
+01:45:23.341 [gnb:updateFeatures] New count: [1  0  0  ]
+6.1		01:45:23.341 [gnb:updateFeatures] Feature Index Exists: false, New feat: 2.6, found: [1  0  0  ]
+01:45:23.341 [gnb:updateFeatures] New count: [1  0  0  ]
+2.6		01:45:23.341 [gnb:updateFeatures] Feature Index Exists: false, New feat: 5.6, found: [1  0  0  ]
+01:45:23.341 [gnb:updateFeatures] New count: [1  0  0  ]
+5.6		01:45:23.341 [gnb:updateFeatures] Feature Index Exists: false, New feat: 1.4, found: [1  0  0  ]
+01:45:23.341 [gnb:updateFeatures] New count: [1  0  0  ]
+1.4		2.0
+01:45:23.341 [gnb:fit] 1		01:45:23.341 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.3, found: [0  0  0  ]
+01:45:23.341 [gnb:updateFeatures] New count: [1  0  0  ]
+6.3		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.5, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+2.5		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.0, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+5.0		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.9, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+1.9		2.0
+01:45:23.342 [gnb:fit] 2		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.7, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+6.7		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.1, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+3.1		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [1  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [2  0  0  ]
+5.6		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.4, found: [0  0  0  ]
+01:45:23.342 [gnb:updateFeatures] New count: [1  0  0  ]
+2.4		2.0
+01:45:23.342 [gnb:fit] 3		01:45:23.342 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.8, found: [0  0  0  ]
+01:45:23.343 [gnb:updateFeatures] New count: [1  0  0  ]
+5.8		01:45:23.343 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.7, found: [0  0  0  ]
+01:45:23.343 [gnb:updateFeatures] New count: [1  0  0  ]
+2.7		01:45:23.343 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.1, found: [0  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [1  0  0  ]
+5.1		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.9, found: [1  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [2  0  0  ]
+1.9		2.0
+01:45:23.344 [gnb:fit] 4		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.4, found: [0  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [0  1  0  ]
+5.4		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.4, found: [0  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [0  1  0  ]
+3.4		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.7, found: [0  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [0  1  0  ]
+1.7		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.2, found: [0  0  0  ]
+01:45:23.344 [gnb:updateFeatures] New count: [0  1  0  ]
+0.2		0.0
+01:45:23.344 [gnb:fit] 5		01:45:23.344 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.6, found: [0  0  0  ]
+01:45:23.345 [gnb:updateFeatures] New count: [0  0  1  ]
+5.6		01:45:23.345 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.9, found: [0  0  0  ]
+01:45:23.345 [gnb:updateFeatures] New count: [0  0  1  ]
+2.9		01:45:23.345 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.6, found: [0  0  0  ]
+01:45:23.345 [gnb:updateFeatures] New count: [0  0  1  ]
+3.6		01:45:23.345 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.3, found: [0  0  0  ]
+01:45:23.345 [gnb:updateFeatures] New count: [0  0  1  ]
+1.3		1.0
+01:45:23.345 [gnb:fit] 6		01:45:23.345 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.7, found: [0  0  0  ]
+01:45:23.345 [gnb:updateFeatures] New count: [0  0  1  ]
+5.7		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.6, found: [1  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  1  ]
+2.6		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.5, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [0  0  1  ]
+3.5		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.0, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [0  0  1  ]
+1.0		1.0
+01:45:23.346 [gnb:fit] 7		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.4, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+6.4		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.2, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+3.2		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.3, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+5.3		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.3, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+2.3		2.0
+01:45:23.346 [gnb:fit] 8		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [0  0  1  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  1  ]
+5.6		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.8, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+2.8		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.9, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+4.9		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.0, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [1  0  0  ]
+2.0		2.0
+01:45:23.346 [gnb:fit] 9		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.2, found: [0  0  0  ]
+01:45:23.346 [gnb:updateFeatures] New count: [0  0  1  ]
+6.2		01:45:23.346 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [0  0  1  ]
+01:45:23.346 [gnb:updateFeatures] New count: [0  0  2  ]
+2.9		01:45:23.347 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.3, found: [0  0  0  ]
+01:45:23.347 [gnb:updateFeatures] New count: [0  0  1  ]
+4.3		01:45:23.347 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  1  ]
+01:45:23.347 [gnb:updateFeatures] New count: [0  0  2  ]
+1.3		1.0
+01:45:23.347 [gnb:fit] 10		01:45:23.347 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.8, found: [0  0  0  ]
+01:45:23.347 [gnb:updateFeatures] New count: [0  0  1  ]
+6.8		01:45:23.347 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [1  0  0  ]
+01:45:23.347 [gnb:updateFeatures] New count: [1  0  1  ]
+2.8		01:45:23.352 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.8, found: [0  0  0  ]
+01:45:23.353 [gnb:updateFeatures] New count: [0  0  1  ]
+4.8		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  0  ]
+01:45:23.353 [gnb:updateFeatures] New count: [1  0  1  ]
+1.4		1.0
+01:45:23.353 [gnb:fit] 11		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.2, found: [0  0  1  ]
+01:45:23.353 [gnb:updateFeatures] New count: [0  0  2  ]
+6.2		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.2, found: [0  0  0  ]
+01:45:23.353 [gnb:updateFeatures] New count: [0  0  1  ]
+2.2		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.5, found: [0  0  0  ]
+01:45:23.353 [gnb:updateFeatures] New count: [0  0  1  ]
+4.5		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.5, found: [0  0  0  ]
+01:45:23.353 [gnb:updateFeatures] New count: [0  0  1  ]
+1.5		1.0
+01:45:23.353 [gnb:fit] 12		01:45:23.353 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.4, found: [1  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [2  0  0  ]
+6.4		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [1  0  1  ]
+01:45:23.354 [gnb:updateFeatures] New count: [2  0  1  ]
+2.8		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [2  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [3  0  0  ]
+5.6		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.2, found: [0  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [1  0  0  ]
+2.2		2.0
+01:45:23.354 [gnb:fit] 13		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.4, found: [2  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [3  0  0  ]
+6.4		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [1  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [2  0  0  ]
+2.7		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.3, found: [1  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [2  0  0  ]
+5.3		01:45:23.354 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.9, found: [2  0  0  ]
+01:45:23.354 [gnb:updateFeatures] New count: [3  0  0  ]
+1.9		2.0
+01:45:23.354 [gnb:fit] total entries: 70
+01:45:23.355 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.2.arff_data,
+01:45:23.355 [egnb:fitDataFile] 0: Loading [4.6,  (0:4.6) 3.4,  (1:3.4) 1.4,  (2:1.4) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.355 [egnb:fitDataFile] 1: Loading [5.0,  (0:5.0) 3.6,  (1:3.6) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.355 [egnb:fitDataFile] 2: Loading [5.7,  (0:5.7) 2.8,  (1:2.8) 4.5,  (2:4.5) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.355 [egnb:fitDataFile] 3: Loading [4.5,  (0:4.5) 2.3,  (1:2.3) 1.3,  (2:1.3) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.356 [egnb:fitDataFile] 4: Loading [5.8,  (0:5.8) 2.7,  (1:2.7) 5.1,  (2:5.1) 1.9,  (3:1.9) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 5: Loading [5.1,  (0:5.1) 3.8,  (1:3.8) 1.6,  (2:1.6) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 6: Loading [6.1,  (0:6.1) 3.0,  (1:3.0) 4.9,  (2:4.9) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 7: Loading [5.1,  (0:5.1) 3.4,  (1:3.4) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 8: Loading [6.7,  (0:6.7) 3.1,  (1:3.1) 4.4,  (2:4.4) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 9: Loading [5.4,  (0:5.4) 3.4,  (1:3.4) 1.5,  (2:1.5) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 10: Loading [6.7,  (0:6.7) 3.1,  (1:3.1) 4.7,  (2:4.7) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.356 [egnb:fitDataFile] 11: Loading [5.7,  (0:5.7) 4.4,  (1:4.4) 1.5,  (2:1.5) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.357 [egnb:fitDataFile] 12: Loading [4.4,  (0:4.4) 2.9,  (1:2.9) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.357 [egnb:fitDataFile] 13: Loading [5.0,  (0:5.0) 3.2,  (1:3.2) 1.2,  (2:1.2) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.357 [egnb:fitDataFile] Loading : [0.0  0.0  1.0  0.0  2.0  0.0  2.0  0.0  1.0  0.0  1.0  0.0  0.0  0.0  
+]
+01:45:23.358 [egnb:fitDataFile] Data: [[4.6,3.4,1.4,0.3],[5.0,3.6,1.4,0.2],[5.7,2.8,4.5,1.3],[4.5,2.3,1.3,0.3],[5.8,2.7,5.1,1.9],[5.1,3.8,1.6,0.2],[6.1,3.0,4.9,1.8],[5.1,3.4,1.5,0.2],[6.7,3.1,4.4,1.4],[5.4,3.4,1.5,0.4],[6.7,3.1,4.7,1.5],[5.7,4.4,1.5,0.4],[4.4,2.9,1.4,0.2],[5.0,3.2,1.2,0.2]]
+01:45:23.358 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.358 [gnb:fit] Fitting data...
+01:45:23.358 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.358 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.358 [gnb:fit] 0		01:45:23.358 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.6, found: [0  0  0  ]
+01:45:23.358 [gnb:updateFeatures] New count: [0  1  0  ]
+4.6		01:45:23.358 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [0  1  0  ]
+01:45:23.358 [gnb:updateFeatures] New count: [0  2  0  ]
+3.4		01:45:23.358 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.4, found: [0  0  0  ]
+01:45:23.358 [gnb:updateFeatures] New count: [0  1  0  ]
+1.4		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.3, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+0.3		0.0
+01:45:23.359 [gnb:fit] 1		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.0, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+5.0		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.6, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+3.6		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  1  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  2  0  ]
+1.4		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  1  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  2  0  ]
+0.2		0.0
+01:45:23.359 [gnb:fit] 2		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [0  0  1  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  0  2  ]
+5.7		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [2  0  1  ]
+01:45:23.359 [gnb:updateFeatures] New count: [2  0  2  ]
+2.8		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.5, found: [0  0  1  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  0  2  ]
+4.5		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  2  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  0  3  ]
+1.3		1.0
+01:45:23.359 [gnb:fit] 3		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.5, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+4.5		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.3, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+2.3		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.3, found: [0  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  1  0  ]
+1.3		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.3, found: [0  1  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [0  2  0  ]
+0.3		0.0
+01:45:23.359 [gnb:fit] 4		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [1  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [2  0  0  ]
+5.8		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [2  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [3  0  0  ]
+2.7		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [1  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [2  0  0  ]
+5.1		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.9, found: [3  0  0  ]
+01:45:23.359 [gnb:updateFeatures] New count: [4  0  0  ]
+1.9		2.0
+01:45:23.359 [gnb:fit] 5		01:45:23.359 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.1, found: [0  0  0  ]
+01:45:23.361 [gnb:updateFeatures] New count: [0  1  0  ]
+5.1		01:45:23.361 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.8, found: [0  0  0  ]
+01:45:23.361 [gnb:updateFeatures] New count: [0  1  0  ]
+3.8		01:45:23.361 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.6, found: [0  0  0  ]
+01:45:23.361 [gnb:updateFeatures] New count: [0  1  0  ]
+1.6		01:45:23.361 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  2  0  ]
+01:45:23.361 [gnb:updateFeatures] New count: [0  3  0  ]
+0.2		0.0
+01:45:23.361 [gnb:fit] 6		01:45:23.361 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [1  0  0  ]
+01:45:23.361 [gnb:updateFeatures] New count: [2  0  0  ]
+6.1		01:45:23.361 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.0, found: [0  0  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [1  0  0  ]
+3.0		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [1  0  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [2  0  0  ]
+4.9		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.8, found: [0  0  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [1  0  0  ]
+1.8		2.0
+01:45:23.362 [gnb:fit] 7		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  1  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [0  2  0  ]
+5.1		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [0  2  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [0  3  0  ]
+3.4		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.5, found: [0  0  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [0  1  0  ]
+1.5		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  3  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [0  4  0  ]
+0.2		0.0
+01:45:23.362 [gnb:fit] 8		01:45:23.362 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [1  0  0  ]
+01:45:23.362 [gnb:updateFeatures] New count: [1  0  1  ]
+6.7		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [1  0  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [1  0  1  ]
+3.1		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.4, found: [0  0  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [0  0  1  ]
+4.4		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  1  ]
+01:45:23.363 [gnb:updateFeatures] New count: [1  0  2  ]
+1.4		1.0
+01:45:23.363 [gnb:fit] 9		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.4, found: [0  1  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [0  2  0  ]
+5.4		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [0  3  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [0  4  0  ]
+3.4		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  1  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [0  2  0  ]
+1.5		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.4, found: [0  0  0  ]
+01:45:23.363 [gnb:updateFeatures] New count: [0  1  0  ]
+0.4		0.0
+01:45:23.363 [gnb:fit] 10		01:45:23.363 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [1  0  1  ]
+01:45:23.364 [gnb:updateFeatures] New count: [1  0  2  ]
+6.7		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [1  0  1  ]
+01:45:23.364 [gnb:updateFeatures] New count: [1  0  2  ]
+3.1		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.7, found: [0  0  0  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  0  1  ]
+4.7		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  1  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  0  2  ]
+1.5		1.0
+01:45:23.364 [gnb:fit] 11		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [0  0  2  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  1  2  ]
+5.7		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.4, found: [0  0  0  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  1  0  ]
+4.4		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  2  0  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  3  0  ]
+1.5		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.4, found: [0  1  0  ]
+01:45:23.364 [gnb:updateFeatures] New count: [0  2  0  ]
+0.4		0.0
+01:45:23.364 [gnb:fit] 12		01:45:23.364 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.4, found: [0  0  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  1  0  ]
+4.4		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [0  0  2  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  1  2  ]
+2.9		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  2  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  3  0  ]
+1.4		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  4  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  5  0  ]
+0.2		0.0
+01:45:23.365 [gnb:fit] 13		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  1  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  2  0  ]
+5.0		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [1  0  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [1  1  0  ]
+3.2		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.2, found: [0  0  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  1  0  ]
+1.2		01:45:23.365 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  5  0  ]
+01:45:23.365 [gnb:updateFeatures] New count: [0  6  0  ]
+0.2		0.0
+01:45:23.365 [gnb:fit] total entries: 140
+01:45:23.366 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.3.arff_data,
+01:45:23.366 [egnb:fitDataFile] 0: Loading [4.6,  (0:4.6) 3.6,  (1:3.6) 1.0,  (2:1.0) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.366 [egnb:fitDataFile] 1: Loading [4.4,  (0:4.4) 3.2,  (1:3.2) 1.3,  (2:1.3) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.366 [egnb:fitDataFile] 2: Loading [6.5,  (0:6.5) 3.2,  (1:3.2) 5.1,  (2:5.1) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.366 [egnb:fitDataFile] 3: Loading [5.3,  (0:5.3) 3.7,  (1:3.7) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.366 [egnb:fitDataFile] 4: Loading [6.3,  (0:6.3) 3.3,  (1:3.3) 6.0,  (2:6.0) 2.5,  (3:2.5) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.367 [egnb:fitDataFile] 5: Loading [6.9,  (0:6.9) 3.1,  (1:3.1) 5.4,  (2:5.4) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.367 [egnb:fitDataFile] 6: Loading [6.3,  (0:6.3) 3.3,  (1:3.3) 4.7,  (2:4.7) 1.6,  (3:1.6) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.367 [egnb:fitDataFile] 7: Loading [6.2,  (0:6.2) 3.4,  (1:3.4) 5.4,  (2:5.4) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.367 [egnb:fitDataFile] 8: Loading [7.4,  (0:7.4) 2.8,  (1:2.8) 6.1,  (2:6.1) 1.9,  (3:1.9) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.370 [egnb:fitDataFile] 9: Loading [6.0,  (0:6.0) 3.4,  (1:3.4) 4.5,  (2:4.5) 1.6,  (3:1.6) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.370 [egnb:fitDataFile] 10: Loading [6.1,  (0:6.1) 3.0,  (1:3.0) 4.6,  (2:4.6) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.370 [egnb:fitDataFile] 11: Loading [5.6,  (0:5.6) 3.0,  (1:3.0) 4.5,  (2:4.5) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.370 [egnb:fitDataFile] 12: Loading [5.7,  (0:5.7) 2.5,  (1:2.5) 5.0,  (2:5.0) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.371 [egnb:fitDataFile] 13: Loading [6.8,  (0:6.8) 3.2,  (1:3.2) 5.9,  (2:5.9) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.371 [egnb:fitDataFile] Loading : [0.0  0.0  2.0  0.0  2.0  2.0  1.0  2.0  2.0  1.0  1.0  1.0  2.0  2.0  
+]
+01:45:23.372 [egnb:fitDataFile] Data: [[4.6,3.6,1.0,0.2],[4.4,3.2,1.3,0.2],[6.5,3.2,5.1,2.0],[5.3,3.7,1.5,0.2],[6.3,3.3,6.0,2.5],[6.9,3.1,5.4,2.1],[6.3,3.3,4.7,1.6],[6.2,3.4,5.4,2.3],[7.4,2.8,6.1,1.9],[6.0,3.4,4.5,1.6],[6.1,3.0,4.6,1.4],[5.6,3.0,4.5,1.5],[5.7,2.5,5.0,2.0],[6.8,3.2,5.9,2.3]]
+01:45:23.372 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.372 [gnb:fit] Fitting data...
+01:45:23.372 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.372 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.372 [gnb:fit] 0		01:45:23.372 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.6, found: [0  1  0  ]
+01:45:23.372 [gnb:updateFeatures] New count: [0  2  0  ]
+4.6		01:45:23.372 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.6, found: [0  1  0  ]
+01:45:23.372 [gnb:updateFeatures] New count: [0  2  0  ]
+3.6		01:45:23.372 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.0, found: [0  0  0  ]
+01:45:23.372 [gnb:updateFeatures] New count: [0  1  0  ]
+1.0		01:45:23.372 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  6  0  ]
+01:45:23.372 [gnb:updateFeatures] New count: [0  7  0  ]
+0.2		0.0
+01:45:23.372 [gnb:fit] 1		01:45:23.372 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.4, found: [0  1  0  ]
+01:45:23.372 [gnb:updateFeatures] New count: [0  2  0  ]
+4.4		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [1  1  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [1  2  0  ]
+3.2		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  1  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [0  2  0  ]
+1.3		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  7  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [0  8  0  ]
+0.2		0.0
+01:45:23.373 [gnb:fit] 2		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.5, found: [0  0  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [1  0  0  ]
+6.5		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [1  2  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [2  2  0  ]
+3.2		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [2  0  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [3  0  0  ]
+5.1		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.0, found: [1  0  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [2  0  0  ]
+2.0		2.0
+01:45:23.373 [gnb:fit] 3		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.3, found: [0  0  0  ]
+01:45:23.373 [gnb:updateFeatures] New count: [0  1  0  ]
+5.3		01:45:23.373 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.7, found: [0  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [0  1  0  ]
+3.7		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  3  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [0  4  0  ]
+1.5		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  8  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [0  9  0  ]
+0.2		0.0
+01:45:23.374 [gnb:fit] 4		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.3, found: [1  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [2  0  0  ]
+6.3		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.3, found: [0  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [1  0  0  ]
+3.3		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.0, found: [0  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [1  0  0  ]
+6.0		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.5, found: [0  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [1  0  0  ]
+2.5		2.0
+01:45:23.374 [gnb:fit] 5		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.9, found: [0  0  0  ]
+01:45:23.374 [gnb:updateFeatures] New count: [1  0  0  ]
+6.9		01:45:23.374 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [1  0  2  ]
+01:45:23.375 [gnb:updateFeatures] New count: [2  0  2  ]
+3.1		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.4, found: [0  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [1  0  0  ]
+5.4		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.1, found: [0  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [1  0  0  ]
+2.1		2.0
+01:45:23.375 [gnb:fit] 6		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.3, found: [2  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [2  0  1  ]
+6.3		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.3, found: [1  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [1  0  1  ]
+3.3		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.7, found: [0  0  1  ]
+01:45:23.375 [gnb:updateFeatures] New count: [0  0  2  ]
+4.7		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.6, found: [0  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [0  0  1  ]
+1.6		1.0
+01:45:23.375 [gnb:fit] 7		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.2, found: [0  0  2  ]
+01:45:23.375 [gnb:updateFeatures] New count: [1  0  2  ]
+6.2		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [0  4  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [1  4  0  ]
+3.4		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.4, found: [1  0  0  ]
+01:45:23.375 [gnb:updateFeatures] New count: [2  0  0  ]
+5.4		01:45:23.375 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [1  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [2  0  0  ]
+2.3		2.0
+01:45:23.376 [gnb:fit] 8		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.4, found: [0  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [1  0  0  ]
+7.4		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [2  0  2  ]
+01:45:23.376 [gnb:updateFeatures] New count: [3  0  2  ]
+2.8		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.1, found: [0  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [1  0  0  ]
+6.1		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.9, found: [4  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [5  0  0  ]
+1.9		2.0
+01:45:23.376 [gnb:fit] 9		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.0, found: [0  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [0  0  1  ]
+6.0		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [1  4  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [1  4  1  ]
+3.4		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.5, found: [0  0  2  ]
+01:45:23.376 [gnb:updateFeatures] New count: [0  0  3  ]
+4.5		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  0  1  ]
+01:45:23.376 [gnb:updateFeatures] New count: [0  0  2  ]
+1.6		1.0
+01:45:23.376 [gnb:fit] 10		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [2  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [2  0  1  ]
+6.1		01:45:23.376 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [1  0  0  ]
+01:45:23.376 [gnb:updateFeatures] New count: [1  0  1  ]
+3.0		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.6, found: [0  0  0  ]
+01:45:23.377 [gnb:updateFeatures] New count: [0  0  1  ]
+4.6		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  2  ]
+01:45:23.377 [gnb:updateFeatures] New count: [1  0  3  ]
+1.4		1.0
+01:45:23.377 [gnb:fit] 11		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [1  0  1  ]
+01:45:23.377 [gnb:updateFeatures] New count: [1  0  2  ]
+5.6		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [1  0  1  ]
+01:45:23.377 [gnb:updateFeatures] New count: [1  0  2  ]
+3.0		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.5, found: [0  0  3  ]
+01:45:23.377 [gnb:updateFeatures] New count: [0  0  4  ]
+4.5		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  2  ]
+01:45:23.377 [gnb:updateFeatures] New count: [0  0  3  ]
+1.5		1.0
+01:45:23.377 [gnb:fit] 12		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [0  1  2  ]
+01:45:23.377 [gnb:updateFeatures] New count: [1  1  2  ]
+5.7		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [1  0  0  ]
+01:45:23.377 [gnb:updateFeatures] New count: [2  0  0  ]
+2.5		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [1  0  0  ]
+01:45:23.377 [gnb:updateFeatures] New count: [2  0  0  ]
+5.0		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.0, found: [2  0  0  ]
+01:45:23.377 [gnb:updateFeatures] New count: [3  0  0  ]
+2.0		2.0
+01:45:23.377 [gnb:fit] 13		01:45:23.377 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.8, found: [0  0  1  ]
+01:45:23.377 [gnb:updateFeatures] New count: [1  0  1  ]
+6.8		01:45:23.378 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [2  2  0  ]
+01:45:23.378 [gnb:updateFeatures] New count: [3  2  0  ]
+3.2		01:45:23.378 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.9, found: [0  0  0  ]
+01:45:23.378 [gnb:updateFeatures] New count: [1  0  0  ]
+5.9		01:45:23.378 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [2  0  0  ]
+01:45:23.378 [gnb:updateFeatures] New count: [3  0  0  ]
+2.3		2.0
+01:45:23.378 [gnb:fit] total entries: 210
+01:45:23.379 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.4.arff_data,
+01:45:23.379 [egnb:fitDataFile] 0: Loading [6.5,  (0:6.5) 2.8,  (1:2.8) 4.6,  (2:4.6) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.379 [egnb:fitDataFile] 1: Loading [5.1,  (0:5.1) 3.7,  (1:3.7) 1.5,  (2:1.5) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.379 [egnb:fitDataFile] 2: Loading [6.5,  (0:6.5) 3.0,  (1:3.0) 5.8,  (2:5.8) 2.2,  (3:2.2) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.379 [egnb:fitDataFile] 3: Loading [5.1,  (0:5.1) 2.5,  (1:2.5) 3.0,  (2:3.0) 1.1,  (3:1.1) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.380 [egnb:fitDataFile] 4: Loading [5.8,  (0:5.8) 2.6,  (1:2.6) 4.0,  (2:4.0) 1.2,  (3:1.2) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.380 [egnb:fitDataFile] 5: Loading [6.0,  (0:6.0) 2.7,  (1:2.7) 5.1,  (2:5.1) 1.6,  (3:1.6) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.380 [egnb:fitDataFile] 6: Loading [5.0,  (0:5.0) 3.4,  (1:3.4) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 1.0]
+01:45:23.380 [egnb:fitDataFile] 7: Loading [5.7,  (0:5.7) 2.8,  (1:2.8) 4.1,  (2:4.1) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.380 [egnb:fitDataFile] 8: Loading [5.1,  (0:5.1) 3.5,  (1:3.5) 1.4,  (2:1.4) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 1.0]
+01:45:23.380 [egnb:fitDataFile] 9: Loading [5.8,  (0:5.8) 2.7,  (1:2.7) 3.9,  (2:3.9) 1.2,  (3:1.2) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.381 [egnb:fitDataFile] 10: Loading [5.1,  (0:5.1) 3.3,  (1:3.3) 1.7,  (2:1.7) 0.5,  (3:0.5) Iris-setosa,  label: Iris-setosa, index: 1.0]
+01:45:23.381 [egnb:fitDataFile] 11: Loading [6.9,  (0:6.9) 3.1,  (1:3.1) 4.9,  (2:4.9) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.381 [egnb:fitDataFile] 12: Loading [4.9,  (0:4.9) 2.4,  (1:2.4) 3.3,  (2:3.3) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.381 [egnb:fitDataFile] 13: Loading [4.9,  (0:4.9) 2.5,  (1:2.5) 4.5,  (2:4.5) 1.7,  (3:1.7) Iris-virginica,  label: Iris-virginica, index: 1.0]
+01:45:23.382 [egnb:fitDataFile] Loading : [1.0  0.0  2.0  1.0  1.0  1.0  0.0  1.0  0.0  1.0  0.0  1.0  1.0  2.0  
+]
+01:45:23.382 [egnb:fitDataFile] Data: [[6.5,2.8,4.6,1.5],[5.1,3.7,1.5,0.4],[6.5,3.0,5.8,2.2],[5.1,2.5,3.0,1.1],[5.8,2.6,4.0,1.2],[6.0,2.7,5.1,1.6],[5.0,3.4,1.5,0.2],[5.7,2.8,4.1,1.3],[5.1,3.5,1.4,0.3],[5.8,2.7,3.9,1.2],[5.1,3.3,1.7,0.5],[6.9,3.1,4.9,1.5],[4.9,2.4,3.3,1.0],[4.9,2.5,4.5,1.7]]
+01:45:23.382 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.382 [gnb:fit] Fitting data...
+01:45:23.383 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.383 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.383 [gnb:fit] 0		01:45:23.383 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.5, found: [1  0  0  ]
+01:45:23.383 [gnb:updateFeatures] New count: [1  0  1  ]
+6.5		01:45:23.383 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [3  0  2  ]
+01:45:23.383 [gnb:updateFeatures] New count: [3  0  3  ]
+2.8		01:45:23.383 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.6, found: [0  0  1  ]
+01:45:23.383 [gnb:updateFeatures] New count: [0  0  2  ]
+4.6		01:45:23.383 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  3  ]
+01:45:23.383 [gnb:updateFeatures] New count: [0  0  4  ]
+1.5		1.0
+01:45:23.383 [gnb:fit] 1		01:45:23.383 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  2  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [0  3  0  ]
+5.1		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.7, found: [0  1  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [0  2  0  ]
+3.7		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  4  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [0  5  0  ]
+1.5		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.4, found: [0  2  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [0  3  0  ]
+0.4		0.0
+01:45:23.384 [gnb:fit] 2		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.5, found: [1  0  1  ]
+01:45:23.384 [gnb:updateFeatures] New count: [2  0  1  ]
+6.5		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [1  0  2  ]
+01:45:23.384 [gnb:updateFeatures] New count: [2  0  2  ]
+3.0		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.8, found: [0  0  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [1  0  0  ]
+5.8		01:45:23.384 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.2, found: [1  0  0  ]
+01:45:23.384 [gnb:updateFeatures] New count: [2  0  0  ]
+2.2		2.0
+01:45:23.385 [gnb:fit] 3		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  3  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [0  3  1  ]
+5.1		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [2  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [2  0  1  ]
+2.5		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.0, found: [0  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [0  0  1  ]
+3.0		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.1, found: [0  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [0  0  1  ]
+1.1		1.0
+01:45:23.385 [gnb:fit] 4		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [2  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [2  0  1  ]
+5.8		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.6, found: [1  0  1  ]
+01:45:23.385 [gnb:updateFeatures] New count: [1  0  2  ]
+2.6		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.0, found: [0  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [0  0  1  ]
+4.0		01:45:23.385 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.2, found: [0  0  0  ]
+01:45:23.385 [gnb:updateFeatures] New count: [0  0  1  ]
+1.2		1.0
+01:45:23.386 [gnb:fit] 5		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.0, found: [0  0  1  ]
+01:45:23.386 [gnb:updateFeatures] New count: [0  0  2  ]
+6.0		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  0  ]
+01:45:23.386 [gnb:updateFeatures] New count: [3  0  1  ]
+2.7		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [3  0  0  ]
+01:45:23.386 [gnb:updateFeatures] New count: [3  0  1  ]
+5.1		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  0  2  ]
+01:45:23.386 [gnb:updateFeatures] New count: [0  0  3  ]
+1.6		1.0
+01:45:23.386 [gnb:fit] 6		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  2  0  ]
+01:45:23.386 [gnb:updateFeatures] New count: [0  3  0  ]
+5.0		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [1  4  1  ]
+01:45:23.386 [gnb:updateFeatures] New count: [1  5  1  ]
+3.4		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  5  0  ]
+01:45:23.386 [gnb:updateFeatures] New count: [0  6  0  ]
+1.5		01:45:23.386 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  9  0  ]
+01:45:23.386 [gnb:updateFeatures] New count: [0  10  0  ]
+0.2		0.0
+01:45:23.387 [gnb:fit] 7		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [1  1  2  ]
+01:45:23.387 [gnb:updateFeatures] New count: [1  1  3  ]
+5.7		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [3  0  3  ]
+01:45:23.387 [gnb:updateFeatures] New count: [3  0  4  ]
+2.8		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.1, found: [0  0  0  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  0  1  ]
+4.1		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  3  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  0  4  ]
+1.3		1.0
+01:45:23.387 [gnb:fit] 8		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  3  1  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  4  1  ]
+5.1		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.5, found: [0  0  0  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  1  0  ]
+3.5		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  3  0  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  4  0  ]
+1.4		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.3, found: [0  2  0  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  3  0  ]
+0.3		0.0
+01:45:23.387 [gnb:fit] 9		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [2  0  1  ]
+01:45:23.387 [gnb:updateFeatures] New count: [2  0  2  ]
+5.8		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  1  ]
+01:45:23.387 [gnb:updateFeatures] New count: [3  0  2  ]
+2.7		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.9, found: [0  0  0  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  0  1  ]
+3.9		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.2, found: [0  0  1  ]
+01:45:23.387 [gnb:updateFeatures] New count: [0  0  2  ]
+1.2		1.0
+01:45:23.387 [gnb:fit] 10		01:45:23.387 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  4  1  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  5  1  ]
+5.1		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.3, found: [1  0  1  ]
+01:45:23.388 [gnb:updateFeatures] New count: [1  1  1  ]
+3.3		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.7, found: [0  1  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  2  0  ]
+1.7		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.5, found: [0  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  1  0  ]
+0.5		0.0
+01:45:23.388 [gnb:fit] 11		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.9, found: [1  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [1  0  1  ]
+6.9		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [2  0  2  ]
+01:45:23.388 [gnb:updateFeatures] New count: [2  0  3  ]
+3.1		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [2  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [2  0  1  ]
+4.9		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  4  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  0  5  ]
+1.5		1.0
+01:45:23.388 [gnb:fit] 12		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.9, found: [0  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  0  1  ]
+4.9		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.4, found: [0  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  0  1  ]
+2.4		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.3, found: [0  0  0  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  0  1  ]
+3.3		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  1  ]
+01:45:23.388 [gnb:updateFeatures] New count: [0  0  2  ]
+1.0		1.0
+01:45:23.388 [gnb:fit] 13		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [0  0  1  ]
+01:45:23.388 [gnb:updateFeatures] New count: [1  0  1  ]
+4.9		01:45:23.388 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [2  0  1  ]
+01:45:23.388 [gnb:updateFeatures] New count: [3  0  1  ]
+2.5		01:45:23.389 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.5, found: [0  0  4  ]
+01:45:23.389 [gnb:updateFeatures] New count: [1  0  4  ]
+4.5		01:45:23.389 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.7, found: [0  0  0  ]
+01:45:23.389 [gnb:updateFeatures] New count: [1  0  0  ]
+1.7		2.0
+01:45:23.389 [gnb:fit] total entries: 280
+01:45:23.389 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.5.arff_data,
+01:45:23.389 [egnb:fitDataFile] 0: Loading [5.2,  (0:5.2) 2.7,  (1:2.7) 3.9,  (2:3.9) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.389 [egnb:fitDataFile] 1: Loading [6.3,  (0:6.3) 2.9,  (1:2.9) 5.6,  (2:5.6) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.389 [egnb:fitDataFile] 2: Loading [5.5,  (0:5.5) 2.4,  (1:2.4) 3.7,  (2:3.7) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.389 [egnb:fitDataFile] 3: Loading [6.0,  (0:6.0) 3.0,  (1:3.0) 4.8,  (2:4.8) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.389 [egnb:fitDataFile] 4: Loading [5.7,  (0:5.7) 2.9,  (1:2.9) 4.2,  (2:4.2) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 5: Loading [6.7,  (0:6.7) 3.0,  (1:3.0) 5.0,  (2:5.0) 1.7,  (3:1.7) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 6: Loading [5.0,  (0:5.0) 3.5,  (1:3.5) 1.6,  (2:1.6) 0.6,  (3:0.6) Iris-setosa,  label: Iris-setosa, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 7: Loading [7.7,  (0:7.7) 2.8,  (1:2.8) 6.7,  (2:6.7) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 8: Loading [5.9,  (0:5.9) 3.0,  (1:3.0) 4.2,  (2:4.2) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 9: Loading [7.3,  (0:7.3) 2.9,  (1:2.9) 6.3,  (2:6.3) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 10: Loading [5.0,  (0:5.0) 2.0,  (1:2.0) 3.5,  (2:3.5) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 11: Loading [6.4,  (0:6.4) 3.1,  (1:3.1) 5.5,  (2:5.5) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 12: Loading [7.2,  (0:7.2) 3.2,  (1:3.2) 6.0,  (2:6.0) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 1.0]
+01:45:23.390 [egnb:fitDataFile] 13: Loading [5.2,  (0:5.2) 3.5,  (1:3.5) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 1.0]
+01:45:23.391 [egnb:fitDataFile] Loading : [1.0  2.0  1.0  2.0  1.0  1.0  0.0  2.0  1.0  2.0  1.0  2.0  2.0  0.0  
+]
+01:45:23.392 [egnb:fitDataFile] Data: [[5.2,2.7,3.9,1.4],[6.3,2.9,5.6,1.8],[5.5,2.4,3.7,1.0],[6.0,3.0,4.8,1.8],[5.7,2.9,4.2,1.3],[6.7,3.0,5.0,1.7],[5.0,3.5,1.6,0.6],[7.7,2.8,6.7,2.0],[5.9,3.0,4.2,1.5],[7.3,2.9,6.3,1.8],[5.0,2.0,3.5,1.0],[6.4,3.1,5.5,1.8],[7.2,3.2,6.0,1.8],[5.2,3.5,1.5,0.2]]
+01:45:23.392 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.392 [gnb:fit] Fitting data...
+01:45:23.392 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.392 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.392 [gnb:fit] 0		01:45:23.392 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.2, found: [0  0  0  ]
+01:45:23.392 [gnb:updateFeatures] New count: [0  0  1  ]
+5.2		01:45:23.392 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  2  ]
+01:45:23.392 [gnb:updateFeatures] New count: [3  0  3  ]
+2.7		01:45:23.392 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.9, found: [0  0  1  ]
+01:45:23.392 [gnb:updateFeatures] New count: [0  0  2  ]
+3.9		01:45:23.392 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  3  ]
+01:45:23.392 [gnb:updateFeatures] New count: [1  0  4  ]
+1.4		1.0
+01:45:23.393 [gnb:fit] 1		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.3, found: [2  0  1  ]
+01:45:23.393 [gnb:updateFeatures] New count: [3  0  1  ]
+6.3		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [0  1  2  ]
+01:45:23.393 [gnb:updateFeatures] New count: [1  1  2  ]
+2.9		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [3  0  0  ]
+01:45:23.393 [gnb:updateFeatures] New count: [4  0  0  ]
+5.6		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [1  0  0  ]
+01:45:23.393 [gnb:updateFeatures] New count: [2  0  0  ]
+1.8		2.0
+01:45:23.393 [gnb:fit] 2		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.5, found: [0  0  0  ]
+01:45:23.393 [gnb:updateFeatures] New count: [0  0  1  ]
+5.5		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.4, found: [0  0  1  ]
+01:45:23.393 [gnb:updateFeatures] New count: [0  0  2  ]
+2.4		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.7, found: [0  0  0  ]
+01:45:23.393 [gnb:updateFeatures] New count: [0  0  1  ]
+3.7		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  2  ]
+01:45:23.393 [gnb:updateFeatures] New count: [0  0  3  ]
+1.0		1.0
+01:45:23.393 [gnb:fit] 3		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.0, found: [0  0  2  ]
+01:45:23.393 [gnb:updateFeatures] New count: [1  0  2  ]
+6.0		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [2  0  2  ]
+01:45:23.393 [gnb:updateFeatures] New count: [3  0  2  ]
+3.0		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.8, found: [0  0  1  ]
+01:45:23.393 [gnb:updateFeatures] New count: [1  0  1  ]
+4.8		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [2  0  0  ]
+01:45:23.393 [gnb:updateFeatures] New count: [3  0  0  ]
+1.8		2.0
+01:45:23.393 [gnb:fit] 4		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [1  1  3  ]
+01:45:23.393 [gnb:updateFeatures] New count: [1  1  4  ]
+5.7		01:45:23.393 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [1  1  2  ]
+01:45:23.393 [gnb:updateFeatures] New count: [1  1  3  ]
+2.9		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.2, found: [0  0  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [0  0  1  ]
+4.2		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  4  ]
+01:45:23.394 [gnb:updateFeatures] New count: [0  0  5  ]
+1.3		1.0
+01:45:23.394 [gnb:fit] 5		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [1  0  2  ]
+01:45:23.394 [gnb:updateFeatures] New count: [1  0  3  ]
+6.7		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [3  0  2  ]
+01:45:23.394 [gnb:updateFeatures] New count: [3  0  3  ]
+3.0		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [2  0  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [2  0  1  ]
+5.0		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.7, found: [1  0  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [1  0  1  ]
+1.7		1.0
+01:45:23.394 [gnb:fit] 6		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  3  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [0  4  0  ]
+5.0		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  1  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [0  2  0  ]
+3.5		01:45:23.394 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  1  0  ]
+01:45:23.394 [gnb:updateFeatures] New count: [0  2  0  ]
+1.6		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.6, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [0  1  0  ]
+0.6		0.0
+01:45:23.395 [gnb:fit] 7		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.7, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [1  0  0  ]
+7.7		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [3  0  4  ]
+01:45:23.395 [gnb:updateFeatures] New count: [4  0  4  ]
+2.8		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.7, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [1  0  0  ]
+6.7		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.0, found: [3  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [4  0  0  ]
+2.0		2.0
+01:45:23.395 [gnb:fit] 8		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.9, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [0  0  1  ]
+5.9		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [3  0  3  ]
+01:45:23.395 [gnb:updateFeatures] New count: [3  0  4  ]
+3.0		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.2, found: [0  0  1  ]
+01:45:23.395 [gnb:updateFeatures] New count: [0  0  2  ]
+4.2		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  5  ]
+01:45:23.395 [gnb:updateFeatures] New count: [0  0  6  ]
+1.5		1.0
+01:45:23.395 [gnb:fit] 9		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.3, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [1  0  0  ]
+7.3		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [1  1  3  ]
+01:45:23.395 [gnb:updateFeatures] New count: [2  1  3  ]
+2.9		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.3, found: [0  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [1  0  0  ]
+6.3		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [3  0  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [4  0  0  ]
+1.8		2.0
+01:45:23.395 [gnb:fit] 10		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  4  0  ]
+01:45:23.395 [gnb:updateFeatures] New count: [0  4  1  ]
+5.0		01:45:23.395 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 2.0, found: [0  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  0  1  ]
+2.0		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  0  1  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  0  2  ]
+3.5		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  3  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  0  4  ]
+1.0		1.0
+01:45:23.396 [gnb:fit] 11		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.4, found: [3  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [4  0  0  ]
+6.4		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [2  0  3  ]
+01:45:23.396 [gnb:updateFeatures] New count: [3  0  3  ]
+3.1		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.5, found: [0  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [1  0  0  ]
+5.5		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [4  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [5  0  0  ]
+1.8		2.0
+01:45:23.396 [gnb:fit] 12		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.2, found: [0  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [1  0  0  ]
+7.2		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [3  2  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [4  2  0  ]
+3.2		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.0, found: [1  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [2  0  0  ]
+6.0		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [5  0  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [6  0  0  ]
+1.8		2.0
+01:45:23.396 [gnb:fit] 13		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.2, found: [0  0  1  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  1  1  ]
+5.2		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  2  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  3  0  ]
+3.5		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  6  0  ]
+01:45:23.396 [gnb:updateFeatures] New count: [0  7  0  ]
+1.5		01:45:23.396 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  10  0  ]
+01:45:23.397 [gnb:updateFeatures] New count: [0  11  0  ]
+0.2		0.0
+01:45:23.397 [gnb:fit] total entries: 350
+01:45:23.397 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.6.arff_data,
+01:45:23.397 [egnb:fitDataFile] 0: Loading [7.6,  (0:7.6) 3.0,  (1:3.0) 6.6,  (2:6.6) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.397 [egnb:fitDataFile] 1: Loading [4.9,  (0:4.9) 3.1,  (1:3.1) 1.5,  (2:1.5) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.397 [egnb:fitDataFile] 2: Loading [5.1,  (0:5.1) 3.8,  (1:3.8) 1.9,  (2:1.9) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.397 [egnb:fitDataFile] 3: Loading [7.2,  (0:7.2) 3.6,  (1:3.6) 6.1,  (2:6.1) 2.5,  (3:2.5) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.398 [egnb:fitDataFile] 4: Loading [6.5,  (0:6.5) 3.0,  (1:3.0) 5.2,  (2:5.2) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 5: Loading [4.8,  (0:4.8) 3.0,  (1:3.0) 1.4,  (2:1.4) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 6: Loading [6.8,  (0:6.8) 3.0,  (1:3.0) 5.5,  (2:5.5) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 7: Loading [5.9,  (0:5.9) 3.2,  (1:3.2) 4.8,  (2:4.8) 1.8,  (3:1.8) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 8: Loading [4.6,  (0:4.6) 3.2,  (1:3.2) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 9: Loading [7.7,  (0:7.7) 2.6,  (1:2.6) 6.9,  (2:6.9) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 10: Loading [5.8,  (0:5.8) 2.7,  (1:2.7) 4.1,  (2:4.1) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 11: Loading [6.4,  (0:6.4) 2.9,  (1:2.9) 4.3,  (2:4.3) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 12: Loading [6.6,  (0:6.6) 2.9,  (1:2.9) 4.6,  (2:4.6) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.398 [egnb:fitDataFile] 13: Loading [6.1,  (0:6.1) 2.9,  (1:2.9) 4.7,  (2:4.7) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.399 [egnb:fitDataFile] Loading : [2.0  0.0  0.0  2.0  2.0  0.0  2.0  1.0  0.0  2.0  1.0  1.0  1.0  1.0  
+]
+01:45:23.399 [egnb:fitDataFile] Data: [[7.6,3.0,6.6,2.1],[4.9,3.1,1.5,0.1],[5.1,3.8,1.9,0.4],[7.2,3.6,6.1,2.5],[6.5,3.0,5.2,2.0],[4.8,3.0,1.4,0.3],[6.8,3.0,5.5,2.1],[5.9,3.2,4.8,1.8],[4.6,3.2,1.4,0.2],[7.7,2.6,6.9,2.3],[5.8,2.7,4.1,1.0],[6.4,2.9,4.3,1.3],[6.6,2.9,4.6,1.3],[6.1,2.9,4.7,1.4]]
+01:45:23.399 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.399 [gnb:fit] Fitting data...
+01:45:23.399 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.399 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.399 [gnb:fit] 0		01:45:23.399 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.6, found: [0  0  0  ]
+01:45:23.399 [gnb:updateFeatures] New count: [1  0  0  ]
+7.6		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [3  0  4  ]
+01:45:23.400 [gnb:updateFeatures] New count: [4  0  4  ]
+3.0		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.6, found: [0  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [1  0  0  ]
+6.6		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.1, found: [1  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [2  0  0  ]
+2.1		2.0
+01:45:23.400 [gnb:fit] 1		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [1  0  1  ]
+01:45:23.400 [gnb:updateFeatures] New count: [1  1  1  ]
+4.9		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [3  0  3  ]
+01:45:23.400 [gnb:updateFeatures] New count: [3  1  3  ]
+3.1		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  7  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  8  0  ]
+1.5		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 0.1, found: [0  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  1  0  ]
+0.1		0.0
+01:45:23.400 [gnb:fit] 2		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  5  1  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  6  1  ]
+5.1		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.8, found: [0  1  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  2  0  ]
+3.8		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.9, found: [0  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  1  0  ]
+1.9		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.4, found: [0  3  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [0  4  0  ]
+0.4		0.0
+01:45:23.400 [gnb:fit] 3		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 7.2, found: [1  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [2  0  0  ]
+7.2		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.6, found: [0  2  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [1  2  0  ]
+3.6		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [1  0  0  ]
+01:45:23.400 [gnb:updateFeatures] New count: [2  0  0  ]
+6.1		01:45:23.400 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [1  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [2  0  0  ]
+2.5		2.0
+01:45:23.401 [gnb:fit] 4		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.5, found: [2  0  1  ]
+01:45:23.401 [gnb:updateFeatures] New count: [3  0  1  ]
+6.5		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [4  0  4  ]
+01:45:23.401 [gnb:updateFeatures] New count: [5  0  4  ]
+3.0		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.2, found: [0  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [1  0  0  ]
+5.2		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.0, found: [4  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [5  0  0  ]
+2.0		2.0
+01:45:23.401 [gnb:fit] 5		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.8, found: [0  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [0  1  0  ]
+4.8		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [5  0  4  ]
+01:45:23.401 [gnb:updateFeatures] New count: [5  1  4  ]
+3.0		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  4  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [0  5  0  ]
+1.4		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.3, found: [0  3  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [0  4  0  ]
+0.3		0.0
+01:45:23.401 [gnb:fit] 6		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.8, found: [1  0  1  ]
+01:45:23.401 [gnb:updateFeatures] New count: [2  0  1  ]
+6.8		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [5  1  4  ]
+01:45:23.401 [gnb:updateFeatures] New count: [6  1  4  ]
+3.0		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.5, found: [1  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [2  0  0  ]
+5.5		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.1, found: [2  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [3  0  0  ]
+2.1		2.0
+01:45:23.401 [gnb:fit] 7		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.9, found: [0  0  1  ]
+01:45:23.401 [gnb:updateFeatures] New count: [0  0  2  ]
+5.9		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [4  2  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [4  2  1  ]
+3.2		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.8, found: [1  0  1  ]
+01:45:23.401 [gnb:updateFeatures] New count: [1  0  2  ]
+4.8		01:45:23.401 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [6  0  0  ]
+01:45:23.401 [gnb:updateFeatures] New count: [6  0  1  ]
+1.8		1.0
+01:45:23.401 [gnb:fit] 8		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.6, found: [0  2  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  3  0  ]
+4.6		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [4  2  1  ]
+01:45:23.402 [gnb:updateFeatures] New count: [4  3  1  ]
+3.2		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  5  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  6  0  ]
+1.4		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  11  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  12  0  ]
+0.2		0.0
+01:45:23.402 [gnb:fit] 9		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 7.7, found: [1  0  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [2  0  0  ]
+7.7		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.6, found: [1  0  2  ]
+01:45:23.402 [gnb:updateFeatures] New count: [2  0  2  ]
+2.6		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.9, found: [0  0  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [1  0  0  ]
+6.9		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [3  0  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [4  0  0  ]
+2.3		2.0
+01:45:23.402 [gnb:fit] 10		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [2  0  2  ]
+01:45:23.402 [gnb:updateFeatures] New count: [2  0  3  ]
+5.8		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  3  ]
+01:45:23.402 [gnb:updateFeatures] New count: [3  0  4  ]
+2.7		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.1, found: [0  0  1  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  0  2  ]
+4.1		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  4  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  0  5  ]
+1.0		1.0
+01:45:23.402 [gnb:fit] 11		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.4, found: [4  0  0  ]
+01:45:23.402 [gnb:updateFeatures] New count: [4  0  1  ]
+6.4		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [2  1  3  ]
+01:45:23.402 [gnb:updateFeatures] New count: [2  1  4  ]
+2.9		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.3, found: [0  0  1  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  0  2  ]
+4.3		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  5  ]
+01:45:23.402 [gnb:updateFeatures] New count: [0  0  6  ]
+1.3		1.0
+01:45:23.402 [gnb:fit] 12		01:45:23.402 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.6, found: [0  0  0  ]
+01:45:23.403 [gnb:updateFeatures] New count: [0  0  1  ]
+6.6		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [2  1  4  ]
+01:45:23.403 [gnb:updateFeatures] New count: [2  1  5  ]
+2.9		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.6, found: [0  0  2  ]
+01:45:23.403 [gnb:updateFeatures] New count: [0  0  3  ]
+4.6		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  6  ]
+01:45:23.403 [gnb:updateFeatures] New count: [0  0  7  ]
+1.3		1.0
+01:45:23.403 [gnb:fit] 13		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [2  0  1  ]
+01:45:23.403 [gnb:updateFeatures] New count: [2  0  2  ]
+6.1		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.9, found: [2  1  5  ]
+01:45:23.403 [gnb:updateFeatures] New count: [2  1  6  ]
+2.9		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.7, found: [0  0  2  ]
+01:45:23.403 [gnb:updateFeatures] New count: [0  0  3  ]
+4.7		01:45:23.403 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  4  ]
+01:45:23.403 [gnb:updateFeatures] New count: [1  0  5  ]
+1.4		1.0
+01:45:23.403 [gnb:fit] total entries: 420
+01:45:23.403 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.7.arff_data,
+01:45:23.404 [egnb:fitDataFile] 0: Loading [5.0,  (0:5.0) 3.0,  (1:3.0) 1.6,  (2:1.6) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 1: Loading [4.8,  (0:4.8) 3.0,  (1:3.0) 1.4,  (2:1.4) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 2: Loading [7.9,  (0:7.9) 3.8,  (1:3.8) 6.4,  (2:6.4) 2.0,  (3:2.0) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 3: Loading [6.0,  (0:6.0) 2.2,  (1:2.2) 4.0,  (2:4.0) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 4: Loading [4.8,  (0:4.8) 3.4,  (1:3.4) 1.6,  (2:1.6) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 5: Loading [6.4,  (0:6.4) 2.8,  (1:2.8) 5.6,  (2:5.6) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 6: Loading [4.6,  (0:4.6) 3.1,  (1:3.1) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 7: Loading [6.6,  (0:6.6) 3.0,  (1:3.0) 4.4,  (2:4.4) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 8: Loading [5.2,  (0:5.2) 4.1,  (1:4.1) 1.5,  (2:1.5) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 9: Loading [6.0,  (0:6.0) 2.2,  (1:2.2) 5.0,  (2:5.0) 1.5,  (3:1.5) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 10: Loading [5.5,  (0:5.5) 2.5,  (1:2.5) 4.0,  (2:4.0) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 11: Loading [7.0,  (0:7.0) 3.2,  (1:3.2) 4.7,  (2:4.7) 1.4,  (3:1.4) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.404 [egnb:fitDataFile] 12: Loading [5.7,  (0:5.7) 3.8,  (1:3.8) 1.7,  (2:1.7) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.405 [egnb:fitDataFile] 13: Loading [5.6,  (0:5.6) 2.7,  (1:2.7) 4.2,  (2:4.2) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.405 [egnb:fitDataFile] Loading : [0.0  0.0  2.0  1.0  0.0  2.0  0.0  1.0  0.0  2.0  1.0  1.0  0.0  1.0  
+]
+01:45:23.405 [egnb:fitDataFile] Data: [[5.0,3.0,1.6,0.2],[4.8,3.0,1.4,0.1],[7.9,3.8,6.4,2.0],[6.0,2.2,4.0,1.0],[4.8,3.4,1.6,0.2],[6.4,2.8,5.6,2.1],[4.6,3.1,1.5,0.2],[6.6,3.0,4.4,1.4],[5.2,4.1,1.5,0.1],[6.0,2.2,5.0,1.5],[5.5,2.5,4.0,1.3],[7.0,3.2,4.7,1.4],[5.7,3.8,1.7,0.3],[5.6,2.7,4.2,1.3]]
+01:45:23.405 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.405 [gnb:fit] Fitting data...
+01:45:23.405 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.405 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.406 [gnb:fit] 0		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  4  1  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  5  1  ]
+5.0		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [6  1  4  ]
+01:45:23.406 [gnb:updateFeatures] New count: [6  2  4  ]
+3.0		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  2  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  3  0  ]
+1.6		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  12  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  13  0  ]
+0.2		0.0
+01:45:23.406 [gnb:fit] 1		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.8, found: [0  1  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  2  0  ]
+4.8		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [6  2  4  ]
+01:45:23.406 [gnb:updateFeatures] New count: [6  3  4  ]
+3.0		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  6  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  7  0  ]
+1.4		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.1, found: [0  1  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [0  2  0  ]
+0.1		0.0
+01:45:23.406 [gnb:fit] 2		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.9, found: [0  0  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [1  0  0  ]
+7.9		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.8, found: [0  2  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [1  2  0  ]
+3.8		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 6.4, found: [0  0  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [1  0  0  ]
+6.4		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.0, found: [5  0  0  ]
+01:45:23.406 [gnb:updateFeatures] New count: [6  0  0  ]
+2.0		2.0
+01:45:23.406 [gnb:fit] 3		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.0, found: [1  0  2  ]
+01:45:23.406 [gnb:updateFeatures] New count: [1  0  3  ]
+6.0		01:45:23.406 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.2, found: [0  0  1  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  0  2  ]
+2.2		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.0, found: [0  0  1  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  0  2  ]
+4.0		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  5  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  0  6  ]
+1.0		1.0
+01:45:23.407 [gnb:fit] 4		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.8, found: [0  2  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  3  0  ]
+4.8		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [1  5  1  ]
+01:45:23.407 [gnb:updateFeatures] New count: [1  6  1  ]
+3.4		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  3  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  4  0  ]
+1.6		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  13  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  14  0  ]
+0.2		0.0
+01:45:23.407 [gnb:fit] 5		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.4, found: [4  0  1  ]
+01:45:23.407 [gnb:updateFeatures] New count: [5  0  1  ]
+6.4		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [4  0  4  ]
+01:45:23.407 [gnb:updateFeatures] New count: [5  0  4  ]
+2.8		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [4  0  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [5  0  0  ]
+5.6		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.1, found: [3  0  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [4  0  0  ]
+2.1		2.0
+01:45:23.407 [gnb:fit] 6		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.6, found: [0  3  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  4  0  ]
+4.6		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [3  1  3  ]
+01:45:23.407 [gnb:updateFeatures] New count: [3  2  3  ]
+3.1		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  8  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  9  0  ]
+1.5		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  14  0  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  15  0  ]
+0.2		0.0
+01:45:23.407 [gnb:fit] 7		01:45:23.407 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.6, found: [0  0  1  ]
+01:45:23.407 [gnb:updateFeatures] New count: [0  0  2  ]
+6.6		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [6  3  4  ]
+01:45:23.408 [gnb:updateFeatures] New count: [6  3  5  ]
+3.0		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.4, found: [0  0  1  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  0  2  ]
+4.4		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  5  ]
+01:45:23.408 [gnb:updateFeatures] New count: [1  0  6  ]
+1.4		1.0
+01:45:23.408 [gnb:fit] 8		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.2, found: [0  1  1  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  2  1  ]
+5.2		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.1, found: [0  0  0  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  1  0  ]
+4.1		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  9  0  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  10  0  ]
+1.5		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.1, found: [0  2  0  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  3  0  ]
+0.1		0.0
+01:45:23.408 [gnb:fit] 9		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.0, found: [1  0  3  ]
+01:45:23.408 [gnb:updateFeatures] New count: [2  0  3  ]
+6.0		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.2, found: [0  0  2  ]
+01:45:23.408 [gnb:updateFeatures] New count: [1  0  2  ]
+2.2		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [2  0  1  ]
+01:45:23.408 [gnb:updateFeatures] New count: [3  0  1  ]
+5.0		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  0  6  ]
+01:45:23.408 [gnb:updateFeatures] New count: [1  0  6  ]
+1.5		2.0
+01:45:23.408 [gnb:fit] 10		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.5, found: [0  0  1  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  0  2  ]
+5.5		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [3  0  1  ]
+01:45:23.408 [gnb:updateFeatures] New count: [3  0  2  ]
+2.5		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.0, found: [0  0  2  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  0  3  ]
+4.0		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  7  ]
+01:45:23.408 [gnb:updateFeatures] New count: [0  0  8  ]
+1.3		1.0
+01:45:23.408 [gnb:fit] 11		01:45:23.408 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.0, found: [0  0  0  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  0  1  ]
+7.0		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [4  3  1  ]
+01:45:23.409 [gnb:updateFeatures] New count: [4  3  2  ]
+3.2		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.7, found: [0  0  3  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  0  4  ]
+4.7		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [1  0  6  ]
+01:45:23.409 [gnb:updateFeatures] New count: [1  0  7  ]
+1.4		1.0
+01:45:23.409 [gnb:fit] 12		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.7, found: [1  1  4  ]
+01:45:23.409 [gnb:updateFeatures] New count: [1  2  4  ]
+5.7		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.8, found: [1  2  0  ]
+01:45:23.409 [gnb:updateFeatures] New count: [1  3  0  ]
+3.8		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.7, found: [0  2  0  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  3  0  ]
+1.7		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.3, found: [0  4  0  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  5  0  ]
+0.3		0.0
+01:45:23.409 [gnb:fit] 13		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [1  0  2  ]
+01:45:23.409 [gnb:updateFeatures] New count: [1  0  3  ]
+5.6		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  4  ]
+01:45:23.409 [gnb:updateFeatures] New count: [3  0  5  ]
+2.7		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.2, found: [0  0  2  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  0  3  ]
+4.2		01:45:23.409 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  8  ]
+01:45:23.409 [gnb:updateFeatures] New count: [0  0  9  ]
+1.3		1.0
+01:45:23.409 [gnb:fit] total entries: 490
+01:45:23.410 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.8.arff_data,
+01:45:23.410 [egnb:fitDataFile] 0: Loading [5.5,  (0:5.5) 3.5,  (1:3.5) 1.3,  (2:1.3) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.410 [egnb:fitDataFile] 1: Loading [4.3,  (0:4.3) 3.0,  (1:3.0) 1.1,  (2:1.1) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.410 [egnb:fitDataFile] 2: Loading [6.1,  (0:6.1) 2.8,  (1:2.8) 4.7,  (2:4.7) 1.2,  (3:1.2) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.410 [egnb:fitDataFile] 3: Loading [5.1,  (0:5.1) 3.5,  (1:3.5) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.410 [egnb:fitDataFile] 4: Loading [6.7,  (0:6.7) 2.5,  (1:2.5) 5.8,  (2:5.8) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 5: Loading [5.5,  (0:5.5) 2.4,  (1:2.4) 3.8,  (2:3.8) 1.1,  (3:1.1) Iris-versicolor,  label: Iris-versicolor, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 6: Loading [6.3,  (0:6.3) 3.4,  (1:3.4) 5.6,  (2:5.6) 2.4,  (3:2.4) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 7: Loading [4.7,  (0:4.7) 3.2,  (1:3.2) 1.3,  (2:1.3) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 8: Loading [6.7,  (0:6.7) 3.3,  (1:3.3) 5.7,  (2:5.7) 2.5,  (3:2.5) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 9: Loading [5.8,  (0:5.8) 2.8,  (1:2.8) 5.1,  (2:5.1) 2.4,  (3:2.4) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 10: Loading [4.7,  (0:4.7) 3.2,  (1:3.2) 1.6,  (2:1.6) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 11: Loading [5.5,  (0:5.5) 4.2,  (1:4.2) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 12: Loading [7.7,  (0:7.7) 3.0,  (1:3.0) 6.1,  (2:6.1) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 2.0]
+01:45:23.411 [egnb:fitDataFile] 13: Loading [4.9,  (0:4.9) 3.1,  (1:3.1) 1.5,  (2:1.5) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 2.0]
+01:45:23.412 [egnb:fitDataFile] Loading : [0.0  0.0  1.0  0.0  2.0  1.0  2.0  0.0  2.0  2.0  0.0  0.0  2.0  0.0  
+]
+01:45:23.412 [egnb:fitDataFile] Data: [[5.5,3.5,1.3,0.2],[4.3,3.0,1.1,0.1],[6.1,2.8,4.7,1.2],[5.1,3.5,1.4,0.2],[6.7,2.5,5.8,1.8],[5.5,2.4,3.8,1.1],[6.3,3.4,5.6,2.4],[4.7,3.2,1.3,0.2],[6.7,3.3,5.7,2.5],[5.8,2.8,5.1,2.4],[4.7,3.2,1.6,0.2],[5.5,4.2,1.4,0.2],[7.7,3.0,6.1,2.3],[4.9,3.1,1.5,0.1]]
+01:45:23.412 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.412 [gnb:fit] Fitting data...
+01:45:23.412 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.412 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.412 [gnb:fit] 0		01:45:23.412 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.5, found: [0  0  2  ]
+01:45:23.412 [gnb:updateFeatures] New count: [0  1  2  ]
+5.5		01:45:23.412 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  3  0  ]
+01:45:23.412 [gnb:updateFeatures] New count: [0  4  0  ]
+3.5		01:45:23.412 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  2  0  ]
+01:45:23.412 [gnb:updateFeatures] New count: [0  3  0  ]
+1.3		01:45:23.412 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  15  0  ]
+01:45:23.412 [gnb:updateFeatures] New count: [0  16  0  ]
+0.2		0.0
+01:45:23.413 [gnb:fit] 1		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.3, found: [0  0  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  1  0  ]
+4.3		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [6  3  5  ]
+01:45:23.413 [gnb:updateFeatures] New count: [6  4  5  ]
+3.0		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 1.1, found: [0  0  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  1  0  ]
+1.1		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.1, found: [0  3  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  4  0  ]
+0.1		0.0
+01:45:23.413 [gnb:fit] 2		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [2  0  2  ]
+01:45:23.413 [gnb:updateFeatures] New count: [2  0  3  ]
+6.1		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [5  0  4  ]
+01:45:23.413 [gnb:updateFeatures] New count: [5  0  5  ]
+2.8		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.7, found: [0  0  4  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  0  5  ]
+4.7		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.2, found: [0  0  2  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  0  3  ]
+1.2		1.0
+01:45:23.413 [gnb:fit] 3		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [0  6  1  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  7  1  ]
+5.1		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  4  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  5  0  ]
+3.5		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  7  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  8  0  ]
+1.4		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  16  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [0  17  0  ]
+0.2		0.0
+01:45:23.413 [gnb:fit] 4		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [1  0  3  ]
+01:45:23.413 [gnb:updateFeatures] New count: [2  0  3  ]
+6.7		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [3  0  2  ]
+01:45:23.413 [gnb:updateFeatures] New count: [4  0  2  ]
+2.5		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [1  0  0  ]
+01:45:23.413 [gnb:updateFeatures] New count: [2  0  0  ]
+5.8		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [6  0  1  ]
+01:45:23.413 [gnb:updateFeatures] New count: [7  0  1  ]
+1.8		2.0
+01:45:23.413 [gnb:fit] 5		01:45:23.413 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.5, found: [0  1  2  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  1  3  ]
+5.5		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.4, found: [0  0  2  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  0  3  ]
+2.4		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 3.8, found: [0  0  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  0  1  ]
+3.8		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.1, found: [0  0  1  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  0  2  ]
+1.1		1.0
+01:45:23.414 [gnb:fit] 6		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.3, found: [3  0  1  ]
+01:45:23.414 [gnb:updateFeatures] New count: [4  0  1  ]
+6.3		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [1  6  1  ]
+01:45:23.414 [gnb:updateFeatures] New count: [2  6  1  ]
+3.4		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [5  0  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [6  0  0  ]
+5.6		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.4, found: [1  0  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [2  0  0  ]
+2.4		2.0
+01:45:23.414 [gnb:fit] 7		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.7, found: [0  0  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  1  0  ]
+4.7		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [4  3  2  ]
+01:45:23.414 [gnb:updateFeatures] New count: [4  4  2  ]
+3.2		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  3  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  4  0  ]
+1.3		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  17  0  ]
+01:45:23.414 [gnb:updateFeatures] New count: [0  18  0  ]
+0.2		0.0
+01:45:23.414 [gnb:fit] 8		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [2  0  3  ]
+01:45:23.414 [gnb:updateFeatures] New count: [3  0  3  ]
+6.7		01:45:23.414 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.3, found: [1  1  1  ]
+01:45:23.415 [gnb:updateFeatures] New count: [2  1  1  ]
+3.3		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 5.7, found: [0  0  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [1  0  0  ]
+5.7		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.5, found: [2  0  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [3  0  0  ]
+2.5		2.0
+01:45:23.415 [gnb:fit] 9		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [2  0  3  ]
+01:45:23.415 [gnb:updateFeatures] New count: [3  0  3  ]
+5.8		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [5  0  5  ]
+01:45:23.415 [gnb:updateFeatures] New count: [6  0  5  ]
+2.8		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.1, found: [3  0  1  ]
+01:45:23.415 [gnb:updateFeatures] New count: [4  0  1  ]
+5.1		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.4, found: [2  0  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [3  0  0  ]
+2.4		2.0
+01:45:23.415 [gnb:fit] 10		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.7, found: [0  1  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [0  2  0  ]
+4.7		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.2, found: [4  4  2  ]
+01:45:23.415 [gnb:updateFeatures] New count: [4  5  2  ]
+3.2		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  4  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [0  5  0  ]
+1.6		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  18  0  ]
+01:45:23.415 [gnb:updateFeatures] New count: [0  19  0  ]
+0.2		0.0
+01:45:23.415 [gnb:fit] 11		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.5, found: [0  1  3  ]
+01:45:23.415 [gnb:updateFeatures] New count: [0  2  3  ]
+5.5		01:45:23.415 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.2, found: [0  0  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [0  1  0  ]
+4.2		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.4, found: [0  8  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [0  9  0  ]
+1.4		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  19  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [0  20  0  ]
+0.2		0.0
+01:45:23.416 [gnb:fit] 12		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 7.7, found: [2  0  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [3  0  0  ]
+7.7		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [6  4  5  ]
+01:45:23.416 [gnb:updateFeatures] New count: [7  4  5  ]
+3.0		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [2  0  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [3  0  0  ]
+6.1		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [4  0  0  ]
+01:45:23.416 [gnb:updateFeatures] New count: [5  0  0  ]
+2.3		2.0
+01:45:23.416 [gnb:fit] 13		01:45:23.416 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [1  1  1  ]
+01:45:23.416 [gnb:updateFeatures] New count: [1  2  1  ]
+4.9		01:45:23.417 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [3  2  3  ]
+01:45:23.417 [gnb:updateFeatures] New count: [3  3  3  ]
+3.1		01:45:23.417 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  10  0  ]
+01:45:23.417 [gnb:updateFeatures] New count: [0  11  0  ]
+1.5		01:45:23.417 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.1, found: [0  4  0  ]
+01:45:23.417 [gnb:updateFeatures] New count: [0  5  0  ]
+0.1		0.0
+01:45:23.417 [gnb:fit] total entries: 560
+01:45:23.417 [egnb:fitDataFile] Loading file ./test-data/iris.arff.arff_data.9.arff_data,
+01:45:23.417 [egnb:fitDataFile] 0: Loading [6.7,  (0:6.7) 3.0,  (1:3.0) 5.2,  (2:5.2) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.417 [egnb:fitDataFile] 1: Loading [4.9,  (0:4.9) 3.1,  (1:3.1) 1.5,  (2:1.5) 0.1,  (3:0.1) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.417 [egnb:fitDataFile] 2: Loading [7.7,  (0:7.7) 3.8,  (1:3.8) 6.7,  (2:6.7) 2.2,  (3:2.2) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 3: Loading [5.0,  (0:5.0) 2.3,  (1:2.3) 3.3,  (2:3.3) 1.0,  (3:1.0) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 4: Loading [5.0,  (0:5.0) 3.5,  (1:3.5) 1.3,  (2:1.3) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 5: Loading [4.8,  (0:4.8) 3.1,  (1:3.1) 1.6,  (2:1.6) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 6: Loading [5.6,  (0:5.6) 3.0,  (1:3.0) 4.1,  (2:4.1) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 7: Loading [6.3,  (0:6.3) 2.7,  (1:2.7) 4.9,  (2:4.9) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 8: Loading [5.4,  (0:5.4) 3.7,  (1:3.7) 1.5,  (2:1.5) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 9: Loading [6.1,  (0:6.1) 2.8,  (1:2.8) 4.0,  (2:4.0) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 10: Loading [4.4,  (0:4.4) 3.0,  (1:3.0) 1.3,  (2:1.3) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 11: Loading [7.1,  (0:7.1) 3.0,  (1:3.0) 5.9,  (2:5.9) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 12: Loading [5.8,  (0:5.8) 4.0,  (1:4.0) 1.2,  (2:1.2) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.418 [egnb:fitDataFile] 13: Loading [5.0,  (0:5.0) 3.4,  (1:3.4) 1.6,  (2:1.6) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.419 [egnb:fitDataFile] Loading : [2.0  0.0  2.0  1.0  0.0  0.0  1.0  2.0  0.0  1.0  0.0  2.0  0.0  0.0  
+]
+01:45:23.419 [egnb:fitDataFile] Data: [[6.7,3.0,5.2,2.3],[4.9,3.1,1.5,0.1],[7.7,3.8,6.7,2.2],[5.0,2.3,3.3,1.0],[5.0,3.5,1.3,0.3],[4.8,3.1,1.6,0.2],[5.6,3.0,4.1,1.3],[6.3,2.7,4.9,1.8],[5.4,3.7,1.5,0.2],[6.1,2.8,4.0,1.3],[4.4,3.0,1.3,0.2],[7.1,3.0,5.9,2.1],[5.8,4.0,1.2,0.2],[5.0,3.4,1.6,0.4]]
+01:45:23.419 [gnb:fit] Labels: [2.0  0.0  1.0  ]
+01:45:23.419 [gnb:fit] Fitting data...
+01:45:23.419 [gnb:fit] # of labels: 14, # of features: 4
+01:45:23.419 [gnb:fit] INDEX	Feature: 0	Feature: 1	Feature: 2	Feature: 3	LABEL
+01:45:23.420 [gnb:fit] 0		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [3  0  3  ]
+01:45:23.420 [gnb:updateFeatures] New count: [4  0  3  ]
+6.7		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [7  4  5  ]
+01:45:23.420 [gnb:updateFeatures] New count: [8  4  5  ]
+3.0		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.2, found: [1  0  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [2  0  0  ]
+5.2		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [5  0  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [6  0  0  ]
+2.3		2.0
+01:45:23.420 [gnb:fit] 1		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [1  2  1  ]
+01:45:23.420 [gnb:updateFeatures] New count: [1  3  1  ]
+4.9		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [3  3  3  ]
+01:45:23.420 [gnb:updateFeatures] New count: [3  4  3  ]
+3.1		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  11  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  12  0  ]
+1.5		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.1, found: [0  5  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  6  0  ]
+0.1		0.0
+01:45:23.420 [gnb:fit] 2		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 7.7, found: [3  0  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [4  0  0  ]
+7.7		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.8, found: [1  3  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [2  3  0  ]
+3.8		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.7, found: [1  0  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [2  0  0  ]
+6.7		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.2, found: [2  0  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [3  0  0  ]
+2.2		2.0
+01:45:23.420 [gnb:fit] 3		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  5  1  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  5  2  ]
+5.0		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.3, found: [0  1  0  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  1  1  ]
+2.3		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.3, found: [0  0  1  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  0  2  ]
+3.3		01:45:23.420 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.0, found: [0  0  6  ]
+01:45:23.420 [gnb:updateFeatures] New count: [0  0  7  ]
+1.0		1.0
+01:45:23.420 [gnb:fit] 4		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  5  2  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  6  2  ]
+5.0		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.5, found: [0  5  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  6  0  ]
+3.5		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  4  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  5  0  ]
+1.3		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.3, found: [0  5  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  6  0  ]
+0.3		0.0
+01:45:23.421 [gnb:fit] 5		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.8, found: [0  3  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  4  0  ]
+4.8		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.1, found: [3  4  3  ]
+01:45:23.421 [gnb:updateFeatures] New count: [3  5  3  ]
+3.1		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  5  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  6  0  ]
+1.6		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  20  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  21  0  ]
+0.2		0.0
+01:45:23.421 [gnb:fit] 6		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.6, found: [1  0  3  ]
+01:45:23.421 [gnb:updateFeatures] New count: [1  0  4  ]
+5.6		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [8  4  5  ]
+01:45:23.421 [gnb:updateFeatures] New count: [8  4  6  ]
+3.0		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.1, found: [0  0  2  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  0  3  ]
+4.1		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  9  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  0  10  ]
+1.3		1.0
+01:45:23.421 [gnb:fit] 7		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.3, found: [4  0  1  ]
+01:45:23.421 [gnb:updateFeatures] New count: [5  0  1  ]
+6.3		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.7, found: [3  0  5  ]
+01:45:23.421 [gnb:updateFeatures] New count: [4  0  5  ]
+2.7		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.9, found: [2  0  1  ]
+01:45:23.421 [gnb:updateFeatures] New count: [3  0  1  ]
+4.9		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.8, found: [7  0  1  ]
+01:45:23.421 [gnb:updateFeatures] New count: [8  0  1  ]
+1.8		2.0
+01:45:23.421 [gnb:fit] 8		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.4, found: [0  2  0  ]
+01:45:23.421 [gnb:updateFeatures] New count: [0  3  0  ]
+5.4		01:45:23.421 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.7, found: [0  2  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  3  0  ]
+3.7		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.5, found: [0  12  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  13  0  ]
+1.5		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  21  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  22  0  ]
+0.2		0.0
+01:45:23.422 [gnb:fit] 9		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 6.1, found: [2  0  3  ]
+01:45:23.422 [gnb:updateFeatures] New count: [2  0  4  ]
+6.1		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.8, found: [6  0  5  ]
+01:45:23.422 [gnb:updateFeatures] New count: [6  0  6  ]
+2.8		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.0, found: [0  0  3  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  0  4  ]
+4.0		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  0  10  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  0  11  ]
+1.3		1.0
+01:45:23.422 [gnb:fit] 10		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 4.4, found: [0  2  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  3  0  ]
+4.4		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [8  4  6  ]
+01:45:23.422 [gnb:updateFeatures] New count: [8  5  6  ]
+3.0		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.3, found: [0  5  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  6  0  ]
+1.3		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  22  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [0  23  0  ]
+0.2		0.0
+01:45:23.422 [gnb:fit] 11		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 7.1, found: [0  0  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [1  0  0  ]
+7.1		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.0, found: [8  5  6  ]
+01:45:23.422 [gnb:updateFeatures] New count: [9  5  6  ]
+3.0		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.9, found: [1  0  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [2  0  0  ]
+5.9		01:45:23.422 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 2.1, found: [4  0  0  ]
+01:45:23.422 [gnb:updateFeatures] New count: [5  0  0  ]
+2.1		2.0
+01:45:23.423 [gnb:fit] 12		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.8, found: [3  0  3  ]
+01:45:23.423 [gnb:updateFeatures] New count: [3  1  3  ]
+5.8		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat not contains: 4.0, found: [0  0  0  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  1  0  ]
+4.0		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.2, found: [0  1  0  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  2  0  ]
+1.2		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.2, found: [0  23  0  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  24  0  ]
+0.2		0.0
+01:45:23.423 [gnb:fit] 13		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 5.0, found: [0  6  2  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  7  2  ]
+5.0		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 3.4, found: [2  6  1  ]
+01:45:23.423 [gnb:updateFeatures] New count: [2  7  1  ]
+3.4		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 1.6, found: [0  6  0  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  7  0  ]
+1.6		01:45:23.423 [gnb:updateFeatures] Feature Index Exists: true, Feat contains: 0.4, found: [0  4  0  ]
+01:45:23.423 [gnb:updateFeatures] New count: [0  5  0  ]
+0.4		0.0
+01:45:23.423 [gnb:fit] total entries: 630
+01:45:23.424 [egnb:predict] Loading file ./test-data/iris.arff.arff_data.10.arff_data,
+01:45:23.424 [egnb:predict] 0: Loading [5.5,  (0:5.5) 2.3,  (1:2.3) 4.0,  (2:4.0) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.424 [egnb:predict] 1: Loading [6.9,  (0:6.9) 3.1,  (1:3.1) 5.1,  (2:5.1) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.424 [egnb:predict] 2: Loading [5.2,  (0:5.2) 3.4,  (1:3.4) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.424 [egnb:predict] 3: Loading [6.7,  (0:6.7) 3.3,  (1:3.3) 5.7,  (2:5.7) 2.1,  (3:2.1) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.424 [egnb:predict] 4: Loading [5.4,  (0:5.4) 3.9,  (1:3.9) 1.3,  (2:1.3) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.424 [egnb:predict] 5: Loading [5.1,  (0:5.1) 3.8,  (1:3.8) 1.5,  (2:1.5) 0.3,  (3:0.3) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.424 [egnb:predict] 6: Loading [6.4,  (0:6.4) 3.2,  (1:3.2) 4.5,  (2:4.5) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.424 [egnb:predict] 7: Loading [6.0,  (0:6.0) 2.9,  (1:2.9) 4.5,  (2:4.5) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.424 [egnb:predict] 8: Loading [6.3,  (0:6.3) 2.8,  (1:2.8) 5.1,  (2:5.1) 1.5,  (3:1.5) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.424 [egnb:predict] 9: Loading [7.2,  (0:7.2) 3.0,  (1:3.0) 5.8,  (2:5.8) 1.6,  (3:1.6) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.424 [egnb:predict] 10: Loading [5.7,  (0:5.7) 3.0,  (1:3.0) 4.2,  (2:4.2) 1.2,  (3:1.2) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 11: Loading [5.0,  (0:5.0) 3.3,  (1:3.3) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.425 [egnb:predict] 12: Loading [4.8,  (0:4.8) 3.4,  (1:3.4) 1.9,  (2:1.9) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.425 [egnb:predict] 13: Loading [5.5,  (0:5.5) 2.6,  (1:2.6) 4.4,  (2:4.4) 1.2,  (3:1.2) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 14: Loading [5.4,  (0:5.4) 3.9,  (1:3.9) 1.7,  (2:1.7) 0.4,  (3:0.4) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.425 [egnb:predict] 15: Loading [6.3,  (0:6.3) 2.5,  (1:2.5) 4.9,  (2:4.9) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 16: Loading [6.2,  (0:6.2) 2.8,  (1:2.8) 4.8,  (2:4.8) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.425 [egnb:predict] 17: Loading [4.9,  (0:4.9) 3.0,  (1:3.0) 1.4,  (2:1.4) 0.2,  (3:0.2) Iris-setosa,  label: Iris-setosa, index: 0.0]
+01:45:23.425 [egnb:predict] 18: Loading [6.9,  (0:6.9) 3.2,  (1:3.2) 5.7,  (2:5.7) 2.3,  (3:2.3) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.425 [egnb:predict] 19: Loading [5.6,  (0:5.6) 2.5,  (1:2.5) 3.9,  (2:3.9) 1.1,  (3:1.1) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 20: Loading [5.4,  (0:5.4) 3.0,  (1:3.0) 4.5,  (2:4.5) 1.5,  (3:1.5) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 21: Loading [6.3,  (0:6.3) 2.3,  (1:2.3) 4.4,  (2:4.4) 1.3,  (3:1.3) Iris-versicolor,  label: Iris-versicolor, index: 0.0]
+01:45:23.425 [egnb:predict] 22: Loading [6.5,  (0:6.5) 3.0,  (1:3.0) 5.5,  (2:5.5) 1.8,  (3:1.8) Iris-virginica,  label: Iris-virginica, index: 0.0]
+01:45:23.426 [egnb:predict] Loading : [1.0  2.0  0.0  2.0  0.0  0.0  1.0  1.0  2.0  2.0  1.0  0.0  0.0  1.0  
+0.0  1.0  2.0  0.0  2.0  1.0  1.0  1.0  2.0  ]
+01:45:23.426 [egnb:predict] Data: [[5.5,2.3,4.0,1.3],[6.9,3.1,5.1,2.3],[5.2,3.4,1.4,0.2],[6.7,3.3,5.7,2.1],[5.4,3.9,1.3,0.4],[5.1,3.8,1.5,0.3],[6.4,3.2,4.5,1.5],[6.0,2.9,4.5,1.5],[6.3,2.8,5.1,1.5],[7.2,3.0,5.8,1.6],[5.7,3.0,4.2,1.2],[5.0,3.3,1.4,0.2],[4.8,3.4,1.9,0.2],[5.5,2.6,4.4,1.2],[5.4,3.9,1.7,0.4],[6.3,2.5,4.9,1.5],[6.2,2.8,4.8,1.8],[4.9,3.0,1.4,0.2],[6.9,3.2,5.7,2.3],[5.6,2.5,3.9,1.1],[5.4,3.0,4.5,1.5],[6.3,2.3,4.4,1.3],[6.5,3.0,5.5,1.8]]
+
+01:45:23.427 [xilodyne.machinelearning.classifier.bayes.GaussianNaiveBayesClassifier] [Log Level: ALL]
+01:45:23.427 [gnb:predict] Prediction started...
+01:45:23.427 [gnb:predict] Data set size: 23
+01:45:23.427 [gnb:predict] 
+Data set: [[5.5,2.3,4.0,1.3],[6.9,3.1,5.1,2.3],[5.2,3.4,1.4,0.2],[6.7,3.3,5.7,2.1],[5.4,3.9,1.3,0.4],[5.1,3.8,1.5,0.3],[6.4,3.2,4.5,1.5],[6.0,2.9,4.5,1.5],[6.3,2.8,5.1,1.5],[7.2,3.0,5.8,1.6],[5.7,3.0,4.2,1.2],[5.0,3.3,1.4,0.2],[4.8,3.4,1.9,0.2],[5.5,2.6,4.4,1.2],[5.4,3.9,1.7,0.4],[6.3,2.5,4.9,1.5],[6.2,2.8,4.8,1.8],[4.9,3.0,1.4,0.2],[6.9,3.2,5.7,2.3],[5.6,2.5,3.9,1.1],[5.4,3.0,4.5,1.5],[6.3,2.3,4.4,1.3],[6.5,3.0,5.5,1.8]]
+01:45:23.427 [gnb:calMeanVar] Calculate Mean & Var...
+01:45:23.427 [gnb:calculateVarianceSample] FeatKey: 3 feat size: 22
+01:45:23.427 [gnb:calculateVarianceSample] Result: 0.07085366495998531
+01:45:23.427 [gnb:calMeanVar] Calculated mean/var for Label 2.0, FeaturesListIndex 3	Mean: 2.0499997	Variance: 0.07085366495998531
+01:45:23.427 [gnb:calculateVarianceSample] FeatKey: 2 feat size: 43
+01:45:23.427 [gnb:calculateVarianceSample] Result: 0.33112657866433615
+01:45:23.427 [gnb:calMeanVar] Calculated mean/var for Label 2.0, FeaturesListIndex 2	Mean: 5.590476	Variance: 0.33112657866433615
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 1 feat size: 22
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.11844947453156658
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 2.0, FeaturesListIndex 1	Mean: 2.9642859	Variance: 0.11844947453156658
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 0 feat size: 35
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.45161433361198117
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 2.0, FeaturesListIndex 0	Mean: 6.590476	Variance: 0.45161433361198117
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 3 feat size: 22
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.011971208100606288
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 0.0, FeaturesListIndex 3	Mean: 0.23953491	Variance: 0.011971208100606288
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 2 feat size: 43
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.028239205756801226
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 0.0, FeaturesListIndex 2	Mean: 1.4558139	Variance: 0.028239205756801226
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 1 feat size: 22
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.14999999753422208
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 0.0, FeaturesListIndex 1	Mean: 3.3999999	Variance: 0.14999999753422208
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 0 feat size: 35
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.1348615592564567
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 0.0, FeaturesListIndex 0	Mean: 4.988372	Variance: 0.1348615592564567
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 3 feat size: 22
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.042756097042001784
+01:45:23.428 [gnb:calMeanVar] Calculated mean/var for Label 1.0, FeaturesListIndex 3	Mean: 1.3219512	Variance: 0.042756097042001784
+01:45:23.428 [gnb:calculateVarianceSample] FeatKey: 2 feat size: 43
+01:45:23.428 [gnb:calculateVarianceSample] Result: 0.24937804171640893
+01:45:23.429 [gnb:calMeanVar] Calculated mean/var for Label 1.0, FeaturesListIndex 2	Mean: 4.2365856	Variance: 0.24937804171640893
+01:45:23.429 [gnb:calculateVarianceSample] FeatKey: 1 feat size: 22
+01:45:23.429 [gnb:calculateVarianceSample] Result: 0.09728048338802182
+01:45:23.429 [gnb:calMeanVar] Calculated mean/var for Label 1.0, FeaturesListIndex 1	Mean: 2.785366	Variance: 0.09728048338802182
+01:45:23.429 [gnb:calculateVarianceSample] FeatKey: 0 feat size: 35
+01:45:23.429 [gnb:calculateVarianceSample] Result: 0.29304878324619493
+01:45:23.429 [gnb:calMeanVar] Calculated mean/var for Label 1.0, FeaturesListIndex 0	Mean: 5.953658	Variance: 0.29304878324619493
+01:45:23.430 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.5	1:2.3	2:4.0	3:1.3	
+01:45:23.430 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.5:0.15913273)*(2.3:0.17995988)*(4.0:0.01520669)*(1.3:0.02830220)*(0.333))	=4.1083645E-6
+01:45:23.431 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.5:0.41161186)*(2.3:0.01824779)*(4.0:0.00000000)*(1.3:0.00000000)*(0.341))	=0.0
+01:45:23.431 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.5:0.51872772)*(2.3:0.38110131)*(4.0:0.71407264)*(1.3:1.91850889)*(0.325))	=0.088125065
+01:45:23.431 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.9	1:3.1	2:5.1	3:2.3	
+01:45:23.431 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.9:0.53390104)*(3.1:1.07245278)*(5.1:0.48211801)*(2.3:0.96423525)*(0.333))	=0.08872664
+01:45:23.432 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.9:0.00000142)*(3.1:0.76309067)*(5.1:0.00000000)*(2.3:0.00000000)*(0.341))	=0.0
+01:45:23.432 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.9:0.15989453)*(3.1:0.76899600)*(5.1:0.17920357)*(2.3:0.00002674)*(0.325))	=1.917376E-7
+01:45:23.432 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.2	1:3.4	2:1.4	3:0.2	
+01:45:23.433 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.2:0.06980532)*(3.4:0.52012420)*(1.4:0.00000000)*(0.2:0.00000000)*(0.333))	=1.2441598E-24
+01:45:23.433 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.2:0.92013848)*(3.4:1.03006458)*(1.4:2.24661851)*(0.2:3.41577649)*(0.341))	=2.4821863
+01:45:23.433 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.2:0.27961159)*(3.4:0.18350022)*(1.4:0.00000008)*(0.2:0.00000078)*(0.325))	=1.0261714E-15
+01:45:23.434 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.7	1:3.3	2:5.7	3:2.1	
+01:45:23.434 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.7:0.58581233)*(3.3:0.72032619)*(5.7:0.68084246)*(2.1:1.47253978)*(0.333))	=0.14101982
+01:45:23.434 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.7:0.00002083)*(3.3:0.99629509)*(5.7:0.00000000)*(2.1:0.00000000)*(0.341))	=0.0
+01:45:23.435 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.7:0.28489673)*(3.3:0.32787591)*(5.7:0.01090657)*(2.1:0.00162534)*(0.325))	=5.388179E-7
+01:45:23.435 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.4	1:3.9	2:1.3	3:0.4	
+01:45:23.435 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.4:0.12361918)*(3.9:0.02877550)*(1.3:0.00000000)*(0.4:0.00000001)*(0.333))	=4.7329584E-24
+01:45:23.435 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.4:0.57962328)*(3.9:0.44766384)*(1.3:1.54453123)*(0.4:1.24387264)*(0.341))	=0.1701251
+01:45:23.436 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.4:0.43681550)*(3.9:0.00215586)*(1.3:0.00000002)*(0.4:0.00009301)*(0.325))	=7.0523587E-16
+01:45:23.436 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.1	1:3.8	2:1.5	3:0.3	
+01:45:23.436 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.1:0.05074175)*(3.8:0.06078131)*(1.5:0.00000000)*(0.3:0.00000000)*(0.333))	=4.681305E-24
+01:45:23.436 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.1:1.03729475)*(3.8:0.60428333)*(1.5:2.29335141)*(0.3:3.12985277)*(0.341))	=1.5354484
+01:45:23.437 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.1:0.21254660)*(3.8:0.00644038)*(1.5:0.00000024)*(0.3:0.00000958)*(0.325))	=1.0268619E-15
+01:45:23.437 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.4	1:3.2	2:4.5	3:1.5	
+01:45:23.437 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.4:0.57027113)*(3.2:0.91682422)*(4.5:0.11510558)*(1.5:0.17727584)*(0.333))	=0.0035562492
+01:45:23.438 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.4:0.00067210)*(3.2:0.90148520)*(4.5:0.00000000)*(1.5:0.00000000)*(0.341))	=0.0
+01:45:23.438 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.4:0.52458817)*(3.2:0.52861363)*(4.5:0.69512314)*(1.5:1.33170426)*(0.325))	=0.083529465
+01:45:23.438 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.0	1:2.9	2:4.5	3:1.5	
+01:45:23.438 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.0:0.40353480)*(2.9:1.13911426)*(4.5:0.11510558)*(1.5:0.17727584)*(0.333))	=0.0031266045
+01:45:23.439 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.0:0.02444291)*(2.9:0.44766456)*(4.5:0.00000000)*(1.5:0.00000000)*(0.341))	=0.0
+01:45:23.439 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.0:0.73425812)*(2.9:1.19554043)*(4.5:0.69512314)*(1.5:1.33170426)*(0.325))	=0.26442096
+01:45:23.439 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.3	1:2.8	2:5.1	3:1.5	
+01:45:23.439 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.3:0.54069960)*(2.8:1.03434253)*(5.1:0.48211801)*(1.5:0.17727584)*(0.333))	=0.015933167
+01:45:23.440 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.3:0.00184466)*(2.8:0.31024957)*(5.1:0.00000000)*(1.5:0.00000000)*(0.341))	=0.0
+01:45:23.440 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.3:0.60055923)*(2.8:1.27767146)*(5.1:0.17920357)*(1.5:1.33170426)*(0.325))	=0.05958581
+01:45:23.440 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:7.2	1:3.0	2:5.8	3:1.6	
+01:45:23.440 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(7.2:0.39345101)*(3.0:1.15293598)*(5.8:0.64881957)*(1.6:0.35902300)*(0.333))	=0.035222553
+01:45:23.441 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(7.2:0.00000001)*(3.0:0.60428369)*(5.8:0.00000000)*(1.6:0.00000000)*(0.341))	=0.0
+01:45:23.441 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(7.2:0.05204809)*(3.0:1.00940597)*(5.8:0.00594462)*(1.6:0.78120935)*(0.325))	=7.939181E-5
+01:45:23.442 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.7	1:3.0	2:4.2	3:1.2	
+01:45:23.442 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.7:0.24675015)*(3.0:1.15293598)*(4.2:0.03741158)*(1.2:0.00915091)*(0.333))	=3.246473E-5
+01:45:23.442 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.7:0.16617408)*(3.0:0.60428369)*(4.2:0.00000000)*(1.2:0.00000000)*(0.341))	=0.0
+01:45:23.443 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.7:0.66033256)*(3.0:1.00940597)*(4.2:0.79673785)*(1.2:1.62136054)*(0.325))	=0.2801799
+01:45:23.444 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.0	1:3.3	2:1.4	3:0.2	
+01:45:23.444 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.0:0.03607662)*(3.3:0.72032619)*(1.4:0.00000000)*(0.2:0.00000000)*(0.333))	=8.905035E-25
+01:45:23.444 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.0:1.08579612)*(3.3:0.99629509)*(1.4:2.24661851)*(0.2:3.41577649)*(0.341))	=2.833042
+01:45:23.445 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.0:0.15614690)*(3.3:0.32787591)*(1.4:0.00000008)*(0.2:0.00000078)*(0.325))	=1.0239319E-15
+01:45:23.445 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:4.8	1:3.4	2:1.9	3:0.2	
+01:45:23.445 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(4.8:0.01706464)*(3.4:0.52012420)*(1.9:0.00000000)*(0.2:0.00000000)*(0.333))	=1.1673012E-22
+01:45:23.446 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(4.8:0.95242685)*(3.4:1.03006458)*(1.9:0.07216433)*(0.2:3.41577649)*(0.341))	=0.08252889
+01:45:23.446 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(4.8:0.07607329)*(3.4:0.18350022)*(1.9:0.00001408)*(0.2:0.00000078)*(0.325))	=4.990907E-14
+01:45:23.446 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.5	1:2.6	2:4.4	3:1.2	
+01:45:23.447 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.5:0.15913273)*(2.6:0.66200876)*(4.4:0.08156719)*(1.2:0.00915091)*(0.333))	=2.6210899E-5
+01:45:23.447 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.5:0.41161186)*(2.6:0.12200276)*(4.4:0.00000000)*(1.2:0.00000000)*(0.341))	=0.0
+01:45:23.447 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.5:0.51872772)*(2.6:1.07200849)*(4.4:0.75723046)*(1.2:1.62136054)*(0.325))	=0.22215633
+01:45:23.448 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.4	1:3.9	2:1.7	3:0.4	
+01:45:23.448 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.4:0.12361918)*(3.9:0.02877550)*(1.7:0.00000000)*(0.4:0.00000001)*(0.333))	=6.6237477E-22
+01:45:23.448 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.4:0.57962328)*(3.9:0.44766384)*(1.7:0.82599795)*(0.4:1.24387264)*(0.341))	=0.09098099
+01:45:23.449 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.4:0.43681550)*(3.9:0.00215586)*(1.7:0.00000199)*(0.4:0.00009301)*(0.325))	=5.6839668E-14
+01:45:23.449 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.3	1:2.5	2:4.9	3:1.5	
+01:45:23.449 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.3:0.54069960)*(2.5:0.46662298)*(4.9:0.33749226)*(1.5:0.17727584)*(0.333))	=0.0050316947
+01:45:23.450 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.3:0.00184466)*(2.5:0.06922606)*(4.9:0.00000000)*(1.5:0.00000000)*(0.341))	=0.0
+01:45:23.450 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.3:0.60055923)*(2.5:0.84163266)*(4.9:0.33055615)*(1.5:1.33170426)*(0.325))	=0.07240103
+01:45:23.451 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.2	1:2.8	2:4.8	3:1.8	
+01:45:23.451 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.2:0.50143439)*(2.8:1.03434253)*(4.8:0.26986438)*(1.8:0.96423692)*(0.333))	=0.04498695
+01:45:23.451 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.2:0.00470109)*(2.8:0.31024957)*(4.8:0.00000000)*(1.8:0.00000000)*(0.341))	=0.0
+01:45:23.452 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.2:0.66446710)*(2.8:1.27767146)*(4.8:0.42273861)*(1.8:0.13327923)*(0.325))	=0.015564688
+01:45:23.452 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:4.9	1:3.0	2:1.4	3:0.2	
+01:45:23.452 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(4.9:0.02508821)*(3.0:1.15293598)*(1.4:0.00000000)*(0.2:0.00000000)*(0.333))	=9.911867E-25
+01:45:23.452 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(4.9:1.05533755)*(3.0:0.60428369)*(1.4:2.24661851)*(0.2:3.41577649)*(0.341))	=1.6701249
+01:45:23.453 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(4.9:0.11086456)*(3.0:1.00940597)*(1.4:0.00000008)*(0.2:0.00000078)*(0.325))	=2.2381376E-15
+01:45:23.453 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.9	1:3.2	2:5.7	3:2.3	
+01:45:23.453 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.9:0.53390104)*(3.2:0.91682422)*(5.7:0.68084246)*(2.3:0.96423525)*(0.333))	=0.10711622
+01:45:23.453 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.9:0.00000142)*(3.2:0.90148520)*(5.7:0.00000000)*(2.3:0.00000000)*(0.341))	=0.0
+01:45:23.454 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.9:0.15989453)*(3.2:0.52861363)*(5.7:0.01090657)*(2.3:0.00002674)*(0.325))	=8.021635E-9
+01:45:23.454 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.6	1:2.5	2:3.9	3:1.1	
+01:45:23.454 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.6:0.20036262)*(2.5:0.46662298)*(3.9:0.00926564)*(1.1:0.00256929)*(0.333))	=7.419086E-7
+01:45:23.454 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.6:0.27141073)*(2.5:0.06922606)*(3.9:0.00000000)*(1.1:0.00000000)*(0.341))	=0.0
+01:45:23.455 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.6:0.59533441)*(2.5:0.84163266)*(3.9:0.63655108)*(1.1:1.08447719)*(0.325))	=0.1125513
+01:45:23.455 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:5.4	1:3.0	2:4.5	3:1.5	
+01:45:23.455 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(5.4:0.12361918)*(3.0:1.15293598)*(4.5:0.11510558)*(1.5:0.17727584)*(0.333))	=9.6942845E-4
+01:45:23.455 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(5.4:0.57962328)*(3.0:0.60428369)*(4.5:0.00000000)*(1.5:0.00000000)*(0.341))	=0.0
+01:45:23.456 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(5.4:0.43681550)*(3.0:1.00940597)*(4.5:0.69512314)*(1.5:1.33170426)*(0.325))	=0.13281488
+01:45:23.456 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.3	1:2.3	2:4.4	3:1.3	
+01:45:23.456 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.3:0.54069960)*(2.3:0.17995988)*(4.4:0.08156719)*(1.3:0.02830220)*(0.333))	=7.487662E-5
+01:45:23.457 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.3:0.00184466)*(2.3:0.01824779)*(4.4:0.00000000)*(1.3:0.00000000)*(0.341))	=0.0
+01:45:23.457 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.3:0.60055923)*(2.3:0.38110131)*(4.4:0.75723046)*(1.3:1.91850889)*(0.325))	=0.10819358
+01:45:23.457 [gnb:getResultsFromFeatureSetForOneLabel] Predict label using [4] values:	0:6.5	1:3.0	2:5.5	3:1.8	
+01:45:23.457 [gnb:getResultsFromFeatureSetForOneLabel] 2.0	(6.5:0.58828831)*(3.0:1.15293598)*(5.5:0.68477023)*(1.8:0.96423692)*(0.333))	=0.1492804
+01:45:23.458 [gnb:getResultsFromFeatureSetForOneLabel] 0.0	(6.5:0.00022738)*(3.0:0.60428369)*(5.5:0.00000000)*(1.8:0.00000000)*(0.341))	=0.0
+01:45:23.458 [gnb:getResultsFromFeatureSetForOneLabel] 1.0	(6.5:0.44285479)*(3.0:1.00940597)*(5.5:0.03255125)*(1.8:0.13327923)*(0.325))	=6.3106E-4
+01:45:23.458 [gnb:predict] Prediction finished.
+01:45:23.458 [egnb:getLabelsFromfile] Loading file ./test-data/iris.arff.arff_data.10.arff_data,
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-setosa, index: 0.0]
+[ label: Iris-virginica, index: 2.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-versicolor, index: 1.0]
+[ label: Iris-virginica, index: 2.0]
+01:45:23.459 [egnb:main] Predicted Results size: 23
+01:45:23.459 [egnb:main] Class Labels size: 23
+01:45:23.460 [egnb:getMLStats] Class tested: xilodyne.machinelearning.classifier.GaussianNB
+01:45:23.460 [egnb:getMLStats] Accuracy: 95.65217391304348%
+01:45:23.460 [egnb:getMLStats] Total lines training: 630
+01:45:23.460 [egnb:getMLStats] Total lines predicted: 23
+01:45:23.460 [egnb:getMLStats] Activity	Time (in seconds)	% of Total Duration
+01:45:23.460 [egnb:getMLStats] --------	-----------------	-------------------
+01:45:23.462 [egnb:getMLStats] Data setup	0.255			59%
+01:45:23.462 [egnb:getMLStats] Fit		0.141			33%
+01:45:23.462 [egnb:getMLStats] Predict	0.035			8%
+01:45:23.463 [egnb:getMLStats] Total Time	0.43100000000000005
